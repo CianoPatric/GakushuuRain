@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 1356332268423985011}
   newWordColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  knowWordColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  knowWordColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
 --- !u!1 &5098634593613755609
 GameObject:
   m_ObjectHideFlags: 0
