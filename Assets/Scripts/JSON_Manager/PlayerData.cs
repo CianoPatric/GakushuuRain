@@ -11,7 +11,7 @@ public class PlayerData
     public PlayerState state;
     public List<InventoryItem> inventory;
     public List<QuestStatus> quests;
-    public LanguageProgress languageProgress;
+    public List<NotebookEntry> notebookEntries;
 
     public List<string> unlockedCosmeticIds;
 }

@@ -1,19 +1,16 @@
 {
   "words": [
     {
-      "id": "creature_canis",
-      "text": "dog",
-      "definition": "A domesticated carnivorous mammal that typically has a long snout, an acute sense of smell, and a barking, howling, or whining voice."
+      "id": "person_sheriff", "text": "sheriff", "category": "people", "definition": "Этот человек довольно подозрительный"
     },
     {
-      "id": "object_field",
-      "text": "field",
-      "definition": "An area of open land, especially one planted with crops or pasture, typically bounded by hedges or fences."
+      "id": "item_ledger", "text": "ledger", "category": "objects", "definition": "Регистр всех посещений"
     },
     {
-      "id": "food_grain",
-      "text": "grain",
-      "definition": "Wheat or any other cultivated cereal crop used as food."
+      "id": "location_saloon", "text": "Saloon", "category": "locations", "definition": "Место в котором каждый день бывают самые разные люди"
+    },
+    {
+      "id": "action_investigate", "text": "investigate", "category": "actions", "definition": "Исследование самое важное в нашем деле"
     }
   ]
 }

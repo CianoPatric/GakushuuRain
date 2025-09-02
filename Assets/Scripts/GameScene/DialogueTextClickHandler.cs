@@ -23,7 +23,7 @@ public class DialogueTextClickHandler : MonoBehaviour, IPointerClickHandler
             TMP_LinkInfo linkInfo = text.textInfo.linkInfo[linkIndex];
             string linkId = linkInfo.GetLinkID();
             
-            Debug.Log(linkId);
+            DialogueManager.Instance.OnWordClicked(linkId);
         }
     }
 }

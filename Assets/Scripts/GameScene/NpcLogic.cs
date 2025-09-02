@@ -1,35 +1,36 @@
-using System;
-using TMPro;
 using UnityEngine;
 
 public class NpcLogic : MonoBehaviour
 {
-    private Transform body;
-    private DialogueManager DialogueWindow;
     public GameObject PressEWindow;
+    [TextArea(3, 10)]
+    public string dialogueText;
+    private bool playerInRange = false;
     
     public void OnTriggerEnter2D(Collider2D other)
     {
-        PressEWindow.SetActive(true);
+        if (other.CompareTag("Player"))
+        {
+            PressEWindow.SetActive(true);
+            playerInRange = true;
+        }
     }
 
-    public void OnTriggerStay2D(Collider2D other)
+    public void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            body = transform;
-            var window = Resources.Load<DialogueManager>("DialogueWindow");
-            DialogueWindow = Instantiate(window, body.position, Quaternion.identity);
-            DontDestroyOnLoad(DialogueWindow.gameObject);
-            DialogueWindow.transform.SetParent(body, false);
-            DialogueWindow.transform.position = body.position + new Vector3(-150, 180, 0);
-            var text = DialogueWindow.GetComponentInChildren<TextMeshProUGUI>();
-            DialogueWindow.ShowDialogueLine("{object_field} {creature_canis}");
+            DialogueManager.Instance.ShowDialogueLine(dialogueText);
         }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        PressEWindow.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            PressEWindow.SetActive(false);
+            playerInRange = false;
+            DialogueManager.Instance.HideDialogueLine();
+        }
     }
 }

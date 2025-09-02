@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Supabase.Postgrest;
 using UnityEngine;
@@ -78,12 +79,42 @@ public class DataManager : MonoBehaviour
             {
                 userId = supabaseClient.Auth.CurrentUser.Id,
                 profile = new PlayerProfile { playerName = "New Player" },
-                state = new PlayerState { currentSceneName = "Tutorial", posX = 0f, posY = 0f },
+                state = new PlayerState { posX = 0f, posY = 0f },
                 inventory = new List<InventoryItem>(),
                 quests = new List<QuestStatus>(),
-                languageProgress = new LanguageProgress { notebookEntries = new List<NotebookEntry>() }
+                notebookEntries = new List<NotebookEntry>()
             };
             return currentPlayerData;
         }
+    }
+
+    public PlayerData GetCurrentPlayerData()
+    {
+        return currentPlayerData;
+    }
+
+    public bool IsWordInNotebook(string wordId)
+    {
+        if(currentPlayerData == null || currentPlayerData.notebookEntries == null) return false;
+        return currentPlayerData.notebookEntries.Any(entry => entry.wordId == wordId);
+    }
+
+    public void AddWordToNotebook(string wordId)
+    {
+        if (IsWordInNotebook(wordId))
+        {
+            Debug.LogWarning($"Попытка добавить уже существующее слово: {wordId}");
+            return;
+        }
+
+        NotebookEntry newEntry = new NotebookEntry
+        {
+            wordId = wordId,
+            userGuess = "",
+            status = WordStatus.Hypothesis,
+            encounteredContext = new List<string>()
+        };
+        currentPlayerData.notebookEntries.Add(newEntry);
+        Debug.Log($"Слово {wordId} добавлено в блокнот");
     }
 }

@@ -1,0 +1,115 @@
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class NotebookManager : MonoBehaviour
+{
+    public static NotebookManager instance;
+    
+    public GameObject notebookCanvas;
+    public GameObject wordButtonPrefab;
+
+    public TextMeshProUGUI wordTitleText;
+    public TMP_InputField userGuessInput;
+
+    public GameObject peopleTabContent;
+    public GameObject objectsTabContent;
+    public GameObject locationsTabContent;
+    public GameObject actionsTabContent;
+
+    private string currentCategory;
+    private NotebookEntry currentSelectedEntry;
+
+    private Dictionary<string, WordData> wordLibrary;
+    private PlayerData playerData;
+
+    void Awake()
+    {
+        instance = this;
+        notebookCanvas.SetActive(false);
+    }
+    
+
+    public void OpenNotebook()
+    {
+        notebookCanvas.SetActive(true);
+        PopulateAllTabs();
+        SwitchToTab("people");
+    }
+
+    public void CloseNotebook()
+    {
+        notebookCanvas.SetActive(false);
+    }
+
+    private void PopulateAllTabs()
+    {
+        PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
+        if (playerData == null) return;
+        foreach (var entry in playerData.notebookEntries)
+        {
+            WordData wordData = WordLibraryManager.instance.GetWordData(entry.wordId);
+            if(wordData == null) continue;
+            Transform parentTab = GetParentTabForCategory(wordData.category);
+            if (parentTab != null)
+            {
+                GameObject buttonGO = Instantiate(wordButtonPrefab, parentTab);
+                buttonGO.GetComponentInChildren<TextMeshProUGUI>().text = wordData.text;
+                buttonGO.GetComponent<Button>().onClick.AddListener(()=> SelectWord(entry));
+            }
+        }
+
+    }
+
+    private void SelectWord(NotebookEntry entry)
+    {
+        currentSelectedEntry = entry;
+        WordData wordData = WordLibraryManager.instance.GetWordData(entry.wordId);
+        wordTitleText.text = wordData.text;
+        userGuessInput.text = entry.userGuess;
+    }
+
+    public void SwitchToTab(string category)
+    {
+        peopleTabContent.transform.parent.parent.gameObject.SetActive(category == "people");
+        objectsTabContent.transform.parent.parent.gameObject.SetActive(category == "objects");
+        locationsTabContent.transform.parent.parent.gameObject.SetActive(category == "locations");
+        actionsTabContent.transform.parent.parent.gameObject.SetActive(category == "actions");
+    }
+
+    private Transform GetParentTabForCategory(string category)
+    {
+        switch (category)
+        {
+            case "people": return peopleTabContent.transform;
+            case "objects": return objectsTabContent.transform;
+            case "locations": return locationsTabContent.transform;
+            case "actions": return actionsTabContent.transform;
+            default: return null;
+        }
+    }
+
+    public void OpenAndShowWord(string wordId)
+    {
+        WordData wordData = WordLibraryManager.instance.GetWordData(wordId);
+        if (wordData == null)
+        {
+            Debug.LogError("Такого слова нет в блокноте");
+            return;
+        }
+
+        if (!notebookCanvas.activeSelf)
+        {
+            OpenNotebook();
+        }
+        SwitchToTab(wordData.category);
+        PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
+        NotebookEntry entryToShow = playerData.notebookEntries.Find(e => e.wordId == wordId);
+
+        if (entryToShow != null)
+        {
+            SelectWord(entryToShow);
+        }
+    }
+}
