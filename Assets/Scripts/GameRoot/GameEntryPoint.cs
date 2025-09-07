@@ -21,6 +21,9 @@ public class GameEntryPoint
     private GameEntryPoint()
     {
         _coroutines = new GameObject("[COROUTINES]").AddComponent<Coroutines>();
+        new GameObject("[AUTH_MANAGER]").AddComponent<AuthManager>();
+        new GameObject("[DATA_MANAGER]").AddComponent<DataManager>();
+        new GameObject("[WORD_LIBRARY_MANAGER]").AddComponent<WordLibraryManager>();
         Object.DontDestroyOnLoad(_coroutines.gameObject);
         var prefabUIRoot = Resources.Load<LoadingScreenRootView>("UIRoot");
         _menuRoot = Object.Instantiate(prefabUIRoot);
@@ -38,7 +41,7 @@ public class GameEntryPoint
         }
         if(sceneName == GAMESCENE)
         {
-            GSEnterParams _gameEnter = new GSEnterParams("DoublePenetration");
+            GSEnterParams _gameEnter = new GSEnterParams(new PlayerData());
             _coroutines.StartCoroutine(LoadAndStartGameScene(_gameEnter));
             return;
         }

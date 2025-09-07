@@ -1,9 +1,9 @@
 public class GSEnterParams 
 { 
-    public string TypeGame { get; } 
+    public PlayerData InitialPlayerData { get; } 
     
-    public GSEnterParams(string typeGame) 
+    public GSEnterParams(PlayerData initialPlayerData) 
     {
-        TypeGame = typeGame;
+        InitialPlayerData = initialPlayerData;
     }
 }

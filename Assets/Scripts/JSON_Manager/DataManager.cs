@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Supabase.Postgrest;
+using Supabase.Gotrue;
 using UnityEngine;
 using Client = Supabase.Client;
+using Constants = Supabase.Postgrest.Constants;
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
-
-    private Client supabaseClient;
+    
     private PlayerData currentPlayerData;
 
     void Awake()
@@ -22,14 +22,21 @@ public class DataManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        
-        var url = ClientInfo.CLIENT_URL;
-        var key = ClientInfo.CLIENT_KEY;
-        supabaseClient = new Client(url, key);
     }
 
+    public void InitializeWithData(PlayerData data)
+    {
+        currentPlayerData = data;
+    }
+
+    public async Task SaveInitialData(PlayerData data)
+    {
+        currentPlayerData = data;
+        await SaveData();
+    }
     public async Task SaveData()
     {
+        var supabaseClient = AuthManager.Instance.GetClient();
         if (currentPlayerData == null || supabaseClient.Auth.CurrentUser == null)
         {
             Debug.LogError("Нет данных для сохранения или пользователь не авторизован");
@@ -56,6 +63,7 @@ public class DataManager : MonoBehaviour
 
     public async Task<PlayerData> LoadData()
     {
+        var supabaseClient = AuthManager.Instance.GetClient();
         if (supabaseClient.Auth.CurrentUser == null)
         {
             Debug.LogError("Пользователь не авторизован");
@@ -63,27 +71,35 @@ public class DataManager : MonoBehaviour
         }
 
         var response = await supabaseClient.From<PlayerDataModel>()
-            .Filter("Id", Constants.Operator.Equals, supabaseClient.Auth.CurrentUser.Id)
+            .Filter("id", Constants.Operator.Equals, supabaseClient.Auth.CurrentUser.Id)
             .Single();
 
         if (response != null && response.Data != null)
         {
-            Debug.Log("Данные успешно сохранены");
+            Debug.Log("Данные успешно загружены");
             currentPlayerData = response.Data;
             return currentPlayerData;
         }
         else
         {
             Debug.Log("Сохранение не найдено, создание нового...");
+            
+            var currentUser = supabaseClient.Auth.CurrentUser;
+            string nickname = "New player";
+            if (currentUser.UserMetadata.ContainsKey("nickname"))
+            {
+                nickname = currentUser.UserMetadata["nickname"].ToString();
+            }
             currentPlayerData = new PlayerData
             {
                 userId = supabaseClient.Auth.CurrentUser.Id,
-                profile = new PlayerProfile { playerName = "New Player" },
+                profile = new PlayerProfile { playerName = nickname },
                 state = new PlayerState { posX = 0f, posY = 0f },
                 inventory = new List<InventoryItem>(),
                 quests = new List<QuestStatus>(),
                 notebookEntries = new List<NotebookEntry>()
             };
+            await SaveData();
             return currentPlayerData;
         }
     }

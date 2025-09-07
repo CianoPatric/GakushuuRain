@@ -33,11 +33,20 @@ public class NotebookManager : MonoBehaviour
 
     public void OpenNotebook()
     {
+        Debug.Log("OpenNotebook");
         notebookCanvas.SetActive(true);
         PopulateAllTabs();
         SwitchToTab("people");
     }
 
+    public void ClearAllTabs()
+    {
+        Debug.Log("ClearAllTabs");
+        foreach (Transform child in peopleTabContent.transform) {Destroy(child.gameObject);}
+        foreach (Transform child in objectsTabContent.transform) {Destroy(child.gameObject);}
+        foreach (Transform child in locationsTabContent.transform) {Destroy(child.gameObject);}
+        foreach (Transform child in actionsTabContent.transform) {Destroy(child.gameObject);}
+    }
     public void CloseNotebook()
     {
         notebookCanvas.SetActive(false);
@@ -45,8 +54,11 @@ public class NotebookManager : MonoBehaviour
 
     private void PopulateAllTabs()
     {
+        Debug.Log("PopulateAllTabs");
+        ClearAllTabs();
         PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
-        if (playerData == null) return;
+        if (playerData == null){ Debug.Log("PlayerData is null in PopulateAllTabs"); return;}
+        Debug.Log(playerData.notebookEntries.Count);
         foreach (var entry in playerData.notebookEntries)
         {
             WordData wordData = WordLibraryManager.instance.GetWordData(entry.wordId);
@@ -55,6 +67,7 @@ public class NotebookManager : MonoBehaviour
             if (parentTab != null)
             {
                 GameObject buttonGO = Instantiate(wordButtonPrefab, parentTab);
+                Debug.Log("Создали карточку");
                 buttonGO.GetComponentInChildren<TextMeshProUGUI>().text = wordData.text;
                 buttonGO.GetComponent<Button>().onClick.AddListener(()=> SelectWord(entry));
             }

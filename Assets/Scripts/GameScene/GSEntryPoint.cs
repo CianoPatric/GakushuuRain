@@ -17,11 +17,7 @@ public class GSEntryPoint: MonoBehaviour
         
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);
-        Debug.Log($"{gameSceneEnterParams.TypeGame}");
-        //var grid = Object.FindFirstObjectByType<BuildingsGrid>();
-        //var cam = Object.FindFirstObjectByType<ControllCamera>();
-        //(cam as IInjectable)?.Inject(container);
-        //(grid as IInjectable)?.Inject(container);
+        Debug.Log($"{gameSceneEnterParams.InitialPlayerData}");
         var enterParams = new MMEnterParams("Fatality");
         var exitParams = new GSExitParams(enterParams);
         var exitToUISceneSignal = exitSceneSignalSubj.Select(_ => exitParams);

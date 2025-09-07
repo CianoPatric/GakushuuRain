@@ -35,31 +35,8 @@ public class SupabaseManager: MonoBehaviour
         {
             string email = REmailField.text;
             string password = RPasswordField.text;
-            //if (!IsValidEmail(email))
-            {
-                //if (!IsStrongPassword(password))
-                {
-                    //if (!ArePasswordsMatching(password, password2))
-                    {
-                        var session = await supabase.Auth.SignUp(email, password);
-                        //if (session != null && session.User != null)
-                        {
-                            //UsersTable user = new()
-                            {
-                                //Id = session.User.Id,
-                                //Username = UserNameField.GetComponent<TextMeshProUGUI>().text,
-                                //AvatarData = StandartJsonAvatarData.ToString()
-                            };
-                            //var create = await UsersTable.CreateUser(client, user);
-                            //if (create != true) {Debug.Log("Регистрация прошла с ошибкой");}
-                        }
-                        //else {Debug.Log("Регистрация не удалась, сервер не доступен");}   
-                    }
-                    //else {Debug.Log("Пароль должен совпадать");}
-                }
-                //else {Debug.Log("Пароль должен быть не менее 8 символов и содержать хотя бы 1 строчную и 1 заглавную букву, 1 цифру и 1 спецсимвол");}
-            }
-            //else {Debug.Log("Введите корректный email");}
+            var session = await supabase.Auth.SignUp(email, password);
+
         }
         catch (Exception ex)
         {
