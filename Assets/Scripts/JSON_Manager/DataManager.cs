@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Supabase.Gotrue;
 using UnityEngine;
-using Client = Supabase.Client;
 using Constants = Supabase.Postgrest.Constants;
 
 public class DataManager : MonoBehaviour
@@ -12,6 +10,8 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get; private set; }
     
     private PlayerData currentPlayerData;
+
+    public static event Action<NotebookEntry> OnWordAddedToNotebook;
 
     void Awake()
     {
@@ -22,17 +22,6 @@ public class DataManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    public void InitializeWithData(PlayerData data)
-    {
-        currentPlayerData = data;
-    }
-
-    public async Task SaveInitialData(PlayerData data)
-    {
-        currentPlayerData = data;
-        await SaveData();
     }
     public async Task SaveData()
     {
@@ -132,5 +121,6 @@ public class DataManager : MonoBehaviour
         };
         currentPlayerData.notebookEntries.Add(newEntry);
         Debug.Log($"Слово {wordId} добавлено в блокнот");
+        OnWordAddedToNotebook?.Invoke(newEntry);
     }
 }

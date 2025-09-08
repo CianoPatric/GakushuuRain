@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     
     public GameObject DialogueBox;
     public TextMeshProUGUI dialogue;
+    private string currentRawText;
     
     public Color newWordColor = Color.yellow;
     public Color knowWordColor = Color.black;
@@ -23,6 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowDialogueLine(string rawText)
     {
+        currentRawText = rawText;
         if (DialogueBox != null)
         {
             DialogueBox.SetActive(true);
@@ -35,6 +37,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void RedRawDL()
+    {
+        if (DialogueBox.activeSelf && !string.IsNullOrEmpty(currentRawText))
+        {
+            string processedText = ProcessText(currentRawText);
+            dialogue.text = processedText;
+        }
+    }
     public void HideDialogueLine()
     {
         if (DialogueBox != null)
@@ -82,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             DataManager.Instance.AddWordToNotebook(wordId);
-            ShowDialogueLine(dialogue.text);
+            RedRawDL();
             Debug.Log("Слово добавленно");
         }
     }

@@ -19,8 +19,9 @@ public class NotebookManager : MonoBehaviour
     public GameObject actionsTabContent;
 
     private string currentCategory;
-    private NotebookEntry currentSelectedEntry;
+    //private NotebookEntry currentSelectedEntry;
 
+    private bool hasBeenPopulated = false;
     private Dictionary<string, WordData> wordLibrary;
     private PlayerData playerData;
 
@@ -29,7 +30,38 @@ public class NotebookManager : MonoBehaviour
         instance = this;
         notebookCanvas.SetActive(false);
     }
-    
+
+    void OnEnable()
+    {
+        DataManager.OnWordAddedToNotebook += HandleWordAdded;
+    }
+
+    void OnDisable()
+    {
+        DataManager.OnWordAddedToNotebook -= HandleWordAdded;
+    }
+
+    private void HandleWordAdded(NotebookEntry newEntry)
+    {
+        if (hasBeenPopulated)
+        {
+            CreateButtonForEntry(newEntry);
+        }
+    }
+
+    private void CreateButtonForEntry(NotebookEntry newEntry)
+    {
+        WordData wordData = WordLibraryManager.instance.GetWordData(newEntry.wordId);
+        if(wordData == null) return;
+        
+        Transform parentTab = GetParentTabForCategory(wordData.category);
+        if (parentTab != null)
+        {
+            GameObject newButton = Instantiate(wordButtonPrefab, parentTab);
+            newButton.GetComponentInChildren<TextMeshProUGUI>().text = wordData.text;
+            newButton.GetComponent<Button>().onClick.AddListener(() => SelectWord(newEntry));
+        }
+    }
 
     public void OpenNotebook()
     {
@@ -54,6 +86,7 @@ public class NotebookManager : MonoBehaviour
 
     private void PopulateAllTabs()
     {
+        if(hasBeenPopulated) return;
         Debug.Log("PopulateAllTabs");
         ClearAllTabs();
         PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
@@ -61,23 +94,14 @@ public class NotebookManager : MonoBehaviour
         Debug.Log(playerData.notebookEntries.Count);
         foreach (var entry in playerData.notebookEntries)
         {
-            WordData wordData = WordLibraryManager.instance.GetWordData(entry.wordId);
-            if(wordData == null) continue;
-            Transform parentTab = GetParentTabForCategory(wordData.category);
-            if (parentTab != null)
-            {
-                GameObject buttonGO = Instantiate(wordButtonPrefab, parentTab);
-                Debug.Log("Создали карточку");
-                buttonGO.GetComponentInChildren<TextMeshProUGUI>().text = wordData.text;
-                buttonGO.GetComponent<Button>().onClick.AddListener(()=> SelectWord(entry));
-            }
+            CreateButtonForEntry(entry);
         }
-
+        hasBeenPopulated = true;
     }
 
     private void SelectWord(NotebookEntry entry)
     {
-        currentSelectedEntry = entry;
+        //currentSelectedEntry = entry;
         WordData wordData = WordLibraryManager.instance.GetWordData(entry.wordId);
         wordTitleText.text = wordData.text;
         userGuessInput.text = entry.userGuess;
