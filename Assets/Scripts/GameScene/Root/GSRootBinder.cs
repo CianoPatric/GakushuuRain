@@ -1,7 +1,7 @@
 using R3;
 using UnityEngine;
 
-public class GSRootBinder:MonoBehaviour
+public class GSRootBinder: MonoBehaviour
 {
     private Subject<Unit> _exitSceneSignalSubj;
     public void HandleGoToMainMenuButtonClick()

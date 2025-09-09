@@ -1313,7 +1313,7 @@ GameObject:
   - component: {fileID: 3858591970259784355}
   - component: {fileID: 1056066232130062170}
   - component: {fileID: -8420266018460827558}
-  - component: {fileID: 2048219625744381860}
+  - component: {fileID: 2857598024737471909}
   m_Layer: 5
   m_Name: GSRoot
   m_TagString: Untagged
@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23677f8497b144ab96e33c176ad787ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2048219625744381860
+--- !u!114 &2857598024737471909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1381,6 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8ca89f369b4c31aa6f71439561d7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootBinder: {fileID: -8420266018460827558}
   pauseMenu: {fileID: 867156539500131097}
   notebook: {fileID: 7501976860498378663}
 --- !u!1 &2355172908104476014
@@ -1903,7 +1904,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048219625744381860}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 1
@@ -2733,9 +2734,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8420266018460827558}
-        m_TargetAssemblyTypeName: GSRootBinder, Assembly-CSharp
-        m_MethodName: HandleGoToMainMenuButtonClick
+      - m_Target: {fileID: 2857598024737471909}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11921,7 +11922,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048219625744381860}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
         m_MethodName: SaveGame
         m_Mode: 1

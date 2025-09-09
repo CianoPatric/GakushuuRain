@@ -7,6 +7,7 @@ public class GSEntryPoint: MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public Observable<GSExitParams> Run(DIContainer container, GSEnterParams gameSceneEnterParams)
     {
+        Time.timeScale = 1f;
         GSRegistrationDI.Register(container, gameSceneEnterParams);
         var gameSceneViewModelContainer = new DIContainer(container);
         GSViewDIRegistration.Register(gameSceneViewModelContainer);

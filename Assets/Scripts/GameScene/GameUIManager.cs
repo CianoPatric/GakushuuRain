@@ -4,6 +4,7 @@ public class GameUIManager : MonoBehaviour
 {
     public static GameUIManager instance {get; private set;}
 
+    public GSRootBinder rootBinder;
     public GameObject pauseMenu;
     private bool isPaused = false;
 
@@ -64,5 +65,12 @@ public class GameUIManager : MonoBehaviour
     public async void SaveGame()
     {
         await DataManager.Instance.SaveData();
+    }
+
+    public void ExitGame()
+    {
+        Time.timeScale = 1f;
+
+        rootBinder.HandleGoToMainMenuButtonClick();
     }
 }

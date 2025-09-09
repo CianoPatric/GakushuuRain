@@ -7,6 +7,7 @@ public class MMEntryPoint: MonoBehaviour
     
     public Observable<MMExitParams> Run(DIContainer container, MMEnterParams uiEnterParams)
     { 
+        Time.timeScale = 1f;
         MMRegistrationDI.Register(container, uiEnterParams); 
         var uiViewModelContainer = new DIContainer(container); 
         MMViewDIRegistration.Register(uiViewModelContainer);
