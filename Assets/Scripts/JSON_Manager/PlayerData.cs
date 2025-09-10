@@ -14,4 +14,5 @@ public class PlayerData
     public List<NotebookEntry> notebookEntries;
 
     public List<string> unlockedCosmeticIds;
+    public List<DialogueState> dialogueStates;
 }

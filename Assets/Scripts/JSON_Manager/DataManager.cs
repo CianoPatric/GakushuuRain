@@ -86,13 +86,43 @@ public class DataManager : MonoBehaviour
                 state = new PlayerState { posX = 0f, posY = 0f },
                 inventory = new List<InventoryItem>(),
                 quests = new List<QuestStatus>(),
-                notebookEntries = new List<NotebookEntry>()
+                notebookEntries = new List<NotebookEntry>(),
+                dialogueStates = new List<DialogueState>()
             };
             await SaveData();
             return currentPlayerData;
         }
     }
 
+    public void SetDialogueState(string dialogueId, string lastNodeId)
+    {
+        if (currentPlayerData == null) return;
+        
+        DialogueState existingState = currentPlayerData.dialogueStates.Find(x => x.dialogueId == dialogueId);
+        if (existingState != null)
+        {
+            existingState.lastNodeId = lastNodeId;
+        }
+        else
+        {
+            currentPlayerData.dialogueStates.Add(new DialogueState{dialogueId = dialogueId, lastNodeId = lastNodeId});
+        }
+        Debug.Log($"Состояние диалога {dialogueId} сохранено на узле {lastNodeId}");
+    }
+
+    public string GetDialogueState(string dialogueId)
+    {
+        if (currentPlayerData == null) return "start";
+        DialogueState existingState = currentPlayerData.dialogueStates.Find(x => x.dialogueId == dialogueId);
+        if (existingState != null)
+        {
+            return existingState.lastNodeId;
+        }
+        else
+        {
+            return "start";
+        }
+    }
     public PlayerData GetCurrentPlayerData()
     {
         return currentPlayerData;

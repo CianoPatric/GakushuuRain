@@ -3,8 +3,7 @@ using UnityEngine;
 public class NpcLogic : MonoBehaviour
 {
     public GameObject PressEWindow;
-    [TextArea(3, 10)]
-    public string dialogueText;
+    public string dialogueStartId;
     private bool playerInRange = false;
     
     public void OnTriggerEnter2D(Collider2D other)
@@ -20,7 +19,8 @@ public class NpcLogic : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            DialogueManager.Instance.ShowDialogueLine(dialogueText);
+            string startNode = DataManager.Instance.GetDialogueState(dialogueStartId);
+            DialogueManager.Instance.StartDialogue(dialogueStartId, startNode);
         }
     }
 
