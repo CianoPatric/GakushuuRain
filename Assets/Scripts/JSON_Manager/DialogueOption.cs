@@ -6,6 +6,6 @@ public class DialogueOption
 {
     public string optionId;
     public string text;
-    public string nextNoteId;
+    public string nextNodeId;
     public List<QuestAction> actions;
 }

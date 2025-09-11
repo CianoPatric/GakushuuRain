@@ -1,0 +1,89 @@
+{
+  "dialogueId": "chess_players_intro",
+  "nodes": [
+    {
+      "nodeId": "start",
+      "speaker": "Isaiah",
+      "text": "Hmph. Another distraction. Maria, it is your {action_move}.",
+      "nextNodeId": "maria_speaks"
+    },
+    {
+      "nodeId": "maria_speaks",
+      "speaker": "Maria",
+      "text": "Hush, Isaiah. Don't be rude. Hello, stranger. We are {action_playing} a {concept_game}. It requires one to {action_think} carefully.",
+      "options": [
+        {
+          "optionId": "opt1_watch",
+          "text": "May I watch the game?",
+          "nextNodeId": "isaiah_challenge"
+        },
+        {
+          "optionId": "opt2_what",
+          "text": "What is 'to think'?",
+          "nextNodeId": "explain_think"
+        }
+      ]
+    },
+    {
+      "nodeId": "explain_think",
+      "speaker": "Maria",
+      "text": "To {action_think} is to {action_use} your {concept_mind}. To {action_find} an idea or an {concept_answer}. It is a very important {action_skill}.",
+      "nextNodeId": "maria_speaks"
+    },
+    {
+      "nodeId": "isaiah_challenge",
+      "speaker": "Isaiah",
+      "text": "Fine. But {action_answer} me this. To {action_win} this {concept_game}, is it {quality_better} to {action_move} {quality_fast}, or to {action_think} {quality_slow}?",
+      "options": [
+        {
+          "optionId": "check_fast",
+          "text": "To move fast.",
+          "nextNodeId": "answer_wrong"
+        },
+        {
+          "optionId": "check_slow",
+          "text": "To think slow.",
+          "nextNodeId": "answer_correct"
+        }
+      ]
+    },
+    {
+      "nodeId": "answer_wrong",
+      "speaker": "Isaiah",
+      "text": "Wrong. A {quality_fast} {action_move} without a {quality_good} {concept_plan} is the path to ruin. You must {action_learn} this.",
+      "nextNodeId": "maria_gives_gift"
+    },
+    {
+      "nodeId": "answer_correct",
+      "speaker": "Isaiah",
+      "text": "Hah! Indeed. This one understands. To {action_think} before you {action_move}... that is the {concept_key} to {concept_victory}.",
+      "nextNodeId": "maria_gives_gift"
+    },
+    {
+      "nodeId": "maria_gives_gift",
+      "speaker": "Maria",
+      "text": "You have a thoughtful {concept_mind}. That's a rare thing. Isaiah, {action_give} our {quality_new} {person_friend} your spare {item_monocle}.",
+      "nextNodeId": "isaiah_gives_gift"
+    },
+    {
+      "nodeId": "isaiah_gives_gift",
+      "speaker": "Isaiah",
+      "text": "Hmph. Fine. Here. It helps to {action_see} the board more clearly. Maybe it will {action_help} you {action_see} the world more clearly too.",
+      "nextNodeId": "end",
+      "actions": [
+        {"type": "give_cosmetic", "targetId": "accessory_monocle"}
+      ]
+    },
+    {
+      "nodeId": "end",
+      "speaker": "Maria",
+      "text": "{action_welcome} to our {location_town}. Feel free to watch the {concept_game} anytime.",
+      "nextNodeId": "dialogue_finished_loop"
+    },
+    {
+      "nodeId": "dialogue_finished_loop",
+      "speaker": "Isaiah",
+      "text": "Don't distract me. I am {action_thinking}."
+    }
+  ]
+}

@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
     
     public GameObject DialogueBox;
+    public GameObject continueButton;
     public TextMeshProUGUI speakerName;
     public TextMeshProUGUI dialogue;
     public Transform optionsContainer;
@@ -19,7 +20,7 @@ public class DialogueManager : MonoBehaviour
     public Color knowWordColor = Color.black;
 
     private DialogueData currentDialogue;
-    private DialogueNote currentNode;
+    private DialogueNode currentNode;
     void Awake()
     {
         Instance = this;
@@ -28,20 +29,10 @@ public class DialogueManager : MonoBehaviour
             DialogueBox.SetActive(false);
         }
     }
-
-    void Update()
+    
+    public void StartDialogue(string dialogueId, string startNodeId = "start")
     {
-        if (DialogueBox.activeSelf && currentNode != null &&
-            (currentNode.options == null || currentNode.options.Count == 0))
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                ContinueDialogue();
-            }
-        }
-    }
-    public void StartDialogue(string dialogueId, string startNoteId = "start")
-    {
+        Debug.Log($"DialogueManager received request to start dialogue '{dialogueId}'.");
         currentDialogue = DialogueLibraryManager.instance.GetDialogue(dialogueId);
         if (currentDialogue == null)
         {
@@ -49,9 +40,19 @@ public class DialogueManager : MonoBehaviour
             HideDialogueLine();
             return;
         }
-        
+        Debug.Log("Dialogue data found successfully. Setting up UI...");
         DialogueBox.SetActive(true);
-        currentNode = currentDialogue.nodes.Find(note => note.noteId == startNoteId);
+        currentNode = currentDialogue.nodes.Find(note => note.nodeId == startNodeId);
+        
+        if (currentNode == null)
+        {
+            // Если видишь это, значит, в JSON-файле нет узла с ID, который мы ищем (например, "start").
+            Debug.LogError($"CRITICAL: Dialogue node '{startNodeId}' NOT FOUND in dialogue '{dialogueId}'.");
+            HideDialogueLine();
+            return;
+        }
+        
+        
         DisplayCurrentNode();
     }
 
@@ -77,12 +78,18 @@ public class DialogueManager : MonoBehaviour
 
         if (currentNode.options != null && currentNode.options.Count > 0)
         {
+            continueButton.SetActive(false);
             foreach (DialogueOption option in currentNode.options)
             {
+                DialogueOption capturedOption = option;
                 GameObject optionButton = Instantiate(optionButtonPrefab, optionsContainer);
-                optionButton.GetComponentInChildren<TextMeshProUGUI>().text = option.text;
-                optionButton.GetComponent<Button>().onClick.AddListener(() => OptionSelected(option));
+                optionButton.GetComponentInChildren<TextMeshProUGUI>().text = capturedOption.text;
+                optionButton.GetComponent<Button>().onClick.AddListener(() => OptionSelected(capturedOption));
             }
+        }
+        else
+        {
+            continueButton.SetActive(true);
         }
         
         ExecuteActions(currentNode.actions);
@@ -90,9 +97,9 @@ public class DialogueManager : MonoBehaviour
 
     private void ContinueDialogue()
     {
-        if (!string.IsNullOrEmpty(currentNode.nextNoteId))
+        if (!string.IsNullOrEmpty(currentNode.nextNodeId))
         {
-            currentNode = currentDialogue.nodes.Find(note => note.noteId == currentNode.nextNoteId);
+            currentNode = currentDialogue.nodes.Find(note => note.nodeId == currentNode.nextNodeId);
             DisplayCurrentNode();
         }
         else
@@ -105,7 +112,7 @@ public class DialogueManager : MonoBehaviour
     {
         ExecuteActions(option.actions);
         
-        currentNode = currentDialogue.nodes.Find(note => note.noteId == option.nextNoteId);
+        currentNode = currentDialogue.nodes.Find(node => node.nodeId == option.nextNodeId);
         DisplayCurrentNode();
     }
 
@@ -123,7 +130,8 @@ public class DialogueManager : MonoBehaviour
                     Debug.Log($"Завершить шаг квеста {action.targetId}, шаг: {action.value}");
                     break;
                 case "give_item":
-                    Debug.Log($"Выдать предмет: {action.targetId}, количество: {action.value}");
+                    Debug.Log($"Выдать косметику: {action.targetId}");
+                    DataManager.Instance.UnlockCosmeticItem(action.targetId);
                     break;
                 case "learn_word":
                     Debug.Log($"Изучить слово: {action.targetId}");
@@ -151,7 +159,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogue != null && currentNode != null)
         {
-            DataManager.Instance.SetDialogueState(currentDialogue.dialogueId, currentNode.noteId);
+            DataManager.Instance.SetDialogueState(currentDialogue.dialogueId, currentNode.nodeId);
         }
 
         if (DialogueBox != null)

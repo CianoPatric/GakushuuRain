@@ -1,0 +1,94 @@
+{
+  "dialogueId": "sister_agatha_intro",
+  "nodes": [
+    {
+      "nodeId": "start",
+      "speaker": "Sister Agatha",
+      "text": "Blessings upon you, little {person_traveler}. {action_welcome} to our humble {location_church}. Are you feeling lost in our {location_town}?",
+      "options": [
+        {
+          "optionId": "opt1_yes",
+          "text": "Yes, I am a little lost.",
+          "nextNodeId": "give_directions"
+        },
+        {
+          "optionId": "opt2_no",
+          "text": "No, I am just exploring.",
+          "nextNodeId": "exploring_response"
+        }
+      ]
+    },
+    {
+      "nodeId": "give_directions",
+      "speaker": "Sister Agatha",
+      "text": "Do not worry. This is the {location_church}, a {location_place} of peace. The {location_saloon} is to the {direction_west}. The {location_bank} is to the {direction_east}. It is a simple layout.",
+      "nextNodeId": "check_understanding"
+    },
+    {
+      "nodeId": "exploring_response",
+      "speaker": "Sister Agatha",
+      "text": "It is a {quality_good} {location_town} to {action_explore} in. The {location_church} is always open. Our people form a strong {concept_community}.",
+      "nextNodeId": "check_understanding"
+    },
+    {
+      "nodeId": "check_understanding",
+      "speaker": "Sister Agatha",
+      "text": "So you can {action_find} your way, let me ask a simple {concept_question}. The {concept_sun} sets in the...?",
+      "options": [
+        {
+          "optionId": "check_east",
+          "text": "East.",
+          "nextNodeId": "answer_wrong"
+        },
+        {
+          "optionId": "check_west",
+          "text": "West.",
+          "nextNodeId": "answer_correct"
+        },
+        {
+          "optionId": "check_what",
+          "text": "What is 'sun'?",
+          "nextNodeId": "explain_sun"
+        }
+      ]
+    },
+    {
+      "nodeId": "explain_sun",
+      "speaker": "Sister Agatha",
+      "text": "The {concept_sun} is the big, bright star in the sky during the day. It gives us light and warmth.",
+      "nextNodeId": "check_understanding"
+    },
+    {
+      "nodeId": "answer_wrong",
+      "speaker": "Sister Agatha",
+      "text": "No, my child. The {concept_sun} rises in the {direction_east} and sets in the {direction_west}. But it is an easy mistake. The desire to {action_learn} is what matters.",
+      "nextNodeId": "give_gift"
+    },
+    {
+      "nodeId": "answer_correct",
+      "speaker": "Sister Agatha",
+      "text": "That is right. You are an observant {person_person}. You {action_see} the world around you.",
+      "nextNodeId": "give_gift"
+    },
+    {
+      "nodeId": "give_gift",
+      "speaker": "Sister Agatha",
+      "text": "Your journey must be {quality_long}. Your clothes look worn. We in this {concept_community} {action_help} each other. Please, {action_take} these clean {item_trousers}.",
+      "nextNodeId": "end",
+      "actions": [
+        {"type": "give_cosmetic", "targetId": "pants_clean_trousers"}
+      ]
+    },
+    {
+      "nodeId": "end",
+      "speaker": "Sister Agatha",
+      "text": "May your path be safe. Remember, the doors of this {location_church} are always open to a {quality_kind} {person_friend}.",
+      "nextNodeId": "dialogue_finished_loop"
+    },
+    {
+      "nodeId": "dialogue_finished_loop",
+      "speaker": "Sister Agatha",
+      "text": "Peace be with you, child."
+    }
+  ]
+}

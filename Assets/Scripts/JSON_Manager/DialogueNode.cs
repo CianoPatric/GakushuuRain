@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class DialogueNote
+public class DialogueNode
 {
-    public string noteId;
+    public string nodeId;
     public string speaker;
     public string text;
     public List<DialogueOption> options;
-    public string nextNoteId;
+    public string nextNodeId;
     public List<QuestAction> actions;
 }

@@ -8,20 +8,24 @@ public class NotebookManager : MonoBehaviour
     public static NotebookManager instance;
     
     public GameObject notebookCanvas;
+    public GameObject wordPanel;
     public GameObject wordButtonPrefab;
 
+    [Header("Элементы слов")]
     public TextMeshProUGUI wordTitleText;
+    public TextMeshProUGUI translationText;
+    public TextMeshProUGUI definitionText;
     public TMP_InputField userGuessInput;
 
+    [Header("Вкладки")]
     public GameObject peopleTabContent;
     public GameObject objectsTabContent;
     public GameObject locationsTabContent;
     public GameObject actionsTabContent;
 
     private string currentCategory;
-    //private NotebookEntry currentSelectedEntry;
-
-    private bool hasBeenPopulated = false;
+    private NotebookEntry currentSelectedEntry;
+    
     private Dictionary<string, WordData> wordLibrary;
     private PlayerData playerData;
 
@@ -29,6 +33,25 @@ public class NotebookManager : MonoBehaviour
     {
         instance = this;
         notebookCanvas.SetActive(false);
+        wordPanel.SetActive(false);
+    }
+
+    public void Initialize()
+    {
+        Debug.Log("NotebookManager: Инициализация и заполнение из сохранения");
+        ClearAllTabs();
+        PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
+        if (playerData == null || playerData.notebookEntries == null)
+        {
+            Debug.Log("NotebookManager: Данные игрока или список слов пусты при инициализации");
+            return;
+        }
+        
+        Debug.Log($"NotebookManager: Найдено {playerData.notebookEntries.Count} слов в сохранении");
+        foreach (var entry in playerData.notebookEntries)
+        {
+            CreateButtonForEntry(entry);
+        }
     }
 
     void OnEnable()
@@ -43,10 +66,7 @@ public class NotebookManager : MonoBehaviour
 
     private void HandleWordAdded(NotebookEntry newEntry)
     {
-        if (hasBeenPopulated)
-        {
-            CreateButtonForEntry(newEntry);
-        }
+        CreateButtonForEntry(newEntry);
     }
 
     private void CreateButtonForEntry(NotebookEntry newEntry)
@@ -65,15 +85,12 @@ public class NotebookManager : MonoBehaviour
 
     public void OpenNotebook()
     {
-        Debug.Log("OpenNotebook");
         notebookCanvas.SetActive(true);
-        PopulateAllTabs();
         SwitchToTab("people");
     }
 
     public void ClearAllTabs()
     {
-        Debug.Log("ClearAllTabs");
         foreach (Transform child in peopleTabContent.transform) {Destroy(child.gameObject);}
         foreach (Transform child in objectsTabContent.transform) {Destroy(child.gameObject);}
         foreach (Transform child in locationsTabContent.transform) {Destroy(child.gameObject);}
@@ -81,30 +98,34 @@ public class NotebookManager : MonoBehaviour
     }
     public void CloseNotebook()
     {
+        SaveChangesForCurrentEntry();
         notebookCanvas.SetActive(false);
-    }
-
-    private void PopulateAllTabs()
-    {
-        if(hasBeenPopulated) return;
-        Debug.Log("PopulateAllTabs");
-        ClearAllTabs();
-        PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
-        if (playerData == null){ Debug.Log("PlayerData is null in PopulateAllTabs"); return;}
-        Debug.Log(playerData.notebookEntries.Count);
-        foreach (var entry in playerData.notebookEntries)
-        {
-            CreateButtonForEntry(entry);
-        }
-        hasBeenPopulated = true;
+        wordPanel.SetActive(false);
     }
 
     private void SelectWord(NotebookEntry entry)
     {
-        //currentSelectedEntry = entry;
+        SaveChangesForCurrentEntry();
+        currentSelectedEntry = entry;
         WordData wordData = WordLibraryManager.instance.GetWordData(entry.wordId);
         wordTitleText.text = wordData.text;
+        translationText.text = wordData.translation;
+        definitionText.text = wordData.definition;
         userGuessInput.text = entry.userGuess;
+        wordPanel.SetActive(true);
+    }
+
+    private void SaveChangesForCurrentEntry()
+    {
+        if (currentSelectedEntry != null)
+        {
+            if (currentSelectedEntry.userGuess != userGuessInput.text)
+            {
+                currentSelectedEntry.userGuess = userGuessInput.text;
+                DataManager.Instance.MarkDataAsDirty();
+                Debug.Log($"Изменения для слова '{currentSelectedEntry.wordId}' сохранены");
+            }
+        }
     }
 
     public void SwitchToTab(string category)
@@ -113,6 +134,13 @@ public class NotebookManager : MonoBehaviour
         objectsTabContent.transform.parent.parent.gameObject.SetActive(category == "objects");
         locationsTabContent.transform.parent.parent.gameObject.SetActive(category == "locations");
         actionsTabContent.transform.parent.parent.gameObject.SetActive(category == "actions");
+    }
+
+    public void CloseWordPanel()
+    {
+        SaveChangesForCurrentEntry();
+        currentSelectedEntry = null;
+        wordPanel.SetActive(false);
     }
 
     private Transform GetParentTabForCategory(string category)

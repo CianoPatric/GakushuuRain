@@ -5,5 +5,5 @@ using System.Collections.Generic;
 public class DialogueData
 {
     public string dialogueId;
-    public List<DialogueNote> nodes;
+    public List<DialogueNode> nodes;
 }

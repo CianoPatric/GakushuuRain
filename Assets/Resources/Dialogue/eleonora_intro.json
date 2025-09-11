@@ -1,0 +1,83 @@
+{
+  "dialogueId": "eleonora_intro",
+  "nodes": [
+    {
+      "nodeId": "start",
+      "speaker": "Eleonora Vance",
+      "text": "Oh, excuse me. You have a {quality_kind} {person_face}. Are you a {person_traveler}?",
+      "options": [
+        {
+          "optionId": "opt1_yes",
+          "text": "Yes, I travel.",
+          "nextNodeId": "ask_about_family"
+        },
+        {
+          "optionId": "opt2_face",
+          "text": "A 'kind face'?",
+          "nextNodeId": "explain_kind_face"
+        }
+      ]
+    },
+    {
+      "nodeId": "explain_kind_face",
+      "speaker": "Eleonora Vance",
+      "text": "It means you look like a {quality_good} {person_person}. Not {quality_dangerous}. It's a nice compliment.",
+      "nextNodeId": "start"
+    },
+    {
+      "nodeId": "ask_about_family",
+      "speaker": "Eleonora Vance",
+      "text": "A {person_traveler} must be {quality_lonely} sometimes. Do you {action_have} a {person_family}? A {person_mother} or a {person_father}?",
+      "nextNodeId": "check_understanding"
+    },
+    {
+      "nodeId": "check_understanding",
+      "speaker": "Eleonora Vance",
+      "text": "I am waiting for my {person_husband}. A {person_husband} is a very important part of a {person_family}. From your experience, who is usually older: a {person_child} or a {person_father}?",
+      "options": [
+        {
+          "optionId": "check_child",
+          "text": "The child.",
+          "nextNodeId": "answer_wrong"
+        },
+        {
+          "optionId": "check_father",
+          "text": "The father.",
+          "nextNodeId": "answer_correct"
+        }
+      ]
+    },
+    {
+      "nodeId": "answer_wrong",
+      "speaker": "Eleonora Vance",
+      "text": "Oh, no, my dear. A {person_father} is the parent. The {person_child} is young. But I see you are {action_think}ing about it. That is what's important.",
+      "nextNodeId": "give_gift"
+    },
+    {
+      "nodeId": "answer_correct",
+      "speaker": "Eleonora Vance",
+      "text": "Yes, that's right. You have a clear understanding of {person_family}. It warms my heart to see such wisdom in a {person_traveler}.",
+      "nextNodeId": "give_gift"
+    },
+    {
+      "nodeId": "give_gift",
+      "speaker": "Eleonora Vance",
+      "text": "You have a gentle soul. This {location_town} is not always so {quality_kind}. Please, {action_take} this {item_scarf}. It is soft and warm. A {action_welcome} {item_gift}.",
+      "nextNodeId": "end",
+      "actions": [
+        {"type": "give_cosmetic", "targetId": "accessory_silk_scarf"}
+      ]
+    },
+    {
+      "nodeId": "end",
+      "speaker": "Eleonora Vance",
+      "text": "I hope my {person_husband} arrives soon. Be safe on your travels.",
+      "nextNodeId": "dialogue_finished_loop"
+    },
+    {
+      "nodeId": "dialogue_finished_loop",
+      "speaker": "Eleonora Vance",
+      "text": "It is nice to see a friendly {person_face} again."
+    }
+  ]
+}

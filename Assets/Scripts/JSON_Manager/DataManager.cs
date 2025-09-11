@@ -10,6 +10,7 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get; private set; }
     
     private PlayerData currentPlayerData;
+    private bool isDataDirty = false;
 
     public static event Action<NotebookEntry> OnWordAddedToNotebook;
 
@@ -23,12 +24,22 @@ public class DataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    public void MarkDataAsDirty()
+    {
+        isDataDirty = true;
+    }
     public async Task SaveData()
     {
         var supabaseClient = AuthManager.Instance.GetClient();
         if (currentPlayerData == null || supabaseClient.Auth.CurrentUser == null)
         {
             Debug.LogError("Нет данных для сохранения или пользователь не авторизован");
+            return;
+        }
+
+        if (!isDataDirty && false)
+        {
             return;
         }
         currentPlayerData.userId = supabaseClient.Auth.CurrentUser.Id;
@@ -43,6 +54,7 @@ public class DataManager : MonoBehaviour
         if (response.ResponseMessage.IsSuccessStatusCode)
         {
             Debug.Log("Данные успешно сохранены");
+            isDataDirty = false;
         }
         else
         {
@@ -82,12 +94,17 @@ public class DataManager : MonoBehaviour
             currentPlayerData = new PlayerData
             {
                 userId = supabaseClient.Auth.CurrentUser.Id,
-                profile = new PlayerProfile { playerName = nickname },
+                profile = new PlayerProfile
+                {
+                    playerName = nickname,
+                    equippedItems = new PlayerCustomization()
+                },
                 state = new PlayerState { posX = 0f, posY = 0f },
                 inventory = new List<InventoryItem>(),
                 quests = new List<QuestStatus>(),
                 notebookEntries = new List<NotebookEntry>(),
-                dialogueStates = new List<DialogueState>()
+                dialogueStates = new List<DialogueState>(),
+                unlockedCosmeticIds = new List<string>()
             };
             await SaveData();
             return currentPlayerData;
@@ -134,6 +151,16 @@ public class DataManager : MonoBehaviour
         return currentPlayerData.notebookEntries.Any(entry => entry.wordId == wordId);
     }
 
+    public void UnlockCosmeticItem(string cosmeticId)
+    {
+        if(currentPlayerData == null) return;
+        if (!currentPlayerData.unlockedCosmeticIds.Contains(cosmeticId))
+        {
+            currentPlayerData.unlockedCosmeticIds.Add(cosmeticId);
+            Debug.Log("Игрок разблокировал предмет: " + cosmeticId);
+        }
+    }
+
     public void AddWordToNotebook(string wordId)
     {
         if (IsWordInNotebook(wordId))
@@ -152,5 +179,13 @@ public class DataManager : MonoBehaviour
         currentPlayerData.notebookEntries.Add(newEntry);
         Debug.Log($"Слово {wordId} добавлено в блокнот");
         OnWordAddedToNotebook?.Invoke(newEntry);
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (isDataDirty)
+        {
+            _ = SaveData();
+        }
     }
 }

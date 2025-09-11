@@ -1,0 +1,77 @@
+{
+  "dialogueId": "big_bart_intro",
+  "nodes": [
+    {
+      "nodeId": "start",
+      "speaker": "Big Bart",
+      "text": "Well now, a {quality_new} {person_customer}! {action_welcome} to my humble {location_stall}. I {action_sell} the {quality_best} {item_vegetables} in this {quality_whole} {location_swamp}.",
+      "options": [
+        {
+          "optionId": "opt1_ask_goods",
+          "text": "What vegetables do you have?",
+          "nextNodeId": "show_goods"
+        },
+        {
+          "optionId": "opt2_just_looking",
+          "text": "I'm just looking.",
+          "nextNodeId": "looking_around"
+        }
+      ]
+    },
+    {
+      "nodeId": "show_goods",
+      "speaker": "Big Bart",
+      "text": "{action_today} I {action_have} some {quality_fine} {item_potatoes} and some very {quality_red} {item_tomatoes}. The {item_potatoes} are {quality_perfect} for a hearty {item_stew}.",
+      "nextNodeId": "ask_preference"
+    },
+    {
+      "nodeId": "ask_preference",
+      "speaker": "Big Bart",
+      "text": "Every {person_person} has a {quality_favorite} {item_food}. I am {quality_curious}... what do you {action_prefer}? Something you can {action_eat} raw, or something you must {action_cook}?",
+      "options": [
+        {
+          "optionId": "check_raw",
+          "text": "Something to eat raw.",
+          "nextNodeId": "answer_correct"
+        },
+        {
+          "optionId": "check_cook",
+          "text": "Something to cook.",
+          "nextNodeId": "answer_correct"
+        }
+      ]
+    },
+    {
+      "nodeId": "answer_correct",
+      "speaker": "Big Bart",
+      "text": "Aha! You {action_know} your {item_food}. I {action_like} that. A {quality_smart} {person_customer} is a {quality_good} {person_customer}. You're not just some lost {person_traveler}.",
+      "nextNodeId": "give_gift"
+    },
+    {
+      "nodeId": "give_gift",
+      "speaker": "Big Bart",
+      "text": "{action_listen}, that {item_backpack} of yours looks {quality_heavy}. This {location_town} can be {quality_tough} on newcomers. Here, {action_take} this {item_vest}. It's {quality_sturdy}. A {action_welcome} {item_gift}.",
+      "nextNodeId": "end",
+      "actions": [
+        {"type": "give_cosmetic", "targetId": "shirt_leather_vest"}
+      ]
+    },
+    {
+      "nodeId": "looking_around",
+      "speaker": "Big Bart",
+      "text": "Alright, suit yourself. My {item_vegetables} are always {quality_fresh}. Let me {action_know} if you {action_change} your mind.",
+      "nextNodeId": "dialogue_finished_loop"
+    },
+    {
+      "nodeId": "end",
+      "speaker": "Big Bart",
+      "text": "You come back when you're {quality_hungry}, you hear? A {quality_good} {item_stew} awaits.",
+      "nextNodeId": "dialogue_finished_loop"
+    },
+    {
+      "nodeId": "dialogue_finished_loop",
+      "speaker": "Big Bart",
+      "text": "{quality_best} {item_vegetables} in {location_town}! {quality_fresh} {action_today}!"
+    }
+  ]
+}
