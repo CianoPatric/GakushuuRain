@@ -15,6 +15,23 @@ public class GSEntryPoint: MonoBehaviour
         var uiScene = Instantiate(_sceneUIRootPrefab);
         var uiRoot = container.Resolve<LoadingScreenRootView>();
         uiRoot.AttachSceneUI(uiScene.gameObject);
+
+        if (gameSceneEnterParams != null && gameSceneEnterParams.InitialPlayerData != null)
+        {
+            DataManager.Instance.InitializeWithData(gameSceneEnterParams.InitialPlayerData);
+            if (NotebookManager.instance != null)
+            {
+                NotebookManager.instance.Initialize();
+            }
+            else
+            {
+                Debug.Log("NotebookManager не найден");
+            }
+        }
+        else
+        {
+            Debug.Log("Сцена была запущена без авторизации");
+        }
         
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);

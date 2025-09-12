@@ -38,9 +38,10 @@ public class MainMenuUI : MonoBehaviour
         if (password == passwordConfirm)
         {
             var (success, message) = await AuthManager.Instance.SignUpAsync(email, password, nickname);
-            RfeedbackText.text = message;
+            AfeedbackText.text = message;
             if (success)
             {
+                RWindow.SetActive(false);
                 _authenticatedPlayerData = null;
             }
 

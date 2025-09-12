@@ -111,6 +111,12 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public void InitializeWithData(PlayerData data)
+    {
+        currentPlayerData = data;
+        Debug.Log("InitializeWithData выполнено");
+    }
+
     public void SetDialogueState(string dialogueId, string lastNodeId)
     {
         if (currentPlayerData == null) return;
