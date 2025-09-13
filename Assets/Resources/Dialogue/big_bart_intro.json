@@ -60,7 +60,7 @@
       "nodeId": "looking_around",
       "speaker": "Big Bart",
       "text": "Alright, suit yourself. My {item_vegetables} are always {quality_fresh}. Let me {action_know} if you {action_change} your mind.",
-      "nextNodeId": "dialogue_finished_loop"
+      "nextNodeId": "start"
     },
     {
       "nodeId": "end",

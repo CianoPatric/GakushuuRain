@@ -95,7 +95,7 @@ public class DialogueManager : MonoBehaviour
         ExecuteActions(currentNode.actions);
     }
 
-    private void ContinueDialogue()
+    public void ContinueDialogue()
     {
         if (!string.IsNullOrEmpty(currentNode.nextNodeId))
         {
@@ -129,7 +129,7 @@ public class DialogueManager : MonoBehaviour
                 case "complete_quest_step":
                     Debug.Log($"Завершить шаг квеста {action.targetId}, шаг: {action.value}");
                     break;
-                case "give_item":
+                case "give_cosmetic":
                     Debug.Log($"Выдать косметику: {action.targetId}");
                     DataManager.Instance.UnlockCosmeticItem(action.targetId);
                     break;
