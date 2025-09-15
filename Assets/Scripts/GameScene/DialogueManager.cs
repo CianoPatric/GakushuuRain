@@ -32,7 +32,6 @@ public class DialogueManager : MonoBehaviour
     
     public void StartDialogue(string dialogueId, string startNodeId = "start")
     {
-        Debug.Log($"DialogueManager received request to start dialogue '{dialogueId}'.");
         currentDialogue = DialogueLibraryManager.instance.GetDialogue(dialogueId);
         if (currentDialogue == null)
         {
@@ -40,14 +39,11 @@ public class DialogueManager : MonoBehaviour
             HideDialogueLine();
             return;
         }
-        Debug.Log("Dialogue data found successfully. Setting up UI...");
         DialogueBox.SetActive(true);
         currentNode = currentDialogue.nodes.Find(note => note.nodeId == startNodeId);
         
         if (currentNode == null)
         {
-            // Если видишь это, значит, в JSON-файле нет узла с ID, который мы ищем (например, "start").
-            Debug.LogError($"CRITICAL: Dialogue node '{startNodeId}' NOT FOUND in dialogue '{dialogueId}'.");
             HideDialogueLine();
             return;
         }
