@@ -15,7 +15,6 @@ public class CosmeticsLibraryManager: MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         foreach (var item in allCosmeticItems)
         {
@@ -28,11 +27,13 @@ public class CosmeticsLibraryManager: MonoBehaviour
 
     public CosmeticItem GetCosmeticItem(string id)
     {
+        if(string.IsNullOrEmpty(id)) return null;
+        
         if (cosmeticLibrary.ContainsKey(id))
         {
             return cosmeticLibrary[id];
         }
-        Debug.Log("Cosmetics Library Not Found: " + id);
+        Debug.LogWarning("Косметика не найдена, id предмета: " + id);
         return null;
     }
 }

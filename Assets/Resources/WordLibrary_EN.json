@@ -25,6 +25,7 @@
     { "id": "action_use", "text": "use", "category": "actions", "translation": "использовать", "definition": "Брать, держать или применять что-либо для достижения цели." },
     { "id": "action_welcome", "text": "welcome", "category": "actions", "translation": "добро пожаловать", "definition": "Приветствие кого-либо." },
     { "id": "action_win", "text": "win", "category": "actions", "translation": "побеждать", "definition": "Быть успешным или победоносным в соревновании или конфликте." },
+    { "id": "action_thinking", "text": "thinking", "category": "actions", "translation": "думать", "definition": "Gроцесс использования разума для генерации идей, принятия решений, воспоминаний и т. д."},
     { "id": "concept_answer", "text": "answer", "category": "objects", "translation": "ответ", "definition": "Вещь, сказанная, написанная или сделанная для решения вопроса, проблемы или ситуации." },
     { "id": "concept_community", "text": "community", "category": "objects", "translation": "сообщество", "definition": "Группа людей, живущих в одном месте или имеющих общую характеристику." },
     { "id": "concept_game", "text": "game", "category": "objects", "translation": "игра", "definition": "Деятельность, которой занимаются для развлечения или веселья." },

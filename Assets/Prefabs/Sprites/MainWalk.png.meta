@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6e3fe7efd064c1345b0b91d02bb25f0c
+guid: ab90a10d6dc818c4d8d5b092ce121a8f
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -8,15 +8,6 @@ TextureImporter:
   - first:
       213: 8875464488361307469
     second: MainWalk_1
-  - first:
-      213: -2718062090194882038
-    second: MainWalk_2
-  - first:
-      213: -3052690786043647304
-    second: MainWalk_3
-  - first:
-      213: -5051773987404218103
-    second: MainWalk_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -125,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainWalk_0
+      name: Body0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 22
-        height: 24
+        y: 6
+        width: 20
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,13 +138,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_1
+      name: pants0
       rect:
         serializedVersion: 2
-        x: 44
+        x: 0
         y: 0
-        width: 22
-        height: 24
+        width: 8
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,79 +160,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_2
+      name: pants5
       rect:
         serializedVersion: 2
-        x: 88
+        x: 38
         y: 0
-        width: 22
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a027a7c0ee0874ad0800000000000000
-      internalID: -2718062090194882038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_3
-      rect:
-        serializedVersion: 2
-        x: 132
-        y: 0
-        width: 22
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8baa2c867e9a2a5d0800000000000000
-      internalID: -3052690786043647304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_4
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 0
-        width: 22
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 901863be25e74e9b0800000000000000
-      internalID: -5051773987404218103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_5
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 0
-        width: 22
-        height: 24
+        width: 8
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6832d7fff434cf84bbaa7b14ca6b10d0
-      internalID: -1365604462
+      spriteID: ded0b1df9ab747a4f8d74ddbae826d90
+      internalID: 1926848777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_6
+      name: pants4
       rect:
         serializedVersion: 2
-        x: 66
+        x: 30
         y: 0
-        width: 22
-        height: 24
+        width: 8
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,20 +197,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2849369e263697b439c6e9f0244cb6f2
-      internalID: -1113503923
+      spriteID: 73a63db8caa2d894e809133ca224a382
+      internalID: -2076649061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_7
+      name: pants3
       rect:
         serializedVersion: 2
-        x: 110
+        x: 23
         y: 0
-        width: 22
-        height: 24
+        width: 7
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,20 +219,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d019a8628c8c871409fd7af9310e7d48
-      internalID: -1197692982
+      spriteID: b59621a16bc63cc40827d5bbfaa33f65
+      internalID: 808347582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_8
+      name: pants2
       rect:
         serializedVersion: 2
-        x: 176
+        x: 16
         y: 0
-        width: 22
-        height: 24
+        width: 7
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,8 +241,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8959cb95b9cc85542b501e6082b71409
-      internalID: -294176295
+      spriteID: b24c8d02971ebb9468473718cd923fb0
+      internalID: -1474802780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pants1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c96e2638f708e224c90912e15be53bc0
+      internalID: 1841925466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Body1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 6
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e4583126f3ff3844a41826138e47cf8
+      internalID: -1893912507
       vertices: []
       indices: 
       edges: []
@@ -326,7 +295,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 47b3f99747e54cb4bb55d911b2e65f2d
+    spriteID: 8f1a4552a7aaead4fa1f6a79def9432a
     internalID: 0
     vertices: []
     indices: 
@@ -336,15 +305,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MainWalk_0: 5703253894748406695
-      MainWalk_1: 8875464488361307469
-      MainWalk_2: -2718062090194882038
-      MainWalk_3: -3052690786043647304
-      MainWalk_4: -5051773987404218103
-      MainWalk_5: -1365604462
-      MainWalk_6: -1113503923
-      MainWalk_7: -1197692982
-      MainWalk_8: -294176295
+      Body0: 5703253894748406695
+      Body1: -1893912507
+      pants0: 8875464488361307469
+      pants1: 1841925466
+      pants2: -1474802780
+      pants3: 808347582
+      pants4: -2076649061
+      pants5: 1926848777
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

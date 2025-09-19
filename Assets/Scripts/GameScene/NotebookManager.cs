@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,24 @@ public class NotebookManager : MonoBehaviour
     public GameObject wordPanel;
     public GameObject wordButtonPrefab;
 
+    public Sprite NullItemSprite;
+    public PlayerMovement player;
+
+    [Header("Интерфейс кастомизации")]
+    public GameObject customizationPanel;
+
+    public GameObject itemScrollView;
+    public Transform itemsContainer;
+    public GameObject itemButtonPrefab;
+
+    [Header("Иконки слотов")] 
+    public Image hatSlot;
+    public Image shirtSlot;
+    public Image pantsSlot;
+    public Image accessorySlot;
+    
+    private PlayerCustomization tempEquippedItems;
+    
     [Header("Элементы слов")]
     public TextMeshProUGUI wordTitleText;
     public TextMeshProUGUI translationText;
@@ -27,7 +46,6 @@ public class NotebookManager : MonoBehaviour
     private NotebookEntry currentSelectedEntry;
     
     private Dictionary<string, WordData> wordLibrary;
-    private PlayerData playerData;
 
     void Awake()
     {
@@ -64,6 +82,7 @@ public class NotebookManager : MonoBehaviour
         DataManager.OnWordAddedToNotebook -= HandleWordAdded;
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void HandleWordAdded(NotebookEntry newEntry)
     {
         CreateButtonForEntry(newEntry);
@@ -83,6 +102,87 @@ public class NotebookManager : MonoBehaviour
         }
     }
 
+    public void OpenCustomizationPanel()
+    {
+        customizationPanel.SetActive(true);
+        itemScrollView.SetActive(false);
+        UpdateAllSlotIcons();
+    }
+
+    public void CloseCustomizationPanel()
+    {
+        customizationPanel.SetActive(false);
+        itemScrollView.SetActive(false);
+    }
+
+    private void UpdateAllSlotIcons()
+    {
+        var equippedItems = DataManager.Instance.GetCurrentPlayerData().profile.equippedItems;
+        UpdateSlotIcons(hatSlot, equippedItems.hatId);
+        UpdateSlotIcons(shirtSlot, equippedItems.shirtId);
+        UpdateSlotIcons(pantsSlot, equippedItems.pantsId);
+        UpdateSlotIcons(accessorySlot, equippedItems.accessoryId);
+    }
+    private void UpdateSlotIcons(Image iconImage, string itemId)
+    {
+        CosmeticItem itemData = CosmeticsLibraryManager.Instance.GetCosmeticItem(itemId);
+        if (itemData != null && itemData.sprite != null)
+        {
+            iconImage.enabled = true;
+            iconImage.sprite = itemData.sprite;
+        }
+        else
+        {
+            iconImage.enabled = false;
+        }
+    }
+
+    public void ShowItemForSlot(CosmeticSlot slot)
+    {
+        itemScrollView.SetActive(true);
+        foreach (Transform child in itemsContainer) { Destroy(child.gameObject); }
+        
+        GameObject unequipButton = Instantiate(itemButtonPrefab, itemsContainer);
+        unequipButton.GetComponentInChildren<Image>().sprite = NullItemSprite;
+        unequipButton.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(null, slot ));
+
+        var unlockedIds = DataManager.Instance.GetCurrentPlayerData().unlockedCosmeticIds;
+        var availableItems = CosmeticsLibraryManager.Instance.allCosmeticItems
+            .Where(item => item.slot == slot && unlockedIds.Contains(item.id))
+            .ToList();
+
+        foreach (var item in availableItems)
+        {
+            GameObject buttonGo = Instantiate(itemButtonPrefab, itemsContainer);
+            buttonGo.GetComponentInChildren<Image>().sprite = item.sprite;
+            buttonGo.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(item.id, slot));
+        }
+    }
+    
+    public void ShowHatItems(){ShowItemForSlot(CosmeticSlot.Hat);}
+    public void ShowShirtItems() {ShowItemForSlot(CosmeticSlot.Shirt);}
+    public void ShowPantsItems() {ShowItemForSlot(CosmeticSlot.Pants);}
+    public void ShowAccessoryItems() {ShowItemForSlot(CosmeticSlot.Accessory);}
+
+    private void EquipItem(string itemId, CosmeticSlot slot)
+    {
+        var playerData = DataManager.Instance.GetCurrentPlayerData();
+        var equippedItems = playerData.profile.equippedItems;
+        switch (slot)
+        {
+            case CosmeticSlot.Hat: equippedItems.hatId = itemId; break;
+            case CosmeticSlot.Shirt: equippedItems.shirtId = string.IsNullOrEmpty(itemId) ? "shirt_default": itemId; break;
+            case CosmeticSlot.Pants: equippedItems.pantsId = string.IsNullOrEmpty(itemId) ? "pants_default": itemId; break;
+            case CosmeticSlot.Accessory: equippedItems.accessoryId = itemId; break;
+        }
+        
+        DataManager.Instance.MarkDataAsDirty();
+        player.UpdateAppearance(equippedItems);
+        UpdateAllSlotIcons();
+        itemScrollView.SetActive(false);
+    }
+    
+
     public void OpenNotebook()
     {
         notebookCanvas.SetActive(true);
@@ -100,7 +200,8 @@ public class NotebookManager : MonoBehaviour
     {
         SaveChangesForCurrentEntry();
         notebookCanvas.SetActive(false);
-        wordPanel.SetActive(false);
+        CloseWordPanel();
+        CloseCustomizationPanel();
     }
 
     private void SelectWord(NotebookEntry entry)

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GSEntryPoint: MonoBehaviour
 {
     [SerializeField] private GSRootBinder _sceneUIRootPrefab;
+    private GameObject avatar;
     // ReSharper disable Unity.PerformanceAnalysis
     public Observable<GSExitParams> Run(DIContainer container, GSEnterParams gameSceneEnterParams)
     {
@@ -15,7 +16,6 @@ public class GSEntryPoint: MonoBehaviour
         var uiScene = Instantiate(_sceneUIRootPrefab);
         var uiRoot = container.Resolve<LoadingScreenRootView>();
         uiRoot.AttachSceneUI(uiScene.gameObject);
-
         if (gameSceneEnterParams != null && gameSceneEnterParams.InitialPlayerData != null)
         {
             DataManager.Instance.InitializeWithData(gameSceneEnterParams.InitialPlayerData);
@@ -33,6 +33,10 @@ public class GSEntryPoint: MonoBehaviour
             Debug.Log("Сцена была запущена без авторизации");
         }
         
+        avatar = GameObject.FindGameObjectWithTag("Player");
+        var player = avatar.GetComponent<PlayerMovement>();
+        player.UpdateAppearance(DataManager.Instance.GetCurrentPlayerData().profile.equippedItems);
+
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);
         Debug.Log($"{gameSceneEnterParams.InitialPlayerData}");
