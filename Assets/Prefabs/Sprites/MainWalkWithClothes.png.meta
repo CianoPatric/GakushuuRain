@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: ab90a10d6dc818c4d8d5b092ce121a8f
+guid: 0cf4675dd19715f459579e88e0920c17
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5703253894748406695
-    second: MainWalk_0
+      213: -7437742962501731960
+    second: MainWalkWithClothes_0
+  - first:
+      213: -7157130186571425974
+    second: MainWalkWithClothes_1
+  - first:
+      213: -931361011104378943
+    second: MainWalkWithClothes_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,11 +119,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainWalk_0
+      name: MainWalkWithClothes_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 6
+        y: 0
         width: 20
         height: 22
       alignment: 0
@@ -128,18 +134,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a3875c3337062f40800000000000000
-      internalID: 5703253894748406695
+      spriteID: 8893c65be24d7c890800000000000000
+      internalID: -7437742962501731960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_1
+      name: MainWalkWithClothes_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 17
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a475f22f304ccac90800000000000000
+      internalID: -7157130186571425974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainWalkWithClothes_2
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 16
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cf897f48142313f0800000000000000
+      internalID: -931361011104378943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainWalkWithClothes_3
       rect:
         serializedVersion: 2
         x: 20
-        y: 6
+        y: 0
         width: 20
         height: 22
       alignment: 0
@@ -150,19 +200,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7072865636b3a8746a4ef9e741b5f8bc
-      internalID: -1340645390
+      spriteID: f545fbcf73c0e2448b88736a437309ad
+      internalID: 844702600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_2
+      name: MainWalkWithClothes_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 8
+        x: 56
+        y: 16
+        width: 9
         height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -172,19 +222,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd99cfc223c45be4aa6d7fa566f249cd
-      internalID: -24129155
+      spriteID: 3ae1c38bc7ec3bb4da1f2d693061ef3c
+      internalID: 2144406825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_3
+      name: MainWalkWithClothes_5
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
-        width: 8
+        x: 65
+        y: 16
+        width: 9
         height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -194,19 +244,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 394389d58bd945542a18e164620949e0
-      internalID: -1912730613
+      spriteID: e8526872c38034948b6430c6247b58b8
+      internalID: -20574032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_4
+      name: MainWalkWithClothes_6
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 8
+        x: 74
+        y: 16
+        width: 9
         height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -216,19 +266,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e9fdc0cb746f5744ad672c033f6488d
-      internalID: -1932557191
+      spriteID: c1991ebfb5e77ca4ca0ea3236c7cafc2
+      internalID: -1805380867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_5
+      name: MainWalkWithClothes_7
       rect:
         serializedVersion: 2
-        x: 24
-        y: 0
-        width: 7
+        x: 83
+        y: 16
+        width: 9
         height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -238,19 +288,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e229d82bddcd844c8ff6869ec5d4ac7
-      internalID: -891213161
+      spriteID: d2bca70214181274cb556bb88071d37f
+      internalID: 1370937164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_6
+      name: MainWalkWithClothes_8
       rect:
         serializedVersion: 2
-        x: 31
-        y: 0
-        width: 7
+        x: 92
+        y: 16
+        width: 9
         height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -260,19 +310,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14a68e69fa40e924cbbd00e630731d19
-      internalID: -1035847283
+      spriteID: 103f6bb3217e7b74d8e9484ccc2d7e48
+      internalID: -2002539702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_7
+      name: MainWalkWithClothes_9
       rect:
         serializedVersion: 2
-        x: 38
-        y: 0
-        width: 8
+        x: 101
+        y: 16
+        width: 4
         height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -282,8 +332,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5122fe347972ff34799463a53d51ca55
-      internalID: -2061637034
+      spriteID: 757b0a7101dc8af4799daa6748b53159
+      internalID: 195942156
       vertices: []
       indices: 
       edges: []
@@ -292,7 +342,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 536b651e1f1bc804294c58ae2291e0ae
+    spriteID: eda2e3cbaf6a10a42ab0b52695b477f4
     internalID: 0
     vertices: []
     indices: 
@@ -302,14 +352,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MainWalk_0: 5703253894748406695
-      MainWalk_1: -1340645390
-      MainWalk_2: -24129155
-      MainWalk_3: -1912730613
-      MainWalk_4: -1932557191
-      MainWalk_5: -891213161
-      MainWalk_6: -1035847283
-      MainWalk_7: -2061637034
+      MainWalkWithClothes_0: -7437742962501731960
+      MainWalkWithClothes_1: -7157130186571425974
+      MainWalkWithClothes_2: -931361011104378943
+      MainWalkWithClothes_3: 844702600
+      MainWalkWithClothes_4: 2144406825
+      MainWalkWithClothes_5: -20574032
+      MainWalkWithClothes_6: -1805380867
+      MainWalkWithClothes_7: 1370937164
+      MainWalkWithClothes_8: -2002539702
+      MainWalkWithClothes_9: 195942156
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultShirtIdle
+  m_Name: ShirtLeatherIdle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 5703253894748406695, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
+      value: {fileID: -7437742962501731960, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
     - time: 0.6666667
-      value: {fileID: -1340645390, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
+      value: {fileID: 844702600, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
     - time: 1.3333334
-      value: {fileID: 5703253894748406695, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
+      value: {fileID: -7437742962501731960, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 5703253894748406695, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
-    - {fileID: -1340645390, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
-    - {fileID: 5703253894748406695, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
+    - {fileID: -7437742962501731960, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
+    - {fileID: 844702600, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
+    - {fileID: -7437742962501731960, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

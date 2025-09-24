@@ -1407,7 +1407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 15}
+  m_AnchoredPosition: {x: 9.72, y: 15}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5552369864359534107
@@ -2447,8 +2447,28 @@ MonoBehaviour:
   - id: pants_default
     display_name: "\u0428\u0442\u0430\u043D\u0438\u0448\u043A\u0438"
     slot: 2
-    sprite: {fileID: 8875464488361307469, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
+    sprite: {fileID: -24129155, guid: ab90a10d6dc818c4d8d5b092ce121a8f, type: 3}
     animatorController: {fileID: 9100000, guid: a00843836be76954ebf2ca07ada24633, type: 2}
+  - id: shirt_leather_vest
+    display_name: "\u041C\u043E\u0434\u043D\u0430\u044F \u043A\u0443\u0440\u0442\u043E\u0447\u043A\u0430"
+    slot: 1
+    sprite: {fileID: -7437742962501731960, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
+    animatorController: {fileID: 9100000, guid: 6a1aa8eb733baf04d846d55d6586ce90, type: 2}
+  - id: pants_clean_trousers
+    display_name: "\u041C\u043E\u043D\u043E\u043A\u043B\u044C"
+    slot: 2
+    sprite: {fileID: 195942156, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
+    animatorController: {fileID: 9100000, guid: 0365db4762360054dad032045b3bb813, type: 2}
+  - id: accessory_silk_scarf
+    display_name: "\u0428\u0430\u0440\u0444\u0438\u043A"
+    slot: 3
+    sprite: {fileID: -7157130186571425974, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
+    animatorController: {fileID: 0}
+  - id: accessory_monocle
+    display_name: "\u041C\u043E\u043D\u043E\u043A\u043B\u044C"
+    slot: 0
+    sprite: {fileID: 195942156, guid: 0cf4675dd19715f459579e88e0920c17, type: 3}
+    animatorController: {fileID: 0}
 --- !u!1 &2397124238272753918
 GameObject:
   m_ObjectHideFlags: 0
@@ -13396,7 +13416,7 @@ Animator:
   m_GameObject: {fileID: 6616091116469113982}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a1aa8eb733baf04d846d55d6586ce90, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -13698,7 +13718,7 @@ Animator:
   m_GameObject: {fileID: 6819589391397856997}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0365db4762360054dad032045b3bb813, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -15610,8 +15630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8448169981396758564}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.04274754, w: 0.9990859}
-  m_LocalPosition: {x: -804.5856, y: -261.68658, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -804.5856, y: -193.96649, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
