@@ -4,18 +4,10 @@ using System.Collections.Generic;
 
 public class WordLibraryManager : MonoBehaviour
 {
-    public static WordLibraryManager instance {get; private set;}
     private Dictionary<string, WordData> wordLibrary = new();
 
     void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return; 
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
         LoadWordLibrary();
     }
 

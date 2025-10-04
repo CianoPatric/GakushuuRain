@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class GameUIManager : MonoBehaviour
 {
-    public static GameUIManager instance {get; private set;}
-
-    public GSRootBinder rootBinder;
     public GameObject pauseMenu;
     private bool isPaused = false;
 
     public GameObject notebook;
     private bool isNotebook = false;
+    
+    private NotebookManager _notebookManager;
+    private DataManager _dataManager;
+    private GSRootBinder _rootBinder;
 
-    void Awake()
+    public void Initialize(NotebookManager notebookManager, DataManager dataManager, GSRootBinder rootBinder)
     {
-        instance = this;
+        _notebookManager = notebookManager;
+        _dataManager = dataManager;
+        _rootBinder = rootBinder;
     }
-
     void Start()
     {
         pauseMenu.SetActive(false);
@@ -54,23 +56,23 @@ public class GameUIManager : MonoBehaviour
         isNotebook = !isNotebook;
         if (isNotebook)
         {
-            NotebookManager.instance.OpenNotebook();
+            _notebookManager.OpenNotebook();
         }
         else
         {
-            NotebookManager.instance.CloseNotebook();
+            _notebookManager.CloseNotebook();
         }
     }
 
     public async void SaveGame()
     {
-        await DataManager.Instance.SaveData();
+        await _dataManager.SaveData();
     }
 
     public void ExitGame()
     {
         Time.timeScale = 1f;
 
-        rootBinder.HandleGoToMainMenuButtonClick();
+        _rootBinder.HandleGoToMainMenuButtonClick();
     }
 }

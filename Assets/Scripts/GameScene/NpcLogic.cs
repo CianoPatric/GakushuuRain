@@ -6,6 +6,14 @@ public class NpcLogic : MonoBehaviour
     public string dialogueStartId;
     private bool playerInRange = false;
     
+    private DataManager _dataManager;
+    private DialogueManager _dialogueManager;
+
+    public void Initialize(DataManager dataManager, DialogueManager dialogueManager)
+    {
+        _dataManager = dataManager;
+        _dialogueManager = dialogueManager;
+    }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -19,8 +27,8 @@ public class NpcLogic : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            string startNode = DataManager.Instance.GetDialogueState(dialogueStartId);
-            DialogueManager.Instance.StartDialogue(dialogueStartId, startNode);
+            string startNode = _dataManager.GetDialogueState(dialogueStartId);
+            _dialogueManager.StartDialogue(dialogueStartId, startNode);
         }
     }
 
@@ -30,7 +38,7 @@ public class NpcLogic : MonoBehaviour
         {
             PressEWindow.SetActive(false);
             playerInRange = false;
-            DialogueManager.Instance.HideDialogueLine();
+            _dialogueManager.HideDialogueLine();
         }
     }
 }

@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class DialogueLibraryManager: MonoBehaviour
 {
-    public static DialogueLibraryManager instance {get; private set;}
     private Dictionary<string, DialogueData> dialogueLibrary = new();
 
     void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
         DontDestroyOnLoad(gameObject);
         LoadAllDialogue();
     }

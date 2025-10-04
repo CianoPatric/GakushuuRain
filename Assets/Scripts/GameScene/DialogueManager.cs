@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager Instance;
-    
     public GameObject DialogueBox;
     public GameObject continueButton;
     public TextMeshProUGUI speakerName;
@@ -21,18 +19,26 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueData currentDialogue;
     private DialogueNode currentNode;
-    void Awake()
+    
+    private DataManager _dataManager;
+    private DialogueLibraryManager _dialogueLibraryManager;
+    private WordLibraryManager _wordLibraryManager;
+    private NotebookManager _notebookManager;
+    
+    [SerializeField] private DialogueTextClickHandler dialogueTextClickHandler;
+
+    public void Initialize(DataManager dataManager, DialogueLibraryManager dialogueLibraryManager,
+        WordLibraryManager wordLibraryManager, NotebookManager notebookManager)
     {
-        Instance = this;
-        if (DialogueBox != null)
-        {
-            DialogueBox.SetActive(false);
-        }
+        _dataManager = dataManager;
+        _dialogueLibraryManager = dialogueLibraryManager;
+        _wordLibraryManager = wordLibraryManager;
+        _notebookManager = notebookManager;
     }
     
     public void StartDialogue(string dialogueId, string startNodeId = "start")
     {
-        currentDialogue = DialogueLibraryManager.instance.GetDialogue(dialogueId);
+        currentDialogue = _dialogueLibraryManager.GetDialogue(dialogueId);
         if (currentDialogue == null)
         {
             Debug.LogError($"Ну удалось запустить диалог: {dialogueId} не найден");
@@ -127,11 +133,11 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case "give_cosmetic":
                     Debug.Log($"Выдать косметику: {action.targetId}");
-                    DataManager.Instance.UnlockCosmeticItem(action.targetId);
+                    _dataManager.UnlockCosmeticItem(action.targetId);
                     break;
                 case "learn_word":
                     Debug.Log($"Изучить слово: {action.targetId}");
-                    DataManager.Instance.AddWordToNotebook(action.targetId);
+                    _dataManager.AddWordToNotebook(action.targetId);
                     break;
                 case "end_dialogue":
                     HideDialogueLine();
@@ -155,7 +161,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogue != null && currentNode != null)
         {
-            DataManager.Instance.SetDialogueState(currentDialogue.dialogueId, currentNode.nodeId);
+            _dataManager.SetDialogueState(currentDialogue.dialogueId, currentNode.nodeId);
         }
 
         if (DialogueBox != null)
@@ -173,11 +179,11 @@ public class DialogueManager : MonoBehaviour
         {
             string wordId = match.Groups[1].Value;
             
-            WordData wordData = WordLibraryManager.instance.GetWordData(wordId);
+            WordData wordData = _wordLibraryManager.GetWordData(wordId);
             if (wordData == null) return "Слово не было найдено";
             
             string wordToDisplay = wordData.text;
-            bool isKnown = DataManager.Instance.IsWordInNotebook(wordId);
+            bool isKnown = _dataManager.IsWordInNotebook(wordId);
 
             string colorHex;
             if (isKnown)
@@ -196,15 +202,15 @@ public class DialogueManager : MonoBehaviour
 
     public void OnWordClicked(string wordId)
     {
-        bool isKnown = DataManager.Instance.IsWordInNotebook(wordId);
+        bool isKnown = _dataManager.IsWordInNotebook(wordId);
         if (isKnown)
         {
-            NotebookManager.instance.OpenAndShowWord(wordId);
+            _notebookManager.OpenAndShowWord(wordId);
             Debug.Log("Блокнот открыт");
         }
         else
         {
-            DataManager.Instance.AddWordToNotebook(wordId);
+            _dataManager.AddWordToNotebook(wordId);
             RedRawCurrentLine();
             Debug.Log("Слово добавленно");
         }

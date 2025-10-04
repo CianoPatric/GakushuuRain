@@ -7,7 +7,12 @@ public class DialogueTextClickHandler : MonoBehaviour, IPointerClickHandler
 {
     private TextMeshProUGUI text;
     private Canvas canvas;
+    private DialogueManager saveDialogueManager;
 
+    public void Initialize(DialogueManager dialogueManager)
+    {
+        saveDialogueManager = dialogueManager;
+    }
     void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
@@ -23,7 +28,7 @@ public class DialogueTextClickHandler : MonoBehaviour, IPointerClickHandler
             TMP_LinkInfo linkInfo = text.textInfo.linkInfo[linkIndex];
             string linkId = linkInfo.GetLinkID();
             
-            DialogueManager.Instance.OnWordClicked(linkId);
+            saveDialogueManager.OnWordClicked(linkId);
         }
     }
 }

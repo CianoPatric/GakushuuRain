@@ -7,34 +7,41 @@ using Constants = Supabase.Postgrest.Constants;
 
 public class DataManager : MonoBehaviour
 {
-    public static DataManager Instance { get; private set; }
-    
     private PlayerData currentPlayerData;
     private bool isDataDirty = false;
+    
+    private AuthManager _authManager;
 
-    public static event Action<NotebookEntry> OnWordAddedToNotebook;
-
-    void Awake()
+    public void Initialize(AuthManager authManager)
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return; 
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        _authManager = authManager;
     }
-
+    public static event Action<NotebookEntry> OnWordAddedToNotebook;
+    
     public void MarkDataAsDirty()
     {
         isDataDirty = true;
     }
     public async Task SaveData()
     {
-        var supabaseClient = AuthManager.Instance.GetClient();
-        if (currentPlayerData == null || supabaseClient.Auth.CurrentUser == null)
+        if (currentPlayerData == null)
         {
-            Debug.LogError("Нет данных для сохранения или пользователь не авторизован");
+            Debug.Log("Данных для сохранения нет");
+            return;
+        }
+
+        var player = FindAnyObjectByType<PlayerMovement>();
+        if (player != null)
+        {
+            currentPlayerData.state.posX = player.transform.position.x;
+            currentPlayerData.state.posY = player.transform.position.y;
+        }
+        LocalSaveManager.SaveProfile(currentPlayerData);
+        
+        var supabaseClient = _authManager.GetClient();
+        if (supabaseClient.Auth.CurrentUser == null)
+        {
+            Debug.LogError("Пользователь не авторизован, данные сохранены локально");
             return;
         }
 
@@ -64,21 +71,54 @@ public class DataManager : MonoBehaviour
 
     public async Task<PlayerData> LoadData()
     {
-        var supabaseClient = AuthManager.Instance.GetClient();
+        var supabaseClient = _authManager.GetClient();
         if (supabaseClient.Auth.CurrentUser == null)
         {
-            Debug.LogError("Пользователь не авторизован");
-            return null;
+            Debug.LogError("Нет онлайн-сессии. Загрузка из локального сохранения");
+            currentPlayerData = LocalSaveManager.LoadProfile();
+            return currentPlayerData;
         }
 
         var response = await supabaseClient.From<PlayerDataModel>()
             .Filter("id", Constants.Operator.Equals, supabaseClient.Auth.CurrentUser.Id)
             .Single();
+        
+        PlayerData serverData = (response != null && response.Data != null) ? response.Data : null;
+        PlayerData localData = LocalSaveManager.LoadProfile();
 
-        if (response != null && response.Data != null)
+        if (serverData != null)
         {
-            Debug.Log("Данные успешно загружены");
-            currentPlayerData = response.Data;
+            DateTime serverTime = DateTime.MinValue;
+            if (!string.IsNullOrEmpty(serverData.lastSaveTimestamp))
+            {
+                DateTime.TryParse(serverData.lastSaveTimestamp, null, System.Globalization.DateTimeStyles.RoundtripKind, out serverTime);
+            }
+            DateTime localTime = DateTime.MinValue;
+
+            if (localData != null && !string.IsNullOrEmpty(localData.lastSaveTimestamp))
+            {
+                DateTime.TryParse(localData.lastSaveTimestamp, null, System.Globalization.DateTimeStyles.RoundtripKind, out localTime);
+            }
+
+            if (serverTime >= localTime)
+            {
+                Debug.Log("Серверные данные новее, загружаются серверные данные");
+                currentPlayerData = serverData;
+                LocalSaveManager.SaveProfile(serverData);
+            }
+            else
+            {
+                Debug.Log("Загружаются локальные данные");
+                currentPlayerData = localData;
+                await SaveData();
+            }
+            return currentPlayerData;
+        }
+        else if (localData != null)
+        {
+            Debug.Log("Серверные данные не найдены");
+            currentPlayerData = localData;
+            await SaveData();
             return currentPlayerData;
         }
         else
@@ -94,12 +134,13 @@ public class DataManager : MonoBehaviour
             currentPlayerData = new PlayerData
             {
                 userId = supabaseClient.Auth.CurrentUser.Id,
+                lastSaveTimestamp = DateTime.UtcNow.ToString("o"),
                 profile = new PlayerProfile
                 {
                     playerName = nickname,
                     equippedItems = new PlayerCustomization()
                 },
-                state = new PlayerState { posX = 0f, posY = 0f },
+                state = new PlayerState { posX = -1100f, posY = -450f },
                 inventory = new List<InventoryItem>(),
                 quests = new List<QuestStatus>(),
                 notebookEntries = new List<NotebookEntry>(),
@@ -111,6 +152,42 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public async Task<PlayerData> NewSaveData()
+    {
+        var supabaseClient = _authManager.GetClient();
+        if (supabaseClient.Auth.CurrentUser == null)
+        {
+            Debug.LogError("Невозможно создать новые сохранения, пользователь не авторизован");
+            return null;
+        }
+        
+        var currentUser = supabaseClient.Auth.CurrentUser;
+        string nickname = null;
+        if (currentUser.UserMetadata.ContainsKey("nickname"))
+        {
+            nickname = currentUser.UserMetadata["nickname"].ToString();
+        }
+
+        currentPlayerData = new PlayerData
+        {
+            userId = currentUser.Id,
+            lastSaveTimestamp = DateTime.UtcNow.ToString("o"),
+            profile = new PlayerProfile()
+            {
+                playerName = nickname,
+                equippedItems = new PlayerCustomization()
+            },
+            state = new PlayerState { posX = -1100f, posY = -450f },
+            inventory = new List<InventoryItem>(),
+            quests = new List<QuestStatus>(),
+            notebookEntries = new List<NotebookEntry>(),
+            dialogueStates = new List<DialogueState>(),
+            unlockedCosmeticIds = new List<string>()
+        };
+        MarkDataAsDirty();
+        await SaveData();
+        return currentPlayerData;
+    }
     public void InitializeWithData(PlayerData data)
     {
         currentPlayerData = data;

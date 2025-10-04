@@ -3,22 +3,23 @@ using UnityEngine;
 
 public class CosmeticsLibraryManager: MonoBehaviour
 {
-    public static CosmeticsLibraryManager Instance {get; private set;}
-    public List<CosmeticItem> allCosmeticItems;
-
+    public List<CosmeticItem> AllCosmeticItems {get; private set;}
     private Dictionary<string, CosmeticItem> cosmeticLibrary = new();
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        var collection = Resources.Load<CosmeticsCollection>("PlayerCosmetics");
+        if (collection == null)
         {
-            Destroy(gameObject);
+            Debug.LogError("CosmeticsCollection not found");
+            AllCosmeticItems = new List<CosmeticItem>();
+            return;
         }
-        Instance = this;
 
-        foreach (var item in allCosmeticItems)
+        AllCosmeticItems = collection.allCosmeticItems;
+        foreach (var item in AllCosmeticItems)
         {
-            if (!cosmeticLibrary.ContainsKey(item.id))
+            if (item != null && !cosmeticLibrary.ContainsKey(item.id))
             {
                 cosmeticLibrary.Add(item.id, item);
             }

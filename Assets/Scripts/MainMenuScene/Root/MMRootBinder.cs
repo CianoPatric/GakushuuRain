@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class MMRootBinder: MonoBehaviour
 {
-    private Subject<Unit> _exitSceneSignalSubj;
-    public void HandleGoToGameButtonClick()
+    private static Subject<Unit> _exitSceneSignalSubj;
+    public static void HandleGoToGameButtonClick()
     {
         _exitSceneSignalSubj?.OnNext(Unit.Default);
     }

@@ -6,14 +6,11 @@ using UnityEngine.UI;
 
 public class NotebookManager : MonoBehaviour
 {
-    public static NotebookManager instance;
-    
     public GameObject notebookCanvas;
     public GameObject wordPanel;
     public GameObject wordButtonPrefab;
 
     public Sprite NullItemSprite;
-    public PlayerMovement player;
 
     [Header("Интерфейс кастомизации")]
     public GameObject customizationPanel;
@@ -47,18 +44,28 @@ public class NotebookManager : MonoBehaviour
     
     private Dictionary<string, WordData> wordLibrary;
 
+    private DataManager _dataManager;
+    private WordLibraryManager _wordLibraryManager;
+    private CosmeticsLibraryManager _cosmeticsLibraryManager;
+    private PlayerMovement _player;
+    public void Initialize(DataManager dataManager, WordLibraryManager wordLibraryManager, CosmeticsLibraryManager cosmeticsLibraryManager, PlayerMovement player)
+    {
+        _dataManager = dataManager;
+        _wordLibraryManager = wordLibraryManager;
+        _cosmeticsLibraryManager = cosmeticsLibraryManager;
+        _player = player;
+    }
     void Awake()
     {
-        instance = this;
         notebookCanvas.SetActive(false);
         wordPanel.SetActive(false);
     }
 
-    public void Initialize()
+    public void PopulateFromSave()
     {
         Debug.Log("NotebookManager: Инициализация и заполнение из сохранения");
         ClearAllTabs();
-        PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
+        PlayerData playerData = _dataManager.GetCurrentPlayerData();
         if (playerData == null || playerData.notebookEntries == null)
         {
             Debug.Log("NotebookManager: Данные игрока или список слов пусты при инициализации");
@@ -90,7 +97,7 @@ public class NotebookManager : MonoBehaviour
 
     private void CreateButtonForEntry(NotebookEntry newEntry)
     {
-        WordData wordData = WordLibraryManager.instance.GetWordData(newEntry.wordId);
+        WordData wordData = _wordLibraryManager.GetWordData(newEntry.wordId);
         if(wordData == null) return;
         
         Transform parentTab = GetParentTabForCategory(wordData.category);
@@ -117,7 +124,7 @@ public class NotebookManager : MonoBehaviour
 
     private void UpdateAllSlotIcons()
     {
-        var equippedItems = DataManager.Instance.GetCurrentPlayerData().profile.equippedItems;
+        var equippedItems = _dataManager.GetCurrentPlayerData().profile.equippedItems;
         UpdateSlotIcons(hatSlot, equippedItems.hatId);
         UpdateSlotIcons(shirtSlot, equippedItems.shirtId);
         UpdateSlotIcons(pantsSlot, equippedItems.pantsId);
@@ -125,7 +132,7 @@ public class NotebookManager : MonoBehaviour
     }
     private void UpdateSlotIcons(Image iconImage, string itemId)
     {
-        CosmeticItem itemData = CosmeticsLibraryManager.Instance.GetCosmeticItem(itemId);
+        CosmeticItem itemData = _cosmeticsLibraryManager.GetCosmeticItem(itemId);
         if (itemData != null && itemData.sprite != null)
         {
             iconImage.enabled = true;
@@ -146,8 +153,8 @@ public class NotebookManager : MonoBehaviour
         unequipButton.GetComponentInChildren<Image>().sprite = NullItemSprite;
         unequipButton.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(null, slot ));
 
-        var unlockedIds = DataManager.Instance.GetCurrentPlayerData().unlockedCosmeticIds;
-        var availableItems = CosmeticsLibraryManager.Instance.allCosmeticItems
+        var unlockedIds = _dataManager.GetCurrentPlayerData().unlockedCosmeticIds;
+        var availableItems = _cosmeticsLibraryManager.AllCosmeticItems
             .Where(item => item.slot == slot && unlockedIds.Contains(item.id))
             .ToList();
 
@@ -166,7 +173,7 @@ public class NotebookManager : MonoBehaviour
 
     private void EquipItem(string itemId, CosmeticSlot slot)
     {
-        var playerData = DataManager.Instance.GetCurrentPlayerData();
+        var playerData = _dataManager.GetCurrentPlayerData();
         var equippedItems = playerData.profile.equippedItems;
         switch (slot)
         {
@@ -176,8 +183,8 @@ public class NotebookManager : MonoBehaviour
             case CosmeticSlot.Accessory: equippedItems.accessoryId = itemId; break;
         }
         
-        DataManager.Instance.MarkDataAsDirty();
-        player.UpdateAppearance(equippedItems);
+        _dataManager.MarkDataAsDirty();
+        _player.UpdateAppearance(equippedItems);
         UpdateAllSlotIcons();
         itemScrollView.SetActive(false);
     }
@@ -208,7 +215,7 @@ public class NotebookManager : MonoBehaviour
     {
         SaveChangesForCurrentEntry();
         currentSelectedEntry = entry;
-        WordData wordData = WordLibraryManager.instance.GetWordData(entry.wordId);
+        WordData wordData = _wordLibraryManager.GetWordData(entry.wordId);
         wordTitleText.text = wordData.text;
         translationText.text = wordData.translation;
         definitionText.text = wordData.definition;
@@ -223,7 +230,7 @@ public class NotebookManager : MonoBehaviour
             if (currentSelectedEntry.userGuess != userGuessInput.text)
             {
                 currentSelectedEntry.userGuess = userGuessInput.text;
-                DataManager.Instance.MarkDataAsDirty();
+                _dataManager.MarkDataAsDirty();
                 Debug.Log($"Изменения для слова '{currentSelectedEntry.wordId}' сохранены");
             }
         }
@@ -258,7 +265,7 @@ public class NotebookManager : MonoBehaviour
 
     public void OpenAndShowWord(string wordId)
     {
-        WordData wordData = WordLibraryManager.instance.GetWordData(wordId);
+        WordData wordData = _wordLibraryManager.GetWordData(wordId);
         if (wordData == null)
         {
             Debug.LogError("Такого слова нет в блокноте");
@@ -270,7 +277,7 @@ public class NotebookManager : MonoBehaviour
             OpenNotebook();
         }
         SwitchToTab(wordData.category);
-        PlayerData playerData = DataManager.Instance.GetCurrentPlayerData();
+        PlayerData playerData = _dataManager.GetCurrentPlayerData();
         NotebookEntry entryToShow = playerData.notebookEntries.Find(e => e.wordId == wordId);
 
         if (entryToShow != null)

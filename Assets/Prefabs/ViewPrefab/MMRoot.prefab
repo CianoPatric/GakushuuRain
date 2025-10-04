@@ -966,20 +966,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec705e157b047399750c06736a1690d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RemailField: {fileID: 2195408742896204857}
-  RpasswordField: {fileID: 9018877438988735418}
+  rEmailField: {fileID: 2195408742896204857}
+  rPasswordField: {fileID: 9018877438988735418}
   passwordConfirmField: {fileID: 5182484818201106231}
   nicknameField: {fileID: 3913598700422864985}
-  RfeedbackText: {fileID: 863985518587031379}
-  RWindow: {fileID: 2239030219847196744}
-  Rbutton: {fileID: 9152486601026220153}
-  RexitButton: {fileID: 5210436871004324383}
-  AemailField: {fileID: 270093762014598946}
-  ApasswordField: {fileID: 8950461232600914018}
-  AfeedbackText: {fileID: 8384138335168755526}
-  AWindow: {fileID: 6120186833992043518}
-  Abutton: {fileID: 8809367399823097152}
-  AexitButton: {fileID: 4142285804543203053}
+  rFeedbackText: {fileID: 863985518587031379}
+  rWindow: {fileID: 2239030219847196744}
+  rButton: {fileID: 9152486601026220153}
+  rExitButton: {fileID: 5210436871004324383}
+  aEmailField: {fileID: 270093762014598946}
+  aPasswordField: {fileID: 8950461232600914018}
+  aFeedbackText: {fileID: 8384138335168755526}
+  aWindow: {fileID: 6120186833992043518}
+  aButton: {fileID: 8809367399823097152}
+  aExitButton: {fileID: 4142285804543203053}
 --- !u!1 &895763946073282345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1354,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1562455808658608420}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2948678340761721885}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: OnContinueButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1821468272404880640
 GameObject:
   m_ObjectHideFlags: 0
@@ -6537,9 +6549,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8602689451549404014}
-        m_TargetAssemblyTypeName: MMRootBinder, Assembly-CSharp
-        m_MethodName: HandleGoToGameButtonClick
+      - m_Target: {fileID: 2948678340761721885}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: OnNewSaveButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

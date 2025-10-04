@@ -13,36 +13,65 @@ public class GSEntryPoint: MonoBehaviour
         var gameSceneViewModelContainer = new DIContainer(container);
         GSViewDIRegistration.Register(gameSceneViewModelContainer);
         
-        var uiScene = Instantiate(_sceneUIRootPrefab);
+        var dataManager = container.Resolve<DataManager>();
+        var wordLibraryManager = container.Resolve<WordLibraryManager>();
+        var dialogueLibraryManager = container.Resolve<DialogueLibraryManager>();
+        var cosmeticsLibraryManager = container.Resolve<CosmeticsLibraryManager>();
+        
+        var sceneInstance = Instantiate(_sceneUIRootPrefab);
         var uiRoot = container.Resolve<LoadingScreenRootView>();
-        uiRoot.AttachSceneUI(uiScene.gameObject);
-        if (gameSceneEnterParams != null && gameSceneEnterParams.InitialPlayerData != null)
+        uiRoot.AttachSceneUI(sceneInstance.gameObject);
+        
+        var player = sceneInstance.GetComponentInChildren<PlayerMovement>();
+        var notebookManager = sceneInstance.GetComponentInChildren<NotebookManager>();
+        var dialogueManager = sceneInstance.GetComponentInChildren<DialogueManager>();
+        var gameUIManager = sceneInstance.GetComponent<GameUIManager>();
+        var NPCs = sceneInstance.GetComponentsInChildren<NpcLogic>();
+        var dialogueCliclHandler = sceneInstance.GetComponentInChildren<DialogueTextClickHandler>();
+        
+        if (player == null || notebookManager == null || dialogueManager == null || gameUIManager == null || dialogueCliclHandler == null)
         {
-            DataManager.Instance.InitializeWithData(gameSceneEnterParams.InitialPlayerData);
-            if (NotebookManager.instance != null)
+            Debug.LogError("Один из ключевых компонентов на игровой сцене не найдены!");
+            return Observable.Empty<GSExitParams>();
+        }
+        
+        dataManager.InitializeWithData(gameSceneEnterParams.InitialPlayerData);
+        
+        player.Initialize(cosmeticsLibraryManager);
+        dialogueManager.Initialize(dataManager, dialogueLibraryManager, wordLibraryManager, notebookManager);
+        notebookManager.Initialize(dataManager, wordLibraryManager, cosmeticsLibraryManager, player);
+        gameUIManager.Initialize(notebookManager, dataManager, sceneInstance);
+        dialogueCliclHandler.Initialize(dialogueManager);
+
+        foreach (var npc in NPCs)
+        {
+            npc.Initialize(dataManager, dialogueManager);
+        }
+        
+        if (gameSceneEnterParams?.InitialPlayerData != null)
+        {
+            var playerData = gameSceneEnterParams.InitialPlayerData;
+            if (playerData.state != null)
             {
-                NotebookManager.instance.Initialize();
+                player.transform.position = new Vector3(playerData.state.posX, playerData.state.posY, 0);
             }
-            else
-            {
-                Debug.Log("NotebookManager не найден");
-            }
+            player.UpdateAppearance(playerData.profile.equippedItems);
+            notebookManager.PopulateFromSave();
         }
         else
         {
-            Debug.Log("Сцена была запущена без авторизации");
+            Debug.LogWarning("Сцена была запущена без авторизации. Используется режим отладки");
         }
-        
-        avatar = GameObject.FindGameObjectWithTag("Player");
-        var player = avatar.GetComponent<PlayerMovement>();
-        player.UpdateAppearance(DataManager.Instance.GetCurrentPlayerData().profile.equippedItems);
 
+        dialogueManager.HideDialogueLine();
         var exitSceneSignalSubj = new Subject<Unit>();
-        uiScene.Bind(exitSceneSignalSubj);
-        Debug.Log($"{gameSceneEnterParams.InitialPlayerData}");
-        var enterParams = new MMEnterParams("Fatality");
-        var exitParams = new GSExitParams(enterParams);
-        var exitToUISceneSignal = exitSceneSignalSubj.Select(_ => exitParams);
+        sceneInstance.Bind(exitSceneSignalSubj);
+        
+        var exitToUISceneSignal = exitSceneSignalSubj.Select(_ =>
+        {
+            var enterParams = new MMEnterParams("Returned from game");
+            return new GSExitParams(enterParams);
+        });
         return exitToUISceneSignal;
     }
 }

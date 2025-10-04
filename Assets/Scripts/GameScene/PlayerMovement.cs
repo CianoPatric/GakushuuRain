@@ -15,6 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public Image hatSlot;
 
     private Animator[] allAnimators;
+
+    private CosmeticsLibraryManager saveCosmeticsLibraryManager;
+
+    public void Initialize(CosmeticsLibraryManager cosmeticsLibraryManager)
+    {
+        saveCosmeticsLibraryManager = cosmeticsLibraryManager;
+    }
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(animator == null) return;
         
-        CosmeticItem itemData = CosmeticsLibraryManager.Instance.GetCosmeticItem(itemId);
+        CosmeticItem itemData = saveCosmeticsLibraryManager.GetCosmeticItem(itemId);
         if (itemData != null && itemData.animatorController != null)
         {
             animator.gameObject.SetActive(true);
@@ -66,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(imageSlot == null) return;
         
-        CosmeticItem itemData = CosmeticsLibraryManager.Instance.GetCosmeticItem(itemId);
+        CosmeticItem itemData = saveCosmeticsLibraryManager.GetCosmeticItem(itemId);
         if (itemData != null && itemData.sprite != null && itemData.animatorController == null)
         {
             imageSlot.enabled = true;

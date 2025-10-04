@@ -21,6 +21,13 @@ public class MMEntryPoint: MonoBehaviour
         {
             Debug.LogError("Не удалось найти MainMenuUI");
         }
+        else
+        {
+            var authManager = container.Resolve<AuthManager>();
+            var dataManager = container.Resolve<DataManager>();
+            mainMenuUI.Initialize(authManager, dataManager);
+            dataManager.Initialize(authManager);
+        }
         
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);
