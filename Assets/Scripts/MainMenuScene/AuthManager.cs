@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AuthManager : MonoBehaviour
 {
-    private Client supabase;
+    private Client _supabase;
     
      async void Awake()
     {
@@ -14,8 +14,8 @@ public class AuthManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             var options = new SupabaseOptions { AutoConnectRealtime = true };
-            supabase = new Client(ClientInfo.CLIENT_URL, ClientInfo.CLIENT_KEY, options);
-            await supabase.InitializeAsync();
+            _supabase = new Client(ClientInfo.CLIENT_URL, ClientInfo.CLIENT_KEY, options);
+            await _supabase.InitializeAsync();
         }
         catch (Exception e)
         {
@@ -23,13 +23,13 @@ public class AuthManager : MonoBehaviour
         }
     }
     
-    public Client GetClient() => supabase;
+    public Client GetClient() => _supabase;
     
     public async Task<(bool success, string message)> SignUpAsync(string email, string password, string nickname)
     {
         try
         {
-            var session = await supabase.Auth.SignUp(email, password, new Supabase.Gotrue.SignUpOptions
+            var session = await _supabase.Auth.SignUp(email, password, new Supabase.Gotrue.SignUpOptions
             {
                 Data = new Dictionary<string, object> {{"nickname", nickname}}
             });
@@ -57,7 +57,7 @@ public class AuthManager : MonoBehaviour
         }
         try
         {
-            var session = await supabase.Auth.SignIn(email, password);
+            var session = await _supabase.Auth.SignIn(email, password);
             if (session == null || session.User == null)
             {
                 return (false, "Неверный email и/или пароль", null);

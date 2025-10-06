@@ -26,18 +26,18 @@ public class MainMenuUI : MonoBehaviour
     
     private PlayerData _authenticatedPlayerData;
     
-    private AuthManager saveAuthManager;
-    private DataManager saveDataManager;
+    private AuthManager _saveAuthManager;
+    private DataManager _saveDataManager;
 
     public void Initialize(AuthManager authManager, DataManager dataManager)
     {
-        saveAuthManager = authManager;
-        saveDataManager = dataManager;
+        _saveAuthManager = authManager;
+        _saveDataManager = dataManager;
     }
 
     public async void OnSignUpButtonClicked()
     {
-        SetRUIInteractable(false);
+        SetRuiInteractable(false);
         rFeedbackText.text = "";
         string email = rEmailField.text;
         string password = rPasswordField.text;
@@ -46,7 +46,7 @@ public class MainMenuUI : MonoBehaviour
 
         if (password == passwordConfirm)
         {
-            var (success, message) = await saveAuthManager.SignUpAsync(email, password, nickname);
+            var (success, message) = await _saveAuthManager.SignUpAsync(email, password, nickname);
             aFeedbackText.text = message;
             if (success)
             {
@@ -54,23 +54,23 @@ public class MainMenuUI : MonoBehaviour
                 _authenticatedPlayerData = null;
             }
 
-            SetRUIInteractable(true);
+            SetRuiInteractable(true);
         }
         else
         {
             rFeedbackText.text = "Проверьте совпадение введёного пароля";
-            SetRUIInteractable(true);
+            SetRuiInteractable(true);
         }
     }
 
     public async void OnSignInButtonClicked()
     {
-        SetAUIInteractable(false);
+        SetAuiInteractable(false);
         aFeedbackText.text = "Вход...";
         string email = aEmailField.text;
         string password = aPasswordField.text;
         
-        var (authSuccess, authMessage, offlineData) = await saveAuthManager.SignInAsync(email, password);
+        var (authSuccess, authMessage, offlineData) = await _saveAuthManager.SignInAsync(email, password);
         aFeedbackText.text = authMessage;
         if (authSuccess)
         {
@@ -82,7 +82,7 @@ public class MainMenuUI : MonoBehaviour
             }
             else
             {
-                playerData = await saveDataManager.LoadData();
+                playerData = await _saveDataManager.LoadData();
             }
 
             if (playerData != null)
@@ -96,7 +96,7 @@ public class MainMenuUI : MonoBehaviour
             }
         }
 
-        SetAUIInteractable(true);
+        SetAuiInteractable(true);
     }
 
     public void OnContinueButtonClicked()
@@ -106,7 +106,7 @@ public class MainMenuUI : MonoBehaviour
 
     public async void OnNewSaveButtonClicked()
     {
-        var newSave = await saveDataManager.NewSaveData();
+        var newSave = await _saveDataManager.NewSaveData();
         if (newSave != null)
         {
             _authenticatedPlayerData = newSave;
@@ -128,7 +128,7 @@ public class MainMenuUI : MonoBehaviour
         return _authenticatedPlayerData;
     }
     
-    private void SetRUIInteractable(bool isInteractable)
+    private void SetRuiInteractable(bool isInteractable)
     {
         rEmailField.interactable = isInteractable;
         rPasswordField.interactable = isInteractable;
@@ -138,7 +138,7 @@ public class MainMenuUI : MonoBehaviour
         rExitButton.interactable = isInteractable;
     }
 
-    private void SetAUIInteractable(bool isInteractable)
+    private void SetAuiInteractable(bool isInteractable)
     {
         aEmailField.interactable = isInteractable;
         aPasswordField.interactable = isInteractable;

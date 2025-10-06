@@ -10,12 +10,12 @@ public class GameEntryPoint
     private Coroutines _coroutines;
     private LoadingScreenRootView _menuRoot;
     private readonly DIContainer _rootContainer = new();
-    private DIContainer CasheContainer;
+    private DIContainer _casheContainer;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void FirstLoad()
     {
         _instance = new GameEntryPoint();
-        _instance.StartAPP();
+        _instance.StartApp();
     }
 
     private GameEntryPoint()
@@ -48,7 +48,7 @@ public class GameEntryPoint
         Object.DontDestroyOnLoad(_menuRoot.gameObject);
         _rootContainer.RegisterInstance(_menuRoot);
     }
-    private void StartAPP()
+    private void StartApp()
     {
 #if UNITY_EDITOR
         var sceneName = SceneManager.GetActiveScene().name;
@@ -59,8 +59,8 @@ public class GameEntryPoint
         }
         if(sceneName == GAMESCENE)
         {
-            GSEnterParams _gameEnter = new GSEnterParams(new PlayerData());
-            _coroutines.StartCoroutine(LoadAndStartGameScene(_gameEnter));
+            GSEnterParams gameEnter = new GSEnterParams(new PlayerData());
+            _coroutines.StartCoroutine(LoadAndStartGameScene(gameEnter));
             return;
         }
         if (sceneName != BOOT)
@@ -74,13 +74,13 @@ public class GameEntryPoint
     private IEnumerator LoadAndStartMainMenu(MMEnterParams enterParams = null)
     {
         _menuRoot.ShowLoadingScreen();
-        CasheContainer?.Dispose();
+        _casheContainer?.Dispose();
         yield return LoadScene(BOOT);
         yield return LoadScene(MAINMENU);
         yield return new WaitForSeconds(0.5f);
         var sceneEntryPoint = Object.FindFirstObjectByType<MMEntryPoint>();
-        var UIContainer = CasheContainer = new DIContainer(_rootContainer);
-        sceneEntryPoint.Run(UIContainer, enterParams).Subscribe(mainMenuExitParams =>
+        var uiContainer = _casheContainer = new DIContainer(_rootContainer);
+        sceneEntryPoint.Run(uiContainer, enterParams).Subscribe(mainMenuExitParams =>
         {
             _coroutines.StartCoroutine(LoadAndStartGameScene(mainMenuExitParams.GameSceneEnterParams));
         });
@@ -89,12 +89,12 @@ public class GameEntryPoint
     private IEnumerator LoadAndStartGameScene(GSEnterParams gameSceneEnterParams)
     {
         _menuRoot.ShowLoadingScreen();
-        CasheContainer?.Dispose();
+        _casheContainer?.Dispose();
         yield return LoadScene(BOOT);
         yield return LoadScene(GAMESCENE);
         yield return new WaitForSeconds(0.5f);
         var sceneEntryPoint = Object.FindFirstObjectByType<GSEntryPoint>();
-        var gameSceneContainer = CasheContainer = new DIContainer(_rootContainer);
+        var gameSceneContainer = _casheContainer = new DIContainer(_rootContainer);
         sceneEntryPoint.Run(gameSceneContainer, gameSceneEnterParams).Subscribe(gameSceneExitParams =>
         {
             _coroutines.StartCoroutine(LoadAndStartMainMenu(gameSceneExitParams.MainMenuEnterParams));

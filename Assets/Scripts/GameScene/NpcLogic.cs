@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class NpcLogic : MonoBehaviour
 {
-    public GameObject PressEWindow;
+    public GameObject pressEWindow;
     public string dialogueStartId;
-    private bool playerInRange = false;
+    private bool _playerInRange = false;
     
     private DataManager _dataManager;
     private DialogueManager _dialogueManager;
@@ -18,14 +18,14 @@ public class NpcLogic : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PressEWindow.SetActive(true);
-            playerInRange = true;
+            pressEWindow.SetActive(true);
+            _playerInRange = true;
         }
     }
 
     public void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (_playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             string startNode = _dataManager.GetDialogueState(dialogueStartId);
             _dialogueManager.StartDialogue(dialogueStartId, startNode);
@@ -36,8 +36,8 @@ public class NpcLogic : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PressEWindow.SetActive(false);
-            playerInRange = false;
+            pressEWindow.SetActive(false);
+            _playerInRange = false;
             _dialogueManager.HideDialogueLine();
         }
     }

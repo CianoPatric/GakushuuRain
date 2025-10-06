@@ -7,8 +7,8 @@ using Constants = Supabase.Postgrest.Constants;
 
 public class DataManager : MonoBehaviour
 {
-    private PlayerData currentPlayerData;
-    private bool isDataDirty = false;
+    private PlayerData _currentPlayerData;
+    private bool _isDataDirty = false;
     
     private AuthManager _authManager;
 
@@ -20,11 +20,11 @@ public class DataManager : MonoBehaviour
     
     public void MarkDataAsDirty()
     {
-        isDataDirty = true;
+        _isDataDirty = true;
     }
     public async Task SaveData()
     {
-        if (currentPlayerData == null)
+        if (_currentPlayerData == null)
         {
             Debug.Log("Данных для сохранения нет");
             return;
@@ -33,10 +33,10 @@ public class DataManager : MonoBehaviour
         var player = FindAnyObjectByType<PlayerMovement>();
         if (player != null)
         {
-            currentPlayerData.state.posX = player.transform.position.x;
-            currentPlayerData.state.posY = player.transform.position.y;
+            _currentPlayerData.state.posX = player.transform.position.x;
+            _currentPlayerData.state.posY = player.transform.position.y;
         }
-        LocalSaveManager.SaveProfile(currentPlayerData);
+        LocalSaveManager.SaveProfile(_currentPlayerData);
         
         var supabaseClient = _authManager.GetClient();
         if (supabaseClient.Auth.CurrentUser == null)
@@ -45,23 +45,23 @@ public class DataManager : MonoBehaviour
             return;
         }
 
-        if (!isDataDirty && false)
+        if (!_isDataDirty && false)
         {
             return;
         }
-        currentPlayerData.userId = supabaseClient.Auth.CurrentUser.Id;
-        currentPlayerData.lastSaveTimestamp = DateTime.UtcNow.ToString("o");
+        _currentPlayerData.userId = supabaseClient.Auth.CurrentUser.Id;
+        _currentPlayerData.lastSaveTimestamp = DateTime.UtcNow.ToString("o");
 
         var response = await supabaseClient.From<PlayerDataModel>()
             .Upsert(new PlayerDataModel
             {
                 Id = supabaseClient.Auth.CurrentUser.Id,
-                Data = currentPlayerData
+                Data = _currentPlayerData
             });
         if (response.ResponseMessage.IsSuccessStatusCode)
         {
             Debug.Log("Данные успешно сохранены");
-            isDataDirty = false;
+            _isDataDirty = false;
         }
         else
         {
@@ -75,8 +75,8 @@ public class DataManager : MonoBehaviour
         if (supabaseClient.Auth.CurrentUser == null)
         {
             Debug.LogError("Нет онлайн-сессии. Загрузка из локального сохранения");
-            currentPlayerData = LocalSaveManager.LoadProfile();
-            return currentPlayerData;
+            _currentPlayerData = LocalSaveManager.LoadProfile();
+            return _currentPlayerData;
         }
 
         var response = await supabaseClient.From<PlayerDataModel>()
@@ -103,23 +103,23 @@ public class DataManager : MonoBehaviour
             if (serverTime >= localTime)
             {
                 Debug.Log("Серверные данные новее, загружаются серверные данные");
-                currentPlayerData = serverData;
+                _currentPlayerData = serverData;
                 LocalSaveManager.SaveProfile(serverData);
             }
             else
             {
                 Debug.Log("Загружаются локальные данные");
-                currentPlayerData = localData;
+                _currentPlayerData = localData;
                 await SaveData();
             }
-            return currentPlayerData;
+            return _currentPlayerData;
         }
         else if (localData != null)
         {
             Debug.Log("Серверные данные не найдены");
-            currentPlayerData = localData;
+            _currentPlayerData = localData;
             await SaveData();
-            return currentPlayerData;
+            return _currentPlayerData;
         }
         else
         {
@@ -131,7 +131,7 @@ public class DataManager : MonoBehaviour
             {
                 nickname = currentUser.UserMetadata["nickname"].ToString();
             }
-            currentPlayerData = new PlayerData
+            _currentPlayerData = new PlayerData
             {
                 userId = supabaseClient.Auth.CurrentUser.Id,
                 lastSaveTimestamp = DateTime.UtcNow.ToString("o"),
@@ -148,7 +148,7 @@ public class DataManager : MonoBehaviour
                 unlockedCosmeticIds = new List<string>()
             };
             await SaveData();
-            return currentPlayerData;
+            return _currentPlayerData;
         }
     }
 
@@ -168,7 +168,7 @@ public class DataManager : MonoBehaviour
             nickname = currentUser.UserMetadata["nickname"].ToString();
         }
 
-        currentPlayerData = new PlayerData
+        _currentPlayerData = new PlayerData
         {
             userId = currentUser.Id,
             lastSaveTimestamp = DateTime.UtcNow.ToString("o"),
@@ -186,34 +186,34 @@ public class DataManager : MonoBehaviour
         };
         MarkDataAsDirty();
         await SaveData();
-        return currentPlayerData;
+        return _currentPlayerData;
     }
     public void InitializeWithData(PlayerData data)
     {
-        currentPlayerData = data;
+        _currentPlayerData = data;
         Debug.Log("InitializeWithData выполнено");
     }
 
     public void SetDialogueState(string dialogueId, string lastNodeId)
     {
-        if (currentPlayerData == null) return;
+        if (_currentPlayerData == null) return;
         
-        DialogueState existingState = currentPlayerData.dialogueStates.Find(x => x.dialogueId == dialogueId);
+        DialogueState existingState = _currentPlayerData.dialogueStates.Find(x => x.dialogueId == dialogueId);
         if (existingState != null)
         {
             existingState.lastNodeId = lastNodeId;
         }
         else
         {
-            currentPlayerData.dialogueStates.Add(new DialogueState{dialogueId = dialogueId, lastNodeId = lastNodeId});
+            _currentPlayerData.dialogueStates.Add(new DialogueState{dialogueId = dialogueId, lastNodeId = lastNodeId});
         }
         Debug.Log($"Состояние диалога {dialogueId} сохранено на узле {lastNodeId}");
     }
 
     public string GetDialogueState(string dialogueId)
     {
-        if (currentPlayerData == null) return "start";
-        DialogueState existingState = currentPlayerData.dialogueStates.Find(x => x.dialogueId == dialogueId);
+        if (_currentPlayerData == null) return "start";
+        DialogueState existingState = _currentPlayerData.dialogueStates.Find(x => x.dialogueId == dialogueId);
         if (existingState != null)
         {
             return existingState.lastNodeId;
@@ -225,21 +225,21 @@ public class DataManager : MonoBehaviour
     }
     public PlayerData GetCurrentPlayerData()
     {
-        return currentPlayerData;
+        return _currentPlayerData;
     }
 
     public bool IsWordInNotebook(string wordId)
     {
-        if(currentPlayerData == null || currentPlayerData.notebookEntries == null) return false;
-        return currentPlayerData.notebookEntries.Any(entry => entry.wordId == wordId);
+        if(_currentPlayerData == null || _currentPlayerData.notebookEntries == null) return false;
+        return _currentPlayerData.notebookEntries.Any(entry => entry.wordId == wordId);
     }
 
     public void UnlockCosmeticItem(string cosmeticId)
     {
-        if(currentPlayerData == null) return;
-        if (!currentPlayerData.unlockedCosmeticIds.Contains(cosmeticId))
+        if(_currentPlayerData == null) return;
+        if (!_currentPlayerData.unlockedCosmeticIds.Contains(cosmeticId))
         {
-            currentPlayerData.unlockedCosmeticIds.Add(cosmeticId);
+            _currentPlayerData.unlockedCosmeticIds.Add(cosmeticId);
             Debug.Log("Игрок разблокировал предмет: " + cosmeticId);
         }
     }
@@ -259,14 +259,14 @@ public class DataManager : MonoBehaviour
             status = WordStatus.Hypothesis,
             encounteredContext = new List<string>()
         };
-        currentPlayerData.notebookEntries.Add(newEntry);
+        _currentPlayerData.notebookEntries.Add(newEntry);
         Debug.Log($"Слово {wordId} добавлено в блокнот");
         OnWordAddedToNotebook?.Invoke(newEntry);
     }
 
     private void OnApplicationQuit()
     {
-        if (isDataDirty)
+        if (_isDataDirty)
         {
             _ = SaveData();
         }

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class DialogueLibraryManager: MonoBehaviour
 {
-    private Dictionary<string, DialogueData> dialogueLibrary = new();
+    private Dictionary<string, DialogueData> _dialogueLibrary = new();
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         LoadAllDialogue();
     }
 
@@ -22,7 +21,7 @@ public class DialogueLibraryManager: MonoBehaviour
                 DialogueData dialogueData = JsonUtility.FromJson<DialogueData>(file.text);
                 if (dialogueData != null && !string.IsNullOrEmpty(dialogueData.dialogueId))
                 {
-                    dialogueLibrary[dialogueData.dialogueId] = dialogueData;
+                    _dialogueLibrary[dialogueData.dialogueId] = dialogueData;
                 }
                 else
                 {
@@ -34,14 +33,14 @@ public class DialogueLibraryManager: MonoBehaviour
                 Debug.Log($"Ошибка при загрузке диалога из файла {file.name}: {e.Message}");
             }
         }
-        Debug.Log($"Загружено {dialogueLibrary.Count} диалогов");
+        Debug.Log($"Загружено {_dialogueLibrary.Count} диалогов");
     }
 
     public DialogueData GetDialogue(string dialogueId)
     {
-        if (dialogueLibrary.ContainsKey(dialogueId))
+        if (_dialogueLibrary.ContainsKey(dialogueId))
         {
-            return dialogueLibrary[dialogueId];
+            return _dialogueLibrary[dialogueId];
         }
         Debug.LogError($"Диалог с ID '{dialogueId}' не найден в библиотеке");
         return null;

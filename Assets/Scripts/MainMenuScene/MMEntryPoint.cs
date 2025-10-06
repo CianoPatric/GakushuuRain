@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MMEntryPoint: MonoBehaviour
 {
-    [SerializeField] private MMRootBinder _sceneUIRootPrefab;
+    [SerializeField] private MMRootBinder sceneUIRootPrefab;
     
     public Observable<MMExitParams> Run(DIContainer container, MMEnterParams uiEnterParams)
     { 
@@ -12,7 +12,7 @@ public class MMEntryPoint: MonoBehaviour
         var uiViewModelContainer = new DIContainer(container); 
         MMViewDIRegistration.Register(uiViewModelContainer);
         
-        var uiScene = Instantiate(_sceneUIRootPrefab); 
+        var uiScene = Instantiate(sceneUIRootPrefab); 
         var uiRoot = container.Resolve<LoadingScreenRootView>(); 
         uiRoot.AttachSceneUI(uiScene.gameObject);
         

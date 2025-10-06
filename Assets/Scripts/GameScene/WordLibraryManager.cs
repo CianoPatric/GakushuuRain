@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class WordLibraryManager : MonoBehaviour
 {
-    private Dictionary<string, WordData> wordLibrary = new();
+    private Dictionary<string, WordData> _wordLibrary = new();
 
     void Awake()
     {
@@ -20,15 +20,15 @@ public class WordLibraryManager : MonoBehaviour
             return;
         }
         WordLibrary library = JsonUtility.FromJson<WordLibrary>(jsonfile.text);
-        wordLibrary = library.words.ToDictionary(word => word.id);
-        Debug.Log($"Библиотека загружена, в ней записанно слов: {wordLibrary.Count}");
+        _wordLibrary = library.words.ToDictionary(word => word.id);
+        Debug.Log($"Библиотека загружена, в ней записанно слов: {_wordLibrary.Count}");
     }
 
     public WordData GetWordData(string wordId)
     {
-        if (wordLibrary.ContainsKey(wordId))
+        if (_wordLibrary.ContainsKey(wordId))
         {
-            return wordLibrary[wordId];
+            return _wordLibrary[wordId];
         }
         Debug.LogError($"{wordId} не найден в библиотеке слов");
         return null;

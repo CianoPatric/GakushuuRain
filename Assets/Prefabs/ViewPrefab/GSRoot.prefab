@@ -407,8 +407,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 6750742034431989141}
+        m_TargetAssemblyTypeName: NotebookView, Assembly-CSharp
         m_MethodName: SwitchToTab
         m_Mode: 5
         m_Arguments:
@@ -741,9 +741,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
-        m_MethodName: CloseNotebook
+      - m_Target: {fileID: 2857598024737471909}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
+        m_MethodName: Notebook
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -949,8 +949,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 2607899681789600598}
+        m_TargetAssemblyTypeName: CustomizationView, Assembly-CSharp
         m_MethodName: OpenCustomizationPanel
         m_Mode: 1
         m_Arguments:
@@ -1179,8 +1179,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 6750742034431989141}
+        m_TargetAssemblyTypeName: NotebookView, Assembly-CSharp
         m_MethodName: SwitchToTab
         m_Mode: 5
         m_Arguments:
@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a441587497e473790877b2347730086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PressEWindow: {fileID: 1429738323596090090}
+  pressEWindow: {fileID: 1429738323596090090}
   dialogueStartId: big_bart_intro
 --- !u!61 &6703921428667419848
 BoxCollider2D:
@@ -2532,8 +2532,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 2607899681789600598}
+        m_TargetAssemblyTypeName: CustomizationView, Assembly-CSharp
         m_MethodName: ShowPantsItems
         m_Mode: 1
         m_Arguments:
@@ -2786,8 +2786,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 2607899681789600598}
+        m_TargetAssemblyTypeName: CustomizationView, Assembly-CSharp
         m_MethodName: ShowAccessoryItems
         m_Mode: 1
         m_Arguments:
@@ -4569,8 +4569,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 2607899681789600598}
+        m_TargetAssemblyTypeName: CustomizationView, Assembly-CSharp
         m_MethodName: CloseCustomizationPanel
         m_Mode: 1
         m_Arguments:
@@ -11242,8 +11242,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 2607899681789600598}
+        m_TargetAssemblyTypeName: CustomizationView, Assembly-CSharp
         m_MethodName: ShowShirtItems
         m_Mode: 1
         m_Arguments:
@@ -11649,8 +11649,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 6750742034431989141}
+        m_TargetAssemblyTypeName: NotebookView, Assembly-CSharp
         m_MethodName: SwitchToTab
         m_Mode: 5
         m_Arguments:
@@ -12035,7 +12035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u044F"
+  m_text: "\u041E\u043F\u0440\u0435\u0434\u0435\u043B\u0435\u043D\u0438\u044F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12062,8 +12062,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 7
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12439,8 +12439,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 6750742034431989141}
+        m_TargetAssemblyTypeName: NotebookView, Assembly-CSharp
         m_MethodName: CloseWordPanel
         m_Mode: 1
         m_Arguments:
@@ -12846,8 +12846,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 6750742034431989141}
+        m_TargetAssemblyTypeName: NotebookView, Assembly-CSharp
         m_MethodName: SwitchToTab
         m_Mode: 5
         m_Arguments:
@@ -13358,7 +13358,7 @@ Animator:
   m_GameObject: {fileID: 6616091116469113982}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6a1aa8eb733baf04d846d55d6586ce90, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -13660,7 +13660,7 @@ Animator:
   m_GameObject: {fileID: 6819589391397856997}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0365db4762360054dad032045b3bb813, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -13895,7 +13895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a441587497e473790877b2347730086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PressEWindow: {fileID: 6405370189858892050}
+  pressEWindow: {fileID: 6405370189858892050}
   dialogueStartId: chess_players_intro
 --- !u!61 &6156701245206458454
 BoxCollider2D:
@@ -14577,7 +14577,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8092344964216726031}
-  - component: {fileID: 7442335590470387470}
+  - component: {fileID: 6750742034431989141}
+  - component: {fileID: 2607899681789600598}
   m_Layer: 0
   m_Name: Notebook
   m_TagString: Untagged
@@ -14603,7 +14604,7 @@ Transform:
   - {fileID: 4085404915565732898}
   m_Father: {fileID: 8018970920495440420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7442335590470387470
+--- !u!114 &6750742034431989141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14612,21 +14613,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7501976860498378663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f913ea6c53f41b7af037f089246d021, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d396cbd3aab48cab49acf88e19127a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   notebookCanvas: {fileID: 8717022085120020701}
   wordPanel: {fileID: 5161128239062142148}
   wordButtonPrefab: {fileID: 738627813888482379, guid: d77452813b89c024a8421a32fa09a7be, type: 3}
-  NullItemSprite: {fileID: 2503028646081482944, guid: 9630000474ccc9e4fbcc29b961e8de08, type: 3}
-  customizationPanel: {fileID: 7835709096342724472}
-  itemScrollView: {fileID: 6619623452361613723}
-  itemsContainer: {fileID: 4303139213096654012}
-  itemButtonPrefab: {fileID: 1676716504295073296, guid: 015ff8742aed56144aa9afa0ef820880, type: 3}
-  hatSlot: {fileID: 7028111127791144994}
-  shirtSlot: {fileID: 6216230841131198813}
-  pantsSlot: {fileID: 4084786494361613274}
-  accessorySlot: {fileID: 4476570317937737901}
   wordTitleText: {fileID: 2766197487446006818}
   translationText: {fileID: 951813477739128685}
   definitionText: {fileID: 7067863276007922085}
@@ -14635,6 +14627,27 @@ MonoBehaviour:
   objectsTabContent: {fileID: 7297494823358803129}
   locationsTabContent: {fileID: 1141233892083897487}
   actionsTabContent: {fileID: 3715321072188446520}
+--- !u!114 &2607899681789600598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501976860498378663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93aab5dc3f14273a512c66e7b521b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customizationPanel: {fileID: 7835709096342724472}
+  itemScrollView: {fileID: 6619623452361613723}
+  itemsContainer: {fileID: 4303139213096654012}
+  itemButtonPrefab: {fileID: 738627813888482379, guid: d77452813b89c024a8421a32fa09a7be, type: 3}
+  nullItemSprite: {fileID: 2503028646081482944, guid: 9630000474ccc9e4fbcc29b961e8de08, type: 3}
+  hatSlot: {fileID: 7028111127791144994}
+  shirtSlot: {fileID: 6216230841131198813}
+  pantsSlot: {fileID: 4084786494361613274}
+  accessorySlot: {fileID: 4476570317937737901}
 --- !u!1 &7550374572481664811
 GameObject:
   m_ObjectHideFlags: 0
@@ -14771,7 +14784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a441587497e473790877b2347730086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PressEWindow: {fileID: 4252386905206019349}
+  pressEWindow: {fileID: 4252386905206019349}
   dialogueStartId: eleonora_intro
 --- !u!1 &7784186769186860750
 GameObject:
@@ -15496,7 +15509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a441587497e473790877b2347730086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PressEWindow: {fileID: 8692763368680366494}
+  pressEWindow: {fileID: 8692763368680366494}
   dialogueStartId: sister_agatha_intro
 --- !u!61 &597249543274466106
 BoxCollider2D:
@@ -16359,8 +16372,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7442335590470387470}
-        m_TargetAssemblyTypeName: NotebookManager, Assembly-CSharp
+      - m_Target: {fileID: 2607899681789600598}
+        m_TargetAssemblyTypeName: CustomizationView, Assembly-CSharp
         m_MethodName: ShowHatItems
         m_Mode: 1
         m_Arguments:
@@ -16798,6 +16811,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2216460165631485113, guid: 2f7673ac5ed02a84fb0676e39ece5fc1, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 2177633326564033278}
+    - target: {fileID: 2216460165631485113, guid: 2f7673ac5ed02a84fb0676e39ece5fc1, type: 3}
       propertyPath: dialogueTextClickHandler
       value: 
       objectReference: {fileID: 7137708787386374136}
@@ -16810,6 +16827,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f7673ac5ed02a84fb0676e39ece5fc1, type: 3}
+--- !u!1 &2177633326564033278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5068831473453323007, guid: 2f7673ac5ed02a84fb0676e39ece5fc1, type: 3}
+  m_PrefabInstance: {fileID: 6368259917725798401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5379315490122397627 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1353244037991622586, guid: 2f7673ac5ed02a84fb0676e39ece5fc1, type: 3}

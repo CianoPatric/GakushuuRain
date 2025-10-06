@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class GSEntryPoint: MonoBehaviour
 {
-    [SerializeField] private GSRootBinder _sceneUIRootPrefab;
-    private GameObject avatar;
+    [SerializeField] private GSRootBinder sceneUIRootPrefab;
     // ReSharper disable Unity.PerformanceAnalysis
     public Observable<GSExitParams> Run(DIContainer container, GSEnterParams gameSceneEnterParams)
     {
@@ -18,18 +17,19 @@ public class GSEntryPoint: MonoBehaviour
         var dialogueLibraryManager = container.Resolve<DialogueLibraryManager>();
         var cosmeticsLibraryManager = container.Resolve<CosmeticsLibraryManager>();
         
-        var sceneInstance = Instantiate(_sceneUIRootPrefab);
+        var sceneInstance = Instantiate(sceneUIRootPrefab);
         var uiRoot = container.Resolve<LoadingScreenRootView>();
         uiRoot.AttachSceneUI(sceneInstance.gameObject);
         
         var player = sceneInstance.GetComponentInChildren<PlayerMovement>();
-        var notebookManager = sceneInstance.GetComponentInChildren<NotebookManager>();
+        var notebookView = sceneInstance.GetComponentInChildren<NotebookView>();
+        var customizationView = sceneInstance.GetComponentInChildren<CustomizationView>();
         var dialogueManager = sceneInstance.GetComponentInChildren<DialogueManager>();
         var gameUIManager = sceneInstance.GetComponent<GameUIManager>();
         var NPCs = sceneInstance.GetComponentsInChildren<NpcLogic>();
         var dialogueCliclHandler = sceneInstance.GetComponentInChildren<DialogueTextClickHandler>();
         
-        if (player == null || notebookManager == null || dialogueManager == null || gameUIManager == null || dialogueCliclHandler == null)
+        if (player == null || notebookView == null || customizationView == null || dialogueManager == null || gameUIManager == null || dialogueCliclHandler == null)
         {
             Debug.LogError("Один из ключевых компонентов на игровой сцене не найдены!");
             return Observable.Empty<GSExitParams>();
@@ -38,9 +38,10 @@ public class GSEntryPoint: MonoBehaviour
         dataManager.InitializeWithData(gameSceneEnterParams.InitialPlayerData);
         
         player.Initialize(cosmeticsLibraryManager);
-        dialogueManager.Initialize(dataManager, dialogueLibraryManager, wordLibraryManager, notebookManager);
-        notebookManager.Initialize(dataManager, wordLibraryManager, cosmeticsLibraryManager, player);
-        gameUIManager.Initialize(notebookManager, dataManager, sceneInstance);
+        dialogueManager.Initialize(dataManager, dialogueLibraryManager, wordLibraryManager, notebookView);
+        notebookView.Initialize(dataManager, wordLibraryManager);
+        customizationView.Initialize(dataManager, cosmeticsLibraryManager, player);
+        gameUIManager.Initialize(notebookView, dataManager, sceneInstance, customizationView);
         dialogueCliclHandler.Initialize(dialogueManager);
 
         foreach (var npc in NPCs)
@@ -56,14 +57,13 @@ public class GSEntryPoint: MonoBehaviour
                 player.transform.position = new Vector3(playerData.state.posX, playerData.state.posY, 0);
             }
             player.UpdateAppearance(playerData.profile.equippedItems);
-            notebookManager.PopulateFromSave();
+            notebookView.PopulateFromSave();
         }
         else
         {
             Debug.LogWarning("Сцена была запущена без авторизации. Используется режим отладки");
         }
-
-        dialogueManager.HideDialogueLine();
+        
         var exitSceneSignalSubj = new Subject<Unit>();
         sceneInstance.Bind(exitSceneSignalSubj);
         

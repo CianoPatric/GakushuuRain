@@ -5,8 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 250f;
     
-    private Rigidbody2D rb;
-    private Vector2 movement;
+    private Rigidbody2D _rb;
+    private Vector2 _movement;
 
     [Header("Аниматоры")]
     public Animator pantsAnimator;
@@ -14,35 +14,32 @@ public class PlayerMovement : MonoBehaviour
     public Image accessorySlot;
     public Image hatSlot;
 
-    private Animator[] allAnimators;
+    private Animator[] _allAnimators;
 
-    private CosmeticsLibraryManager saveCosmeticsLibraryManager;
+    private CosmeticsLibraryManager _cosmeticsLibraryManager;
 
     public void Initialize(CosmeticsLibraryManager cosmeticsLibraryManager)
     {
-        saveCosmeticsLibraryManager = cosmeticsLibraryManager;
-    }
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        allAnimators = new[]{shirtAnimator, pantsAnimator};
+        _cosmeticsLibraryManager = cosmeticsLibraryManager;
+        _rb = GetComponent<Rigidbody2D>();
+        _allAnimators = new[]{shirtAnimator, pantsAnimator};
     }
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        if (movement.x < 0)
+        _movement.x = Input.GetAxisRaw("Horizontal");
+        if (_movement.x < 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
-            if(movement.x > 0)
+            if(_movement.x > 0)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
-        movement.y = Input.GetAxisRaw("Vertical");
+        _movement.y = Input.GetAxisRaw("Vertical");
     }
 
     public void UpdateAppearance(PlayerCustomization equippedItems)
@@ -57,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(animator == null) return;
         
-        CosmeticItem itemData = saveCosmeticsLibraryManager.GetCosmeticItem(itemId);
+        CosmeticItem itemData = _cosmeticsLibraryManager.GetCosmeticItem(itemId);
         if (itemData != null && itemData.animatorController != null)
         {
             animator.gameObject.SetActive(true);
@@ -73,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(imageSlot == null) return;
         
-        CosmeticItem itemData = saveCosmeticsLibraryManager.GetCosmeticItem(itemId);
+        CosmeticItem itemData = _cosmeticsLibraryManager.GetCosmeticItem(itemId);
         if (itemData != null && itemData.sprite != null && itemData.animatorController == null)
         {
             imageSlot.enabled = true;
@@ -87,13 +84,13 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach (var anim in allAnimators)
+        foreach (var anim in _allAnimators)
         {
             if (anim != null && anim.gameObject.activeSelf && anim.runtimeAnimatorController != null)
             {
-                anim.SetFloat("Speed", movement.magnitude);
+                anim.SetFloat("Speed", _movement.magnitude);
             }
         }
-        rb.MovePosition(rb.position + movement.normalized * (moveSpeed * Time.fixedDeltaTime));
+        _rb.MovePosition(_rb.position + _movement.normalized * (moveSpeed * Time.fixedDeltaTime));
     }
 }

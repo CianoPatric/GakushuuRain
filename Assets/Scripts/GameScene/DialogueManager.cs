@@ -6,49 +6,51 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public GameObject DialogueBox;
+    public GameObject dialogueBox;
     public GameObject continueButton;
     public TextMeshProUGUI speakerName;
     public TextMeshProUGUI dialogue;
     public Transform optionsContainer;
     public GameObject optionButtonPrefab;
-    private string currentRawText;
+    private string _currentRawText;
     
     public Color newWordColor = Color.yellow;
     public Color knowWordColor = Color.black;
 
-    private DialogueData currentDialogue;
-    private DialogueNode currentNode;
+    private DialogueData _currentDialogue;
+    private DialogueNode _currentNode;
     
     private DataManager _dataManager;
     private DialogueLibraryManager _dialogueLibraryManager;
     private WordLibraryManager _wordLibraryManager;
-    private NotebookManager _notebookManager;
+    private NotebookView _notebookView;
     
     [SerializeField] private DialogueTextClickHandler dialogueTextClickHandler;
 
     public void Initialize(DataManager dataManager, DialogueLibraryManager dialogueLibraryManager,
-        WordLibraryManager wordLibraryManager, NotebookManager notebookManager)
+        WordLibraryManager wordLibraryManager, NotebookView notebookView)
     {
         _dataManager = dataManager;
         _dialogueLibraryManager = dialogueLibraryManager;
         _wordLibraryManager = wordLibraryManager;
-        _notebookManager = notebookManager;
+        _notebookView = notebookView;
+        dialogueBox.SetActive(false);
     }
     
+    // ReSharper disable Unity.PerformanceAnalysis
     public void StartDialogue(string dialogueId, string startNodeId = "start")
     {
-        currentDialogue = _dialogueLibraryManager.GetDialogue(dialogueId);
-        if (currentDialogue == null)
+        _currentDialogue = _dialogueLibraryManager.GetDialogue(dialogueId);
+        if (_currentDialogue == null)
         {
             Debug.LogError($"Ну удалось запустить диалог: {dialogueId} не найден");
             HideDialogueLine();
             return;
         }
-        DialogueBox.SetActive(true);
-        currentNode = currentDialogue.nodes.Find(note => note.nodeId == startNodeId);
+        dialogueBox.SetActive(true);
+        _currentNode = _currentDialogue.nodes.Find(note => note.nodeId == startNodeId);
         
-        if (currentNode == null)
+        if (_currentNode == null)
         {
             HideDialogueLine();
             return;
@@ -60,7 +62,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayCurrentNode()
     {
-        if (currentNode == null)
+        if (_currentNode == null)
         {
             HideDialogueLine();
             return;
@@ -68,9 +70,9 @@ public class DialogueManager : MonoBehaviour
 
         if (speakerName != null)
         {
-            speakerName.text = currentNode.speaker;
+            speakerName.text = _currentNode.speaker;
         }
-        string processedText = ProcessText(currentNode.text);
+        string processedText = ProcessText(_currentNode.text);
         dialogue.text = processedText;
 
         foreach (Transform child in optionsContainer)
@@ -78,10 +80,10 @@ public class DialogueManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        if (currentNode.options != null && currentNode.options.Count > 0)
+        if (_currentNode.options != null && _currentNode.options.Count > 0)
         {
             continueButton.SetActive(false);
-            foreach (DialogueOption option in currentNode.options)
+            foreach (DialogueOption option in _currentNode.options)
             {
                 DialogueOption capturedOption = option;
                 GameObject optionButton = Instantiate(optionButtonPrefab, optionsContainer);
@@ -94,14 +96,14 @@ public class DialogueManager : MonoBehaviour
             continueButton.SetActive(true);
         }
         
-        ExecuteActions(currentNode.actions);
+        ExecuteActions(_currentNode.actions);
     }
 
     public void ContinueDialogue()
     {
-        if (!string.IsNullOrEmpty(currentNode.nextNodeId))
+        if (!string.IsNullOrEmpty(_currentNode.nextNodeId))
         {
-            currentNode = currentDialogue.nodes.Find(note => note.nodeId == currentNode.nextNodeId);
+            _currentNode = _currentDialogue.nodes.Find(note => note.nodeId == _currentNode.nextNodeId);
             DisplayCurrentNode();
         }
         else
@@ -110,14 +112,16 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void OptionSelected(DialogueOption option)
     {
         ExecuteActions(option.actions);
         
-        currentNode = currentDialogue.nodes.Find(node => node.nodeId == option.nextNodeId);
+        _currentNode = _currentDialogue.nodes.Find(node => node.nodeId == option.nextNodeId);
         DisplayCurrentNode();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void ExecuteActions(List<QuestAction> actions)
     {
         if(actions == null) return;
@@ -151,27 +155,27 @@ public class DialogueManager : MonoBehaviour
 
     public void RedRawCurrentLine()
     {
-        if (DialogueBox.activeSelf && currentNode != null)
+        if (dialogueBox.activeSelf && _currentNode != null)
         {
-            string processedText = ProcessText(currentNode.text);
+            string processedText = ProcessText(_currentNode.text);
             dialogue.text = processedText;
         }
     }
     public void HideDialogueLine()
     {
-        if (currentDialogue != null && currentNode != null)
+        if (_currentDialogue != null && _currentNode != null)
         {
-            _dataManager.SetDialogueState(currentDialogue.dialogueId, currentNode.nodeId);
+            _dataManager.SetDialogueState(_currentDialogue.dialogueId, _currentNode.nodeId);
         }
 
-        if (DialogueBox != null)
+        if (dialogueBox != null)
         {
-            DialogueBox.SetActive(false);
+            dialogueBox.SetActive(false);
         }
-        currentDialogue = null;
-        currentNode = null;
+        _currentDialogue = null;
+        _currentNode = null;
     }
-
+    
     private string ProcessText(string rawText)
     {
         string pattern = @"\{([\w_]+)\}";
@@ -205,7 +209,7 @@ public class DialogueManager : MonoBehaviour
         bool isKnown = _dataManager.IsWordInNotebook(wordId);
         if (isKnown)
         {
-            _notebookManager.OpenAndShowWord(wordId);
+            _notebookView.OpenAndShowWord(wordId);
             Debug.Log("Блокнот открыт");
         }
         else

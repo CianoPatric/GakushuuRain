@@ -3,23 +3,22 @@ using UnityEngine;
 public class GameUIManager : MonoBehaviour
 {
     public GameObject pauseMenu;
-    private bool isPaused = false;
+    private bool _isPaused = false;
 
     public GameObject notebook;
-    private bool isNotebook = false;
+    private bool _isNotebook = false;
     
-    private NotebookManager _notebookManager;
+    private NotebookView _notebookView;
+    private CustomizationView _customizationView;
     private DataManager _dataManager;
     private GSRootBinder _rootBinder;
 
-    public void Initialize(NotebookManager notebookManager, DataManager dataManager, GSRootBinder rootBinder)
+    public void Initialize(NotebookView notebookView, DataManager dataManager, GSRootBinder rootBinder, CustomizationView customizationView)
     {
-        _notebookManager = notebookManager;
+        _customizationView = customizationView;
+        _notebookView = notebookView;
         _dataManager = dataManager;
         _rootBinder = rootBinder;
-    }
-    void Start()
-    {
         pauseMenu.SetActive(false);
     }
 
@@ -38,9 +37,9 @@ public class GameUIManager : MonoBehaviour
 
     public void Pause()
     {
-        isPaused = !isPaused;
-        pauseMenu.SetActive(isPaused);
-        if (isPaused)
+        _isPaused = !_isPaused;
+        pauseMenu.SetActive(_isPaused);
+        if (_isPaused)
         {
             Time.timeScale = 0f;
         }
@@ -53,14 +52,15 @@ public class GameUIManager : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void Notebook()
     {
-        isNotebook = !isNotebook;
-        if (isNotebook)
+        _isNotebook = !_isNotebook;
+        if (_isNotebook)
         {
-            _notebookManager.OpenNotebook();
+            _notebookView.OpenNotebook();
         }
         else
         {
-            _notebookManager.CloseNotebook();
+            _notebookView.CloseNotebook();
+            _customizationView.CloseCustomizationPanel();
         }
     }
 

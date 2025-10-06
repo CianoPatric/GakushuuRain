@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NotebookManager : MonoBehaviour
@@ -10,7 +11,7 @@ public class NotebookManager : MonoBehaviour
     public GameObject wordPanel;
     public GameObject wordButtonPrefab;
 
-    public Sprite NullItemSprite;
+    [FormerlySerializedAs("NullItemSprite")] public Sprite nullItemSprite;
 
     [Header("Интерфейс кастомизации")]
     public GameObject customizationPanel;
@@ -25,7 +26,7 @@ public class NotebookManager : MonoBehaviour
     public Image pantsSlot;
     public Image accessorySlot;
     
-    private PlayerCustomization tempEquippedItems;
+    private PlayerCustomization _tempEquippedItems;
     
     [Header("Элементы слов")]
     public TextMeshProUGUI wordTitleText;
@@ -39,10 +40,10 @@ public class NotebookManager : MonoBehaviour
     public GameObject locationsTabContent;
     public GameObject actionsTabContent;
 
-    private string currentCategory;
-    private NotebookEntry currentSelectedEntry;
+    private string _currentCategory;
+    private NotebookEntry _currentSelectedEntry;
     
-    private Dictionary<string, WordData> wordLibrary;
+    private Dictionary<string, WordData> _wordLibrary;
 
     private DataManager _dataManager;
     private WordLibraryManager _wordLibraryManager;
@@ -54,9 +55,6 @@ public class NotebookManager : MonoBehaviour
         _wordLibraryManager = wordLibraryManager;
         _cosmeticsLibraryManager = cosmeticsLibraryManager;
         _player = player;
-    }
-    void Awake()
-    {
         notebookCanvas.SetActive(false);
         wordPanel.SetActive(false);
     }
@@ -150,7 +148,7 @@ public class NotebookManager : MonoBehaviour
         foreach (Transform child in itemsContainer) { Destroy(child.gameObject); }
         
         GameObject unequipButton = Instantiate(itemButtonPrefab, itemsContainer);
-        unequipButton.GetComponentInChildren<Image>().sprite = NullItemSprite;
+        unequipButton.GetComponentInChildren<Image>().sprite = nullItemSprite;
         unequipButton.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(null, slot ));
 
         var unlockedIds = _dataManager.GetCurrentPlayerData().unlockedCosmeticIds;
@@ -214,7 +212,7 @@ public class NotebookManager : MonoBehaviour
     private void SelectWord(NotebookEntry entry)
     {
         SaveChangesForCurrentEntry();
-        currentSelectedEntry = entry;
+        _currentSelectedEntry = entry;
         WordData wordData = _wordLibraryManager.GetWordData(entry.wordId);
         wordTitleText.text = wordData.text;
         translationText.text = wordData.translation;
@@ -225,13 +223,13 @@ public class NotebookManager : MonoBehaviour
 
     private void SaveChangesForCurrentEntry()
     {
-        if (currentSelectedEntry != null)
+        if (_currentSelectedEntry != null)
         {
-            if (currentSelectedEntry.userGuess != userGuessInput.text)
+            if (_currentSelectedEntry.userGuess != userGuessInput.text)
             {
-                currentSelectedEntry.userGuess = userGuessInput.text;
+                _currentSelectedEntry.userGuess = userGuessInput.text;
                 _dataManager.MarkDataAsDirty();
-                Debug.Log($"Изменения для слова '{currentSelectedEntry.wordId}' сохранены");
+                Debug.Log($"Изменения для слова '{_currentSelectedEntry.wordId}' сохранены");
             }
         }
     }
@@ -247,7 +245,7 @@ public class NotebookManager : MonoBehaviour
     public void CloseWordPanel()
     {
         SaveChangesForCurrentEntry();
-        currentSelectedEntry = null;
+        _currentSelectedEntry = null;
         wordPanel.SetActive(false);
     }
 

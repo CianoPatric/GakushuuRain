@@ -4,7 +4,7 @@ using UnityEngine;
 public class CosmeticsLibraryManager: MonoBehaviour
 {
     public List<CosmeticItem> AllCosmeticItems {get; private set;}
-    private Dictionary<string, CosmeticItem> cosmeticLibrary = new();
+    private Dictionary<string, CosmeticItem> _cosmeticLibrary = new();
 
     void Awake()
     {
@@ -19,9 +19,9 @@ public class CosmeticsLibraryManager: MonoBehaviour
         AllCosmeticItems = collection.allCosmeticItems;
         foreach (var item in AllCosmeticItems)
         {
-            if (item != null && !cosmeticLibrary.ContainsKey(item.id))
+            if (item != null && !_cosmeticLibrary.ContainsKey(item.id))
             {
-                cosmeticLibrary.Add(item.id, item);
+                _cosmeticLibrary.Add(item.id, item);
             }
         }
     }
@@ -30,9 +30,9 @@ public class CosmeticsLibraryManager: MonoBehaviour
     {
         if(string.IsNullOrEmpty(id)) return null;
         
-        if (cosmeticLibrary.ContainsKey(id))
+        if (_cosmeticLibrary.ContainsKey(id))
         {
-            return cosmeticLibrary[id];
+            return _cosmeticLibrary[id];
         }
         Debug.LogWarning("Косметика не найдена, id предмета: " + id);
         return null;
