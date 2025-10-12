@@ -47,44 +47,35 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    public async Task<(bool success, string message, PlayerData loadedPlayerData)> SignInAsync(string email,
+    public async Task<(bool success, string message)> SignInAsync(string email,
         string password)
     {
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
-            Debug.Log("Интернет отсутствует");
-            return OfflineSignIn(email, password);
+            return (false, "Нет подключения к интернету");
         }
         try
         {
             var session = await _supabase.Auth.SignIn(email, password);
             if (session == null || session.User == null)
             {
-                return (false, "Неверный email и/или пароль", null);
+                return (false, "Неверный email и/или пароль");
             }
 
             var authCache = new AuthCache{email = email, passwordHash = password.GetHashCode().ToString()};
             LocalSaveManager.SaveAuthCache(authCache);
             
-            return (true, "Вход успешен", null);
+            return (true, "Вход успешен");
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Ошибка входа: {ex.Message}. Попытка оффлайн-входа");
-            return OfflineSignIn(email, password);
+            Debug.LogError($"Ошибка входа: {ex.Message}");
+            return (false, "Ошибка входа: " + ex.Message);
         }
     }
 
-    private (bool success, string message, PlayerData loadePlayerData) OfflineSignIn(string email, string password)
+    public bool IsUserLoggedIn()
     {
-        var cachedAuth = LocalSaveManager.LoadAuthCache();
-        var localProfile = LocalSaveManager.LoadProfile();
-        
-        if(cachedAuth != null && localProfile != null && cachedAuth.email.Equals(email, StringComparison.OrdinalIgnoreCase) && cachedAuth.passwordHash == password.GetHashCode().ToString())
-        {
-            return (true, "Вход в оффлайн-режим", localProfile);
-        }
-        
-        return (false, "Вход в оффлайн-режим не удачен, проверьте данные", null);
+        return _supabase.Auth.CurrentUser != null;
     }
 }

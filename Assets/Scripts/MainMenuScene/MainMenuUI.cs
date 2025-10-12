@@ -25,14 +25,26 @@ public class MainMenuUI : MonoBehaviour
     public Button aExitButton;
     
     private PlayerData _authenticatedPlayerData;
+    private AuthManager _authManager;
+    private DataManager _dataManager;
     
-    private AuthManager _saveAuthManager;
-    private DataManager _saveDataManager;
+    [Header("Main")]
+    [SerializeField] private Button continueButton;
+
+    [SerializeField] private Button newSaveButton;
 
     public void Initialize(AuthManager authManager, DataManager dataManager)
     {
-        _saveAuthManager = authManager;
-        _saveDataManager = dataManager;
+        _authManager = authManager;
+        _dataManager = dataManager;
+        SetupInitialButtons();
+    }
+
+    private void SetupInitialButtons()
+    {
+        bool localSaveExists = LocalSaveManager.LoadProfile() != null;
+        continueButton.gameObject.SetActive(localSaveExists);
+        newSaveButton.gameObject.SetActive(!localSaveExists);
     }
 
     public async void OnSignUpButtonClicked()
@@ -46,7 +58,7 @@ public class MainMenuUI : MonoBehaviour
 
         if (password == passwordConfirm)
         {
-            var (success, message) = await _saveAuthManager.SignUpAsync(email, password, nickname);
+            var (success, message) = await _authManager.SignUpAsync(email, password, nickname);
             aFeedbackText.text = message;
             if (success)
             {
@@ -70,46 +82,62 @@ public class MainMenuUI : MonoBehaviour
         string email = aEmailField.text;
         string password = aPasswordField.text;
         
-        var (authSuccess, authMessage, offlineData) = await _saveAuthManager.SignInAsync(email, password);
+        var (authSuccess, authMessage) = await _authManager.SignInAsync(email, password);
         aFeedbackText.text = authMessage;
         if (authSuccess)
         {
             aFeedbackText.text = "Загрузка данных...";
-            PlayerData playerData;
-            if (offlineData != null)
+            _authenticatedPlayerData = await _dataManager.LoadData();
+            if (_authenticatedPlayerData != null)
             {
-                playerData = offlineData;
-            }
-            else
-            {
-                playerData = await _saveDataManager.LoadData();
-            }
-
-            if (playerData != null)
-            {
-                _authenticatedPlayerData = playerData;
-                aWindow.SetActive(false);
+                MMRootBinder.HandleGoToGameButtonClick();
             }
             else
             {
                 aFeedbackText.text = "Не удалось загрузить данные пользователя";
+                SetAuiInteractable(true);
             }
+        }
+        else
+        {
+            SetAuiInteractable(true);
         }
 
         SetAuiInteractable(true);
     }
 
-    public void OnContinueButtonClicked()
+    public async void OnContinueButtonClicked()
     {
-        MMRootBinder.HandleGoToGameButtonClick();
+        if (!_authManager.IsUserLoggedIn())
+        {
+            aWindow.SetActive(true);
+            return;
+        }
+        
+        _authenticatedPlayerData = await _dataManager.LoadData();
+        if (_authenticatedPlayerData != null)
+        {
+            MMRootBinder.HandleGoToGameButtonClick();
+        }
+        else
+        {
+            Debug.LogError("Не удалось загрузить сохранение");
+            continueButton.gameObject.SetActive(false);
+            newSaveButton.gameObject.SetActive(true);
+        }
     }
 
     public async void OnNewSaveButtonClicked()
     {
-        var newSave = await _saveDataManager.NewSaveData();
-        if (newSave != null)
+        if (!_authManager.IsUserLoggedIn())
         {
-            _authenticatedPlayerData = newSave;
+            aWindow.SetActive(true);
+            return;
+        }
+        
+        _authenticatedPlayerData = await _dataManager.LoadData();
+        if (_authenticatedPlayerData != null)
+        {
             MMRootBinder.HandleGoToGameButtonClick();
         }
         else
@@ -120,11 +148,6 @@ public class MainMenuUI : MonoBehaviour
     
     public PlayerData GetAuthenticatedPlayerData()
     {
-        if (_authenticatedPlayerData == null)
-        {
-            aWindow.SetActive(true);
-        }
-        
         return _authenticatedPlayerData;
     }
     

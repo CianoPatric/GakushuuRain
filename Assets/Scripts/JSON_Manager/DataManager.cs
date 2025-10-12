@@ -72,7 +72,7 @@ public class DataManager : MonoBehaviour
     public async Task<PlayerData> LoadData()
     {
         var supabaseClient = _authManager.GetClient();
-        if (supabaseClient.Auth.CurrentUser == null)
+        if (!_authManager.IsUserLoggedIn())
         {
             Debug.LogError("Нет онлайн-сессии. Загрузка из локального сохранения");
             _currentPlayerData = LocalSaveManager.LoadProfile();
