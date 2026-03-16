@@ -4,7 +4,9 @@ using System;
 public class PlayerCustomization
 {
     public string hatId;
-    public string shirtId = "shirt_default";
-    public string pantsId = "pants_default";
+    public string neckId;
     public string accessoryId;
+    public string torsId;
+    public string pantsId;
+    public string bootsId;
 }

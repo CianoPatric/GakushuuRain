@@ -5,108 +5,105 @@ using UnityEngine.UI;
 public class CustomizationView : MonoBehaviour
 {
     [Header("Интерфейс кастомизации")]
-    [SerializeField] private GameObject customizationPanel;
-
-    [SerializeField] private GameObject itemScrollView;
+    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject itemListView;
     [SerializeField] private Transform itemsContainer;
     [SerializeField] private GameObject itemButtonPrefab;
-    [SerializeField] private Sprite nullItemSprite;
+    [SerializeField] private Sprite emptySlotSprite;
     
     [Header("Иконки слотов")] 
     [SerializeField] private Image hatSlot;
+    [SerializeField] private Image neckSlot;
+    [SerializeField] private Image accessorySlot;
     [SerializeField] private Image shirtSlot;
     [SerializeField] private Image pantsSlot;
-    [SerializeField] private Image accessorySlot;
+    [SerializeField] private Image bootsSlot;
     
-    private DataManager _dataManager;
-    private CosmeticsLibraryManager _cosmeticsLibraryManager;
-    private PlayerMovement _player;
+    private CustomizationService _service;
+    private CosmeticsLibraryManager _library;
 
-    public void Initialize(DataManager dataManager, CosmeticsLibraryManager cosmeticsLibraryManager,
-        PlayerMovement player)
+    public void Initialize(CustomizationService service, CosmeticsLibraryManager library)
     {
-        _dataManager = dataManager;
-        _cosmeticsLibraryManager = cosmeticsLibraryManager;
-        _player = player;
+        _service = service;
+        _library = library;
     }
     
-    public void OpenCustomizationPanel()
+    public void Open()
     {
-        customizationPanel.SetActive(true);
-        itemScrollView.SetActive(false);
-        UpdateAllSlotIcons();
+        mainPanel.SetActive(true);
+        itemListView.SetActive(false);
+        _service.SetDressingState(true);
+        _service.PlayAnimation("openCustomization");
+        UpdateUI();
     }
     
-    public void CloseCustomizationPanel()
+    public void Close()
     {
-        customizationPanel.SetActive(false);
-        itemScrollView.SetActive(false);
+        mainPanel.SetActive(false);
+        _service.SetDressingState(false);
     }
+
+    public void ShowHatItems() => OnSlotClicked(CosmeticSlot.Hat);
+    public void ShowShirtItems() => OnSlotClicked(CosmeticSlot.Tors);
+    public void ShowPantsItems() => OnSlotClicked(CosmeticSlot.Pants);
+    public void ShowAccessoryItems() => OnSlotClicked(CosmeticSlot.Accessory);
     
-    public void ShowHatItems(){ShowItemForSlot(CosmeticSlot.Hat);}
-    public void ShowShirtItems() {ShowItemForSlot(CosmeticSlot.Shirt);}
-    public void ShowPantsItems() {ShowItemForSlot(CosmeticSlot.Pants);}
-    public void ShowAccessoryItems() {ShowItemForSlot(CosmeticSlot.Accessory);}
-    
-    public void ShowItemForSlot(CosmeticSlot slot)
+    public void OnSlotClicked(CosmeticSlot slot)
     {
-        itemScrollView.SetActive(true);
-        foreach (Transform child in itemsContainer) { Destroy(child.gameObject); }
+        itemListView.SetActive(true);
         
-        GameObject unequipButton = Instantiate(itemButtonPrefab, itemsContainer);
-        unequipButton.GetComponentInChildren<Image>().sprite = nullItemSprite;
-        unequipButton.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(null, slot ));
+        foreach (Transform child in itemsContainer) Destroy(child.gameObject);
+        
+        CreateSelectionButton(null, slot, emptySlotSprite);
 
-        var unlockedIds = _dataManager.GetCurrentPlayerData().unlockedCosmeticIds;
-        var availableItems = _cosmeticsLibraryManager.AllCosmeticItems
-            .Where(item => item.slot == slot && unlockedIds.Contains(item.id))
-            .ToList();
-
-        foreach (var item in availableItems)
+        var items = _service.GetAvailableItems(slot);
+        foreach (var item in items)
         {
-            GameObject buttonGo = Instantiate(itemButtonPrefab, itemsContainer);
-            buttonGo.GetComponentInChildren<Image>().sprite = item.sprite;
-            buttonGo.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(item.id, slot));
+            CreateSelectionButton(item.id, slot, item.sprite);
         }
     }
-    
-    private void EquipItem(string itemId, CosmeticSlot slot)
+
+    private void CreateSelectionButton(string id, CosmeticSlot slot, Sprite icon)
     {
-        var equippedItems = _dataManager.GetCurrentPlayerData().profile.equippedItems;
-        switch (slot)
-        {
-            case CosmeticSlot.Hat: equippedItems.hatId = itemId; break;
-            case CosmeticSlot.Shirt: equippedItems.shirtId = string.IsNullOrEmpty(itemId) ? "shirt_default": itemId; break;
-            case CosmeticSlot.Pants: equippedItems.pantsId = string.IsNullOrEmpty(itemId) ? "pants_default": itemId; break;
-            case CosmeticSlot.Accessory: equippedItems.accessoryId = itemId; break;
-        }
+        var btnGo = Instantiate(itemButtonPrefab, itemsContainer);
+        var btn = btnGo.GetComponent<Button>();
         
-        _dataManager.MarkDataAsDirty();
-        _player.UpdateAppearance(equippedItems);
-        UpdateAllSlotIcons();
-        itemScrollView.SetActive(false);
-    }
-    
-    private void UpdateAllSlotIcons()
-    {
-        var equippedItems = _dataManager.GetCurrentPlayerData().profile.equippedItems;
-        UpdateSlotIcons(hatSlot, equippedItems.hatId);
-        UpdateSlotIcons(shirtSlot, equippedItems.shirtId);
-        UpdateSlotIcons(pantsSlot, equippedItems.pantsId);
-        UpdateSlotIcons(accessorySlot, equippedItems.accessoryId);
-    }
-    
-    private void UpdateSlotIcons(Image iconImage, string itemId)
-    {
-        CosmeticItem itemData = _cosmeticsLibraryManager.GetCosmeticItem(itemId);
-        if (itemData != null && itemData.sprite != null)
+        var img = btnGo.GetComponentInChildren<Image>();
+        if(img != null) img.sprite = icon;
+        
+        btn.onClick.AddListener(() =>
         {
-            iconImage.enabled = true;
-            iconImage.sprite = itemData.sprite;
+            _service.EquipItem(id, slot);
+            UpdateUI();
+            itemListView.SetActive(false);
+        });
+    }
+
+    private void UpdateUI()
+    {
+        var equipped = _service.GetCurrentEquipped();
+
+        UpdateSlotIcon(hatSlot, equipped.hatId);
+        UpdateSlotIcon(neckSlot, equipped.neckId);
+        UpdateSlotIcon(accessorySlot, equipped.accessoryId);
+        UpdateSlotIcon(shirtSlot, equipped.torsId);
+        UpdateSlotIcon(pantsSlot, equipped.pantsId);
+        UpdateSlotIcon(bootsSlot, equipped.bootsId);
+    }
+
+    private void UpdateSlotIcon(Image slot, string id)
+    {
+        if(slot == null) return;
+        
+        CosmeticItem item = _library.GetCosmeticItem(id);
+        if (item != null && item.sprite != null)
+        {
+            slot.sprite = item.sprite;
+            slot.enabled = true;
         }
         else
         {
-            iconImage.enabled = false;
+            slot.sprite = emptySlotSprite;
         }
     }
 }

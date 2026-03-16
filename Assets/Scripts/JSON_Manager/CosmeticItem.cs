@@ -15,7 +15,9 @@ public class CosmeticItem
 public enum CosmeticSlot
 {
     Hat,
-    Shirt,
+    Neck,
+    Accessory,
+    Tors,
     Pants,
-    Accessory
+    Boots
 }
