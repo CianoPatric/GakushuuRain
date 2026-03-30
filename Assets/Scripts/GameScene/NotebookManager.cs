@@ -19,14 +19,6 @@ public class NotebookManager : MonoBehaviour
     public GameObject itemScrollView;
     public Transform itemsContainer;
     public GameObject itemButtonPrefab;
-
-    [Header("Иконки слотов")] 
-    public Image hatSlot;
-    public Image shirtSlot;
-    public Image pantsSlot;
-    public Image accessorySlot;
-    
-    private PlayerCustomization _tempEquippedItems;
     
     [Header("Элементы слов")]
     public TextMeshProUGUI wordTitleText;
@@ -47,13 +39,11 @@ public class NotebookManager : MonoBehaviour
 
     private DataManager _dataManager;
     private WordLibraryManager _wordLibraryManager;
-    private CosmeticsLibraryManager _cosmeticsLibraryManager;
     private PlayerMovement _player;
-    public void Initialize(DataManager dataManager, WordLibraryManager wordLibraryManager, CosmeticsLibraryManager cosmeticsLibraryManager, PlayerMovement player)
+    public void Initialize(DataManager dataManager, WordLibraryManager wordLibraryManager, PlayerMovement player)
     {
         _dataManager = dataManager;
         _wordLibraryManager = wordLibraryManager;
-        _cosmeticsLibraryManager = cosmeticsLibraryManager;
         _player = player;
         notebookCanvas.SetActive(false);
         wordPanel.SetActive(false);
@@ -111,7 +101,6 @@ public class NotebookManager : MonoBehaviour
     {
         customizationPanel.SetActive(true);
         itemScrollView.SetActive(false);
-        UpdateAllSlotIcons();
     }
 
     public void CloseCustomizationPanel()
@@ -119,74 +108,6 @@ public class NotebookManager : MonoBehaviour
         customizationPanel.SetActive(false);
         itemScrollView.SetActive(false);
     }
-
-    private void UpdateAllSlotIcons()
-    {
-        var equippedItems = _dataManager.GetCurrentPlayerData().profile.equippedItems;
-        UpdateSlotIcons(hatSlot, equippedItems.hatId);
-        UpdateSlotIcons(shirtSlot, equippedItems.shirtId);
-        UpdateSlotIcons(pantsSlot, equippedItems.pantsId);
-        UpdateSlotIcons(accessorySlot, equippedItems.accessoryId);
-    }
-    private void UpdateSlotIcons(Image iconImage, string itemId)
-    {
-        CosmeticItem itemData = _cosmeticsLibraryManager.GetCosmeticItem(itemId);
-        if (itemData != null && itemData.sprite != null)
-        {
-            iconImage.enabled = true;
-            iconImage.sprite = itemData.sprite;
-        }
-        else
-        {
-            iconImage.enabled = false;
-        }
-    }
-
-    public void ShowItemForSlot(CosmeticSlot slot)
-    {
-        itemScrollView.SetActive(true);
-        foreach (Transform child in itemsContainer) { Destroy(child.gameObject); }
-        
-        GameObject unequipButton = Instantiate(itemButtonPrefab, itemsContainer);
-        unequipButton.GetComponentInChildren<Image>().sprite = nullItemSprite;
-        unequipButton.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(null, slot ));
-
-        var unlockedIds = _dataManager.GetCurrentPlayerData().unlockedCosmeticIds;
-        var availableItems = _cosmeticsLibraryManager.AllCosmeticItems
-            .Where(item => item.slot == slot && unlockedIds.Contains(item.id))
-            .ToList();
-
-        foreach (var item in availableItems)
-        {
-            GameObject buttonGo = Instantiate(itemButtonPrefab, itemsContainer);
-            buttonGo.GetComponentInChildren<Image>().sprite = item.sprite;
-            buttonGo.GetComponentInChildren<Button>().onClick.AddListener(() => EquipItem(item.id, slot));
-        }
-    }
-    
-    public void ShowHatItems(){ShowItemForSlot(CosmeticSlot.Hat);}
-    public void ShowShirtItems() {ShowItemForSlot(CosmeticSlot.Shirt);}
-    public void ShowPantsItems() {ShowItemForSlot(CosmeticSlot.Pants);}
-    public void ShowAccessoryItems() {ShowItemForSlot(CosmeticSlot.Accessory);}
-
-    private void EquipItem(string itemId, CosmeticSlot slot)
-    {
-        var playerData = _dataManager.GetCurrentPlayerData();
-        var equippedItems = playerData.profile.equippedItems;
-        switch (slot)
-        {
-            case CosmeticSlot.Hat: equippedItems.hatId = itemId; break;
-            case CosmeticSlot.Shirt: equippedItems.shirtId = string.IsNullOrEmpty(itemId) ? "shirt_default": itemId; break;
-            case CosmeticSlot.Pants: equippedItems.pantsId = string.IsNullOrEmpty(itemId) ? "pants_default": itemId; break;
-            case CosmeticSlot.Accessory: equippedItems.accessoryId = itemId; break;
-        }
-        
-        _dataManager.MarkDataAsDirty();
-        _player.UpdateAppearance(equippedItems);
-        UpdateAllSlotIcons();
-        itemScrollView.SetActive(false);
-    }
-    
 
     public void OpenNotebook()
     {

@@ -24,16 +24,18 @@ public class DialogueManager : MonoBehaviour
     private DialogueLibraryManager _dialogueLibraryManager;
     private WordLibraryManager _wordLibraryManager;
     private NotebookView _notebookView;
+    private PlayerAppearance _playerAppearance;
     
     [SerializeField] private DialogueTextClickHandler dialogueTextClickHandler;
 
     public void Initialize(DataManager dataManager, DialogueLibraryManager dialogueLibraryManager,
-        WordLibraryManager wordLibraryManager, NotebookView notebookView)
+        WordLibraryManager wordLibraryManager, NotebookView notebookView, PlayerAppearance playerAppearance)
     {
         _dataManager = dataManager;
         _dialogueLibraryManager = dialogueLibraryManager;
         _wordLibraryManager = wordLibraryManager;
         _notebookView = notebookView;
+        _playerAppearance = playerAppearance;
         dialogueBox.SetActive(false);
     }
     
@@ -48,6 +50,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         dialogueBox.SetActive(true);
+        _playerAppearance.SetDialogueActive(true);
         _currentNode = _currentDialogue.nodes.Find(note => note.nodeId == startNodeId);
         
         if (_currentNode == null)
@@ -146,6 +149,15 @@ public class DialogueManager : MonoBehaviour
                 case "end_dialogue":
                     HideDialogueLine();
                     break;
+                case "start_quest":
+                    _dataManager.StartQuest(action.targetId);
+                    break;
+                case "advance_quest":
+                    _dataManager.AdvanceQuest(action.targetId);
+                    break;
+                case "complete_quest":
+                    _dataManager.CompleteQuest(action.targetId);
+                    break;
                 default:
                     Debug.Log($"Незвестное слово в диалоге: {action.type}");
                     break;
@@ -167,11 +179,12 @@ public class DialogueManager : MonoBehaviour
         {
             _dataManager.SetDialogueState(_currentDialogue.dialogueId, _currentNode.nodeId);
         }
-
+        
         if (dialogueBox != null)
         {
             dialogueBox.SetActive(false);
         }
+        _playerAppearance.SetDialogueActive(false);
         _currentDialogue = null;
         _currentNode = null;
     }

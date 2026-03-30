@@ -1,0 +1,810 @@
+fileFormatVersion: 2
+guid: 40c27f2dc6365c94087a072073ce3124
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5540101133579851087
+    second: Notepad_0
+  - first:
+      213: 7321720357498429776
+    second: Notepad_1
+  - first:
+      213: -737031788378249022
+    second: Notepad_2
+  - first:
+      213: 371914663041288503
+    second: Notepad_3
+  - first:
+      213: -5180084812749389475
+    second: Notepad_4
+  - first:
+      213: 8211634745301855671
+    second: Notepad_5
+  - first:
+      213: -5782358232313283242
+    second: Notepad_6
+  - first:
+      213: 2744674940947049230
+    second: Notepad_7
+  - first:
+      213: 7442983363864778254
+    second: Notepad_8
+  - first:
+      213: 4842599887566064222
+    second: Notepad_9
+  - first:
+      213: 3297388040241950940
+    second: Notepad_10
+  - first:
+      213: 268174679678207764
+    second: Notepad_11
+  - first:
+      213: -7736311435386728512
+    second: Notepad_12
+  - first:
+      213: 4477911821579927963
+    second: Notepad_13
+  - first:
+      213: 8977376816077128358
+    second: Notepad_14
+  - first:
+      213: 5160049159490872084
+    second: Notepad_15
+  - first:
+      213: 6708160345204656698
+    second: Notepad_16
+  - first:
+      213: 5030298330231448656
+    second: Notepad_17
+  - first:
+      213: 2440585512966796501
+    second: Notepad_18
+  - first:
+      213: 5637881347298478773
+    second: Notepad_19
+  - first:
+      213: 8813681930066368997
+    second: Notepad_20
+  - first:
+      213: 3980770351631978938
+    second: Notepad_21
+  - first:
+      213: 4813376476122886537
+    second: Notepad_22
+  - first:
+      213: 8092917570588429877
+    second: Notepad_23
+  - first:
+      213: -3162326834226864045
+    second: Notepad_24
+  - first:
+      213: 5086802894463836035
+    second: Notepad_25
+  - first:
+      213: -5832324916193139160
+    second: Notepad_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Notepad_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 484
+        width: 83
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1baeb392f5b9d13b0800000000000000
+      internalID: -5540101133579851087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_1
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 405
+        width: 54
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051a07d7fd9fb9560800000000000000
+      internalID: 7321720357498429776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 307
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 739c5516a6e492500800000000000000
+      internalID: 371914663041288503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_4
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 307
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d514dadde44ac18b0800000000000000
+      internalID: -5180084812749389475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_5
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 307
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bde8f23b4695f170800000000000000
+      internalID: 8211634745301855671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_6
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 307
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65d39eee2dfe0cfa0800000000000000
+      internalID: -5782358232313283242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_7
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 307
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0ba01f115b071620800000000000000
+      internalID: 2744674940947049230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_8
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 307
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e065d405fe9ca4760800000000000000
+      internalID: 7442983363864778254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 207
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ac8b7c0fe543340800000000000000
+      internalID: 4842599887566064222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_10
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 207
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd03e39c3fca2cd20800000000000000
+      internalID: 3297388040241950940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_11
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 207
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41749f7437fb8b300800000000000000
+      internalID: 268174679678207764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_12
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 207
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cf4bfdfcb913a490800000000000000
+      internalID: -7736311435386728512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_13
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 207
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b914bc4a31db42e30800000000000000
+      internalID: 4477911821579927963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_14
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 207
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2ca1966ac069c70800000000000000
+      internalID: 8977376816077128358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 107
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 413a1071f5d2c9740800000000000000
+      internalID: 5160049159490872084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_16
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 107
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a0948ea4c281d50800000000000000
+      internalID: 6708160345204656698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_17
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 107
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 054afaffda53fc540800000000000000
+      internalID: 5030298330231448656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_18
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 107
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d4b950e793bed120800000000000000
+      internalID: 2440585512966796501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_19
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 107
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bac68fe637cd3e40800000000000000
+      internalID: 5637881347298478773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_20
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 107
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e992ecb40d705a70800000000000000
+      internalID: 8813681930066368997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_21
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 7
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab15e653b898e3730800000000000000
+      internalID: 3980770351631978938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_22
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 7
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 981b685176c8cc240800000000000000
+      internalID: 4813376476122886537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_23
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 7
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ec07ff6a1df4070800000000000000
+      internalID: 8092917570588429877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_24
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 7
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 350e83ebf782d14d0800000000000000
+      internalID: -3162326834226864045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_25
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 7
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38f12fe0844f79640800000000000000
+      internalID: 5086802894463836035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notepad_26
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 7
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 826e5a3c36b6f0fa0800000000000000
+      internalID: -5832324916193139160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: dd93cb875e6f94d46821c50960c17dc3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Notepad_0: -5540101133579851087
+      Notepad_1: 7321720357498429776
+      Notepad_10: 3297388040241950940
+      Notepad_11: 268174679678207764
+      Notepad_12: -7736311435386728512
+      Notepad_13: 4477911821579927963
+      Notepad_14: 8977376816077128358
+      Notepad_15: 5160049159490872084
+      Notepad_16: 6708160345204656698
+      Notepad_17: 5030298330231448656
+      Notepad_18: 2440585512966796501
+      Notepad_19: 5637881347298478773
+      Notepad_2: -737031788378249022
+      Notepad_20: 8813681930066368997
+      Notepad_21: 3980770351631978938
+      Notepad_22: 4813376476122886537
+      Notepad_23: 8092917570588429877
+      Notepad_24: -3162326834226864045
+      Notepad_25: 5086802894463836035
+      Notepad_26: -5832324916193139160
+      Notepad_3: 371914663041288503
+      Notepad_4: -5180084812749389475
+      Notepad_5: 8211634745301855671
+      Notepad_6: -5782358232313283242
+      Notepad_7: 2744674940947049230
+      Notepad_8: 7442983363864778254
+      Notepad_9: 4842599887566064222
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

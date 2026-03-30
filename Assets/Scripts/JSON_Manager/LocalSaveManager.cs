@@ -1,28 +1,42 @@
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public static class LocalSaveManager
 {
-    private const string PROFILE_FILE_NAME = "player_profile.json";
+    private const string PROFILE_FILE_PREFIX = "player_profile_";
     private const string AUTH_CACHE_FILE_NAME = "auth_cache.json";
 
-    public static void SaveProfile(PlayerData data)
+    public static void SaveProfile(PlayerData data, int slotIndex)
     {
-        string json = JsonUtility.ToJson(data, true);
-        string path = Path.Combine(Application.persistentDataPath, PROFILE_FILE_NAME);
+        string fileName = $"{PROFILE_FILE_PREFIX}{slotIndex}.json";
+        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+        string path = Path.Combine(Application.persistentDataPath, fileName);
         File.WriteAllText(path, json);
-        Debug.Log($"Профиль сохранён локально по пути {path}");
+        Debug.Log($"Профиль для слота {slotIndex} сохранён локально по пути {path}");
     }
 
-    public static PlayerData LoadProfile()
+    public static PlayerData LoadProfile(int slotIndex)
     {
-        string path = Path.Combine(Application.persistentDataPath, PROFILE_FILE_NAME);
+        string fileName = $"{PROFILE_FILE_PREFIX}{slotIndex}.json";
+        string path = Path.Combine(Application.persistentDataPath, fileName);
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            return JsonUtility.FromJson<PlayerData>(json);
+            return JsonConvert.DeserializeObject<PlayerData>(json);
         }
         return null;
+    }
+
+    public static void DeleteProfile(int slotIndex)
+    {
+        string fileName = $"{PROFILE_FILE_PREFIX}{slotIndex}.json";
+        string path = Path.Combine(Application.persistentDataPath, fileName);
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log($"Локальный профиль для слота {slotIndex} удалён.");
+        }
     }
 
     public static void SaveAuthCache(AuthCache cache)

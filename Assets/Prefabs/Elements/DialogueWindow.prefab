@@ -33,8 +33,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 40.6786}
-  m_SizeDelta: {x: 0, y: 81.3533}
+  m_AnchoredPosition: {x: -0.0002746582, y: 55.502}
+  m_SizeDelta: {x: -69.733, y: 88.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3448353361837049894
 MonoBehaviour:
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Top: 5
     m_Bottom: 5
   m_ChildAlignment: 1
-  m_Spacing: 5
+  m_Spacing: 2
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -121,14 +121,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4528302, g: 0.31826273, b: 0.31826273, a: 0.56078434}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 6333387239215458969, guid: 1ab60e543232c564ea8c462de8bc0aac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -174,8 +174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -80, y: 30}
-  m_SizeDelta: {x: 80, y: 20}
+  m_AnchoredPosition: {x: -92.2, y: 35.4}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8711715576532343085
 CanvasRenderer:
@@ -198,15 +198,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.14177644, b: 0.14177644, a: 0.62352943}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 6333387239215458969, guid: 1ab60e543232c564ea8c462de8bc0aac, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -289,7 +289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1353244037991622586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -334,15 +334,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6132076, g: 0.50040054, b: 0.50040054, a: 0.29411766}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4457123698843636509, guid: c936094b63840d440b4eee337bb57b65, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179e9db054154cb689554e51503235bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueBox: {fileID: 5068831473453323007}
+  dialogueBox: {fileID: 5068831473453323007}
   continueButton: {fileID: 3070618404743123546}
   speakerName: {fileID: 4308935393611007507}
   dialogue: {fileID: 1356332268423985011}
@@ -371,6 +371,7 @@ MonoBehaviour:
   optionButtonPrefab: {fileID: 3353864881869169617, guid: 02ef6a81786224f47b3c9e0e07da6681, type: 3}
   newWordColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   knowWordColor: {r: 0, g: 0, b: 0, a: 1}
+  dialogueTextClickHandler: {fileID: 4282543865652496377}
 --- !u!1 &5098634593613755609
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,8 +407,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -117.08}
-  m_SizeDelta: {x: 0, y: 117.98}
+  m_AnchoredPosition: {x: -0.000091552734, y: -86.405785}
+  m_SizeDelta: {x: -69.7329, y: 142.5916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4007973238882331661
 CanvasRenderer:

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,25 +29,70 @@ public class MainMenuUI : MonoBehaviour
     private AuthManager _authManager;
     private DataManager _dataManager;
     
-    [Header("Main")]
-    [SerializeField] private Button continueButton;
-
-    [SerializeField] private Button newSaveButton;
+    [Header("SaveSlotsWindow")]
+    [SerializeField] private GameObject saveSlotsWindow;
+    [SerializeField] private SaveSlotUI[] saveSlotUIs;
 
     public void Initialize(AuthManager authManager, DataManager dataManager)
     {
         _authManager = authManager;
         _dataManager = dataManager;
-        SetupInitialButtons();
     }
 
-    private void SetupInitialButtons()
+    public async void OnStartButtonClicked()
     {
-        bool localSaveExists = LocalSaveManager.LoadProfile() != null;
-        continueButton.gameObject.SetActive(localSaveExists);
-        newSaveButton.gameObject.SetActive(!localSaveExists);
+        if (!_authManager.IsUserLoggedIn())
+        {
+            aWindow.SetActive(true);
+            return;
+        }
+
+        await ShowSaveSlotsWindow();
     }
 
+    private async Task ShowSaveSlotsWindow()
+    {
+        var allSlotsData = await _dataManager.GetAllSaveSlots();
+
+        for (int i = 0; i < saveSlotUIs.Length; i++)
+        {
+            if (allSlotsData.TryGetValue(i, out PlayerData data))
+            {
+                saveSlotUIs[i].Display(i, data);
+            }
+            else
+            {
+                saveSlotUIs[i].DisplayEmpty(i);
+            }
+            int slotIndex = i;
+            saveSlotUIs[i].OnSelect.RemoveAllListeners();
+            saveSlotUIs[i].OnSelect.AddListener(() => OnSlotSelected(slotIndex));
+            saveSlotUIs[i].OnDelete.RemoveAllListeners();
+            saveSlotUIs[i].OnDelete.AddListener(() => OnSlotDeleted(slotIndex));
+        }
+        saveSlotsWindow.SetActive(true);
+    }
+
+    private async void OnSlotSelected(int slotIndex)
+    {
+        saveSlotsWindow.SetActive(false);
+        _authenticatedPlayerData = await _dataManager.LoadData(slotIndex);
+        if (_authenticatedPlayerData != null)
+        {
+            MMRootBinder.HandleGoToGameButtonClick();
+        }
+        else
+        {
+            Debug.LogError($"Не удалось загрузить или создать данные для слота {slotIndex}");
+            saveSlotsWindow.SetActive(true);
+        }
+    }
+
+    private async void OnSlotDeleted(int slotIndex)
+    {
+        await _dataManager.DeleteSaveSlot(slotIndex);
+        await ShowSaveSlotsWindow();
+    }
     public async void OnSignUpButtonClicked()
     {
         SetRuiInteractable(false);
@@ -86,17 +132,8 @@ public class MainMenuUI : MonoBehaviour
         aFeedbackText.text = authMessage;
         if (authSuccess)
         {
-            aFeedbackText.text = "Загрузка данных...";
-            _authenticatedPlayerData = await _dataManager.LoadData();
-            if (_authenticatedPlayerData != null)
-            {
-                MMRootBinder.HandleGoToGameButtonClick();
-            }
-            else
-            {
-                aFeedbackText.text = "Не удалось загрузить данные пользователя";
-                SetAuiInteractable(true);
-            }
+            aWindow.SetActive(false);
+            await ShowSaveSlotsWindow();
         }
         else
         {
@@ -104,46 +141,6 @@ public class MainMenuUI : MonoBehaviour
         }
 
         SetAuiInteractable(true);
-    }
-
-    public async void OnContinueButtonClicked()
-    {
-        if (!_authManager.IsUserLoggedIn())
-        {
-            aWindow.SetActive(true);
-            return;
-        }
-        
-        _authenticatedPlayerData = await _dataManager.LoadData();
-        if (_authenticatedPlayerData != null)
-        {
-            MMRootBinder.HandleGoToGameButtonClick();
-        }
-        else
-        {
-            Debug.LogError("Не удалось загрузить сохранение");
-            continueButton.gameObject.SetActive(false);
-            newSaveButton.gameObject.SetActive(true);
-        }
-    }
-
-    public async void OnNewSaveButtonClicked()
-    {
-        if (!_authManager.IsUserLoggedIn())
-        {
-            aWindow.SetActive(true);
-            return;
-        }
-        
-        _authenticatedPlayerData = await _dataManager.LoadData();
-        if (_authenticatedPlayerData != null)
-        {
-            MMRootBinder.HandleGoToGameButtonClick();
-        }
-        else
-        {
-            Debug.LogError("Не удалось создать новое сохранение");
-        }
     }
     
     public PlayerData GetAuthenticatedPlayerData()

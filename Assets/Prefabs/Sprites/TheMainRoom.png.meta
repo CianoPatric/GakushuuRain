@@ -1,28 +1,10 @@
 fileFormatVersion: 2
-guid: 4bb76647768e80342be4929e1db3d8b6
+guid: 67e17e578d1b6574c99cedb2e8d07b20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3577694229168913071
-    second: UndergroundLayout_0
-  - first:
-      213: 4039557449672455831
-    second: UndergroundLayout_1
-  - first:
-      213: -1782714602179837090
-    second: UndergroundLayout_2
-  - first:
-      213: -6952458326842497985
-    second: UndergroundLayout_3
-  - first:
-      213: -3268000125702354926
-    second: UndergroundLayout_4
-  - first:
-      213: -1764277173877164089
-    second: UndergroundLayout_5
-  - first:
-      213: -6062113991480594862
-    second: UndergroundLayout_6
+      213: -1708524265795254444
+    second: TheMainRoom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -92,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -131,45 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UndergroundLayout_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 74
-        width: 870
-        height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: faaf39c22f586a130800000000000000
-      internalID: 3577694229168913071
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UndergroundLayout_5
+      name: TheMainRoom_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 870
-        height: 74
+        width: 3500
+        height: 2000
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7c7b8b502470487e0800000000000000
-      internalID: -1764277173877164089
+      spriteID: 457832f7b3a1a48e0800000000000000
+      internalID: -1708524265795254444
       vertices: []
       indices: 
       edges: []
@@ -178,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 537a2e9f1d23b074491bdb6b7e40eceb
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -188,13 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UndergroundLayout_0: 3577694229168913071
-      UndergroundLayout_1: 4039557449672455831
-      UndergroundLayout_2: -1782714602179837090
-      UndergroundLayout_3: -6952458326842497985
-      UndergroundLayout_4: -3268000125702354926
-      UndergroundLayout_5: -1764277173877164089
-      UndergroundLayout_6: -6062113991480594862
+      TheMainRoom_0: -1708524265795254444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,4 +15,6 @@ public class PlayerData
 
     public List<string> unlockedCosmeticIds;
     public List<DialogueState> dialogueStates;
+
+    public Dictionary<string, bool> worldStateFlags = new();
 }

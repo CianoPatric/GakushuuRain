@@ -25,12 +25,14 @@ public class NotebookView : MonoBehaviour
     private WordLibraryManager _wordLibraryManager;
     
     private NotebookEntry _currentSelectedEntry;
+    
+    private PlayerMovement _player;
 
-    public void Initialize(DataManager dataManager, WordLibraryManager wordLibraryManager)
+    public void Initialize(DataManager dataManager, WordLibraryManager wordLibraryManager, PlayerMovement player)
     {
         _dataManager = dataManager;
         _wordLibraryManager = wordLibraryManager;
-        
+        _player = player;
         notebookCanvas.SetActive(false);
         wordPanel.SetActive(false);
     }

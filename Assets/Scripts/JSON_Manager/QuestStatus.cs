@@ -4,6 +4,6 @@ using System;
 public class QuestStatus
 {
     public string questId;
-    public string status;
-    public int currentStep;
+    public int currentStepIndex;
+    public bool isCompleted;
 }

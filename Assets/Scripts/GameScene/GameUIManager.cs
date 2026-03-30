@@ -60,7 +60,7 @@ public class GameUIManager : MonoBehaviour
         else
         {
             _notebookView.CloseNotebook();
-            _customizationView.CloseCustomizationPanel();
+            _customizationView.Close();
         }
     }
 

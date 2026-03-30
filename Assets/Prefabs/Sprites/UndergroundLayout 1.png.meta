@@ -1,0 +1,692 @@
+fileFormatVersion: 2
+guid: 42d5a417ca15a5f449e4c08a435ff14d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1615108958162684735
+    second: UndergroundLayout 1_0
+  - first:
+      213: 698712273331117729
+    second: UndergroundLayout 1_1
+  - first:
+      213: 474155659956895395
+    second: UndergroundLayout 1_2
+  - first:
+      213: -219648913883995997
+    second: UndergroundLayout 1_3
+  - first:
+      213: -3541717930838609032
+    second: UndergroundLayout 1_4
+  - first:
+      213: 6797542585787100553
+    second: UndergroundLayout 1_5
+  - first:
+      213: 1518070310918509218
+    second: UndergroundLayout 1_6
+  - first:
+      213: -4943442989753378957
+    second: UndergroundLayout 1_7
+  - first:
+      213: 6319519462812591177
+    second: UndergroundLayout 1_8
+  - first:
+      213: 1351431425233159469
+    second: UndergroundLayout 1_9
+  - first:
+      213: 5055338552710867159
+    second: UndergroundLayout 1_10
+  - first:
+      213: 3155709038127142653
+    second: UndergroundLayout 1_11
+  - first:
+      213: -7379508752893477547
+    second: UndergroundLayout 1_12
+  - first:
+      213: -8036882369736679977
+    second: UndergroundLayout 1_13
+  - first:
+      213: 728769857342664991
+    second: UndergroundLayout 1_14
+  - first:
+      213: 6126950604437738335
+    second: UndergroundLayout 1_15
+  - first:
+      213: -2154782090399935946
+    second: UndergroundLayout 1_16
+  - first:
+      213: -9123197381765569873
+    second: UndergroundLayout 1_17
+  - first:
+      213: 2463135614981856138
+    second: UndergroundLayout 1_18
+  - first:
+      213: 6880656803220401053
+    second: UndergroundLayout 1_19
+  - first:
+      213: -7454916354486720607
+    second: UndergroundLayout 1_20
+  - first:
+      213: -4414655568370428312
+    second: UndergroundLayout 1_21
+  - first:
+      213: -7180249324208665139
+    second: UndergroundLayout 1_22
+  - first:
+      213: -3976181811725445288
+    second: UndergroundLayout 1_23
+  - first:
+      213: -7993139929623452139
+    second: UndergroundLayout 1_24
+  - first:
+      213: -2875403926227732871
+    second: UndergroundLayout 1_25
+  - first:
+      213: -2611209736067847881
+    second: UndergroundLayout 1_26
+  - first:
+      213: 7955936914251404789
+    second: UndergroundLayout 1_27
+  - first:
+      213: 648175501924259916
+    second: UndergroundLayout 1_28
+  - first:
+      213: -7719958137327172502
+    second: UndergroundLayout 1_29
+  - first:
+      213: -6182691797996468887
+    second: UndergroundLayout 1_30
+  - first:
+      213: -1483928251111094077
+    second: UndergroundLayout 1_31
+  - first:
+      213: 9103653343158264127
+    second: UndergroundLayout 1_32
+  - first:
+      213: -5820440970745753592
+    second: UndergroundLayout 1_33
+  - first:
+      213: -8517813528332996773
+    second: UndergroundLayout 1_34
+  - first:
+      213: -998205870675636379
+    second: UndergroundLayout 1_35
+  - first:
+      213: -2956278687472393581
+    second: UndergroundLayout 1_36
+  - first:
+      213: -6706998019957729682
+    second: UndergroundLayout 1_37
+  - first:
+      213: -1337272853630066705
+    second: UndergroundLayout 1_38
+  - first:
+      213: 6089024992606568019
+    second: UndergroundLayout 1_39
+  - first:
+      213: 3190155424063768304
+    second: UndergroundLayout 1_40
+  - first:
+      213: -4421939096545029159
+    second: UndergroundLayout 1_41
+  - first:
+      213: -2018587300980958381
+    second: UndergroundLayout 1_42
+  - first:
+      213: -6826173514083340942
+    second: UndergroundLayout 1_43
+  - first:
+      213: -7043872134195336775
+    second: UndergroundLayout 1_44
+  - first:
+      213: 4487491603068890649
+    second: UndergroundLayout 1_45
+  - first:
+      213: -181402028658790970
+    second: UndergroundLayout 1_46
+  - first:
+      213: -3256113089396563792
+    second: UndergroundLayout 1_47
+  - first:
+      213: -8252153659662570174
+    second: UndergroundLayout 1_48
+  - first:
+      213: 3128557535719522901
+    second: UndergroundLayout 1_49
+  - first:
+      213: 2492630598430063968
+    second: UndergroundLayout 1_50
+  - first:
+      213: 4736044902675363694
+    second: UndergroundLayout 1_51
+  - first:
+      213: 9192338650396469423
+    second: UndergroundLayout 1_52
+  - first:
+      213: 4875206585628479620
+    second: UndergroundLayout 1_53
+  - first:
+      213: -6343575209708943410
+    second: UndergroundLayout 1_54
+  - first:
+      213: -3548121044181253845
+    second: UndergroundLayout 1_55
+  - first:
+      213: -231880604075878651
+    second: UndergroundLayout 1_56
+  - first:
+      213: 4715016477036994472
+    second: UndergroundLayout 1_57
+  - first:
+      213: 6674015539754123357
+    second: UndergroundLayout 1_58
+  - first:
+      213: -5297777932111852554
+    second: UndergroundLayout 1_59
+  - first:
+      213: -7482058953734509623
+    second: UndergroundLayout 1_60
+  - first:
+      213: 7452665947722295462
+    second: UndergroundLayout 1_61
+  - first:
+      213: -1479135181081847438
+    second: UndergroundLayout 1_62
+  - first:
+      213: -7596984179233090818
+    second: UndergroundLayout 1_63
+  - first:
+      213: -9073017247121514916
+    second: UndergroundLayout 1_64
+  - first:
+      213: -7626508569815315535
+    second: UndergroundLayout 1_65
+  - first:
+      213: -1930598036206595805
+    second: UndergroundLayout 1_66
+  - first:
+      213: -7355602878508213151
+    second: UndergroundLayout 1_67
+  - first:
+      213: -5807622652948126426
+    second: UndergroundLayout 1_68
+  - first:
+      213: 428998800321351387
+    second: UndergroundLayout 1_69
+  - first:
+      213: -648316308474411004
+    second: UndergroundLayout 1_70
+  - first:
+      213: -8748732815645226539
+    second: UndergroundLayout 1_71
+  - first:
+      213: 3325662794739921454
+    second: UndergroundLayout 1_72
+  - first:
+      213: 4492866989880701004
+    second: UndergroundLayout 1_73
+  - first:
+      213: -7958427898032089826
+    second: UndergroundLayout 1_74
+  - first:
+      213: -4743389213299452417
+    second: UndergroundLayout 1_75
+  - first:
+      213: -6676017621225976816
+    second: UndergroundLayout 1_76
+  - first:
+      213: 1947832452023358396
+    second: UndergroundLayout 1_77
+  - first:
+      213: -1010822152537830796
+    second: UndergroundLayout 1_78
+  - first:
+      213: 5787176876623315462
+    second: UndergroundLayout 1_79
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UndergroundLayout 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1064
+        width: 970
+        height: 434
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b86dc4a050a6610800000000000000
+      internalID: 1615108958162684735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 974
+        width: 970
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a25d5a97e4411510800000000000000
+      internalID: 1518070310918509218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 819
+        width: 970
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d82bad11ab282640800000000000000
+      internalID: 5055338552710867159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 642
+        width: 970
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ddde32e012477090800000000000000
+      internalID: -8036882369736679977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_62
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 123
+        width: 873
+        height: 381
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27955dcb36e097be0800000000000000
+      internalID: -1479135181081847438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 71
+        width: 19
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef29c88b327129690800000000000000
+      internalID: -7596984179233090818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_64
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 71
+        width: 60
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e545872ea261280800000000000000
+      internalID: -9073017247121514916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_65
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 56
+        width: 20
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bb8fabdcd2392690800000000000000
+      internalID: -7626508569815315535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_66
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 89
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321d6d790532535e0800000000000000
+      internalID: -1930598036206595805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_77
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 970
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb394d88b47180b10800000000000000
+      internalID: 1947832452023358396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UndergroundLayout 1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 505
+        width: 970
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf481def88bcda458e893788a18db2d
+      internalID: 698712273331117729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0de6d7c91e03287489a6b9d5a4e286da
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UndergroundLayout 1_0: 1615108958162684735
+      UndergroundLayout 1_1: 698712273331117729
+      UndergroundLayout 1_10: 5055338552710867159
+      UndergroundLayout 1_11: 3155709038127142653
+      UndergroundLayout 1_12: -7379508752893477547
+      UndergroundLayout 1_13: -8036882369736679977
+      UndergroundLayout 1_14: 728769857342664991
+      UndergroundLayout 1_15: 6126950604437738335
+      UndergroundLayout 1_16: -2154782090399935946
+      UndergroundLayout 1_17: -9123197381765569873
+      UndergroundLayout 1_18: 2463135614981856138
+      UndergroundLayout 1_19: 6880656803220401053
+      UndergroundLayout 1_2: 474155659956895395
+      UndergroundLayout 1_20: -7454916354486720607
+      UndergroundLayout 1_21: -4414655568370428312
+      UndergroundLayout 1_22: -7180249324208665139
+      UndergroundLayout 1_23: -3976181811725445288
+      UndergroundLayout 1_24: -7993139929623452139
+      UndergroundLayout 1_25: -2875403926227732871
+      UndergroundLayout 1_26: -2611209736067847881
+      UndergroundLayout 1_27: 7955936914251404789
+      UndergroundLayout 1_28: 648175501924259916
+      UndergroundLayout 1_29: -7719958137327172502
+      UndergroundLayout 1_3: -219648913883995997
+      UndergroundLayout 1_30: -6182691797996468887
+      UndergroundLayout 1_31: -1483928251111094077
+      UndergroundLayout 1_32: 9103653343158264127
+      UndergroundLayout 1_33: -5820440970745753592
+      UndergroundLayout 1_34: -8517813528332996773
+      UndergroundLayout 1_35: -998205870675636379
+      UndergroundLayout 1_36: -2956278687472393581
+      UndergroundLayout 1_37: -6706998019957729682
+      UndergroundLayout 1_38: -1337272853630066705
+      UndergroundLayout 1_39: 6089024992606568019
+      UndergroundLayout 1_4: -3541717930838609032
+      UndergroundLayout 1_40: 3190155424063768304
+      UndergroundLayout 1_41: -4421939096545029159
+      UndergroundLayout 1_42: -2018587300980958381
+      UndergroundLayout 1_43: -6826173514083340942
+      UndergroundLayout 1_44: -7043872134195336775
+      UndergroundLayout 1_45: 4487491603068890649
+      UndergroundLayout 1_46: -181402028658790970
+      UndergroundLayout 1_47: -3256113089396563792
+      UndergroundLayout 1_48: -8252153659662570174
+      UndergroundLayout 1_49: 3128557535719522901
+      UndergroundLayout 1_5: 6797542585787100553
+      UndergroundLayout 1_50: 2492630598430063968
+      UndergroundLayout 1_51: 4736044902675363694
+      UndergroundLayout 1_52: 9192338650396469423
+      UndergroundLayout 1_53: 4875206585628479620
+      UndergroundLayout 1_54: -6343575209708943410
+      UndergroundLayout 1_55: -3548121044181253845
+      UndergroundLayout 1_56: -231880604075878651
+      UndergroundLayout 1_57: 4715016477036994472
+      UndergroundLayout 1_58: 6674015539754123357
+      UndergroundLayout 1_59: -5297777932111852554
+      UndergroundLayout 1_6: 1518070310918509218
+      UndergroundLayout 1_60: -7482058953734509623
+      UndergroundLayout 1_61: 7452665947722295462
+      UndergroundLayout 1_62: -1479135181081847438
+      UndergroundLayout 1_63: -7596984179233090818
+      UndergroundLayout 1_64: -9073017247121514916
+      UndergroundLayout 1_65: -7626508569815315535
+      UndergroundLayout 1_66: -1930598036206595805
+      UndergroundLayout 1_67: -7355602878508213151
+      UndergroundLayout 1_68: -5807622652948126426
+      UndergroundLayout 1_69: 428998800321351387
+      UndergroundLayout 1_7: -4943442989753378957
+      UndergroundLayout 1_70: -648316308474411004
+      UndergroundLayout 1_71: -8748732815645226539
+      UndergroundLayout 1_72: 3325662794739921454
+      UndergroundLayout 1_73: 4492866989880701004
+      UndergroundLayout 1_74: -7958427898032089826
+      UndergroundLayout 1_75: -4743389213299452417
+      UndergroundLayout 1_76: -6676017621225976816
+      UndergroundLayout 1_77: 1947832452023358396
+      UndergroundLayout 1_78: -1010822152537830796
+      UndergroundLayout 1_79: 5787176876623315462
+      UndergroundLayout 1_8: 6319519462812591177
+      UndergroundLayout 1_9: 1351431425233159469
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

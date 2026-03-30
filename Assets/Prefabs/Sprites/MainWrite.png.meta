@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9a677d644b8f3448a618210732ff96e
+guid: 058f9045f611212418defda9319a49c9
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -8,6 +8,21 @@ TextureImporter:
   - first:
       213: -303293407453414940
     second: MainWrite_1
+  - first:
+      213: 6557536084046171761
+    second: MainWrite_2
+  - first:
+      213: 2331596471688801622
+    second: MainWrite_3
+  - first:
+      213: -5754889825642038082
+    second: MainWrite_4
+  - first:
+      213: 3630539768537844177
+    second: MainWrite_5
+  - first:
+      213: 7348799143185526177
+    second: MainWrite_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -77,7 +92,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -122,7 +137,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 23
-        height: 24
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +156,10 @@ TextureImporter:
       name: MainWrite_1
       rect:
         serializedVersion: 2
-        x: 23
+        x: 24
         y: 0
-        width: 23
-        height: 24
+        width: 24
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,11 +174,121 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MainWrite_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ec06b335c010b50800000000000000
+      internalID: 6557536084046171761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainWrite_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65da09e33ae7b5020800000000000000
+      internalID: 2331596471688801622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainWrite_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebcb81db1368220b0800000000000000
+      internalID: -5754889825642038082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainWrite_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d980ae1fa4426230800000000000000
+      internalID: 3630539768537844177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainWrite_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ada44792ed2cf560800000000000000
+      internalID: 7348799143185526177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c716adccac02e834ea41160644c78f5b
+    spriteID: 7a99f9f89273f644ebddeba9dcf2da01
     internalID: 0
     vertices: []
     indices: 
@@ -175,6 +300,11 @@ TextureImporter:
     nameFileIdTable:
       MainWrite_0: -4963539303810586495
       MainWrite_1: -303293407453414940
+      MainWrite_2: 6557536084046171761
+      MainWrite_3: 2331596471688801622
+      MainWrite_4: -5754889825642038082
+      MainWrite_5: 3630539768537844177
+      MainWrite_6: 7348799143185526177
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

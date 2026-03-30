@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class QuestData
 {
     public string questId;
-    public string title;
-    public string description;
+    public string questName;
     public List<QuestStep> steps;
 }

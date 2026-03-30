@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: ab90a10d6dc818c4d8d5b092ce121a8f
+guid: a99ffc7d93078b944be49fe14534af0b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5703253894748406695
-    second: MainWalk_0
+      213: 6458576117595545737
+    second: DialoguePoint_0
+  - first:
+      213: -8027476231721093580
+    second: DialoguePoint_1
+  - first:
+      213: 2139045806221156589
+    second: DialoguePoint_2
+  - first:
+      213: 6937545036127410955
+    second: DialoguePoint_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -74,7 +83,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainWalk_0
+      name: DialoguePoint_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 6
-        width: 20
-        height: 22
+        x: 154
+        y: 0
+        width: 22
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,20 +137,86 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a3875c3337062f40800000000000000
-      internalID: 5703253894748406695
+      spriteID: 980aa1c82c871a950800000000000000
+      internalID: 6458576117595545737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_1
+      name: DialoguePoint_1
       rect:
         serializedVersion: 2
-        x: 20
-        y: 6
-        width: 20
-        height: 22
+        x: 176
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4367f5d06eca89090800000000000000
+      internalID: -8027476231721093580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_2
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de0e91ed3da6fad10800000000000000
+      internalID: 2139045806221156589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_3
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0b16a3247c174060800000000000000
+      internalID: 6937545036127410955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 0
+        width: 22
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +225,130 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7072865636b3a8746a4ef9e741b5f8bc
-      internalID: -1340645390
+      spriteID: bc69b92374336ae44b988bcb2e07237c
+      internalID: -1467496882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainWalk_2
+      name: DialoguePoint_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b352933aa27effd4699512a9c3f5d930
+      internalID: -457575897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_6
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2d6c69474ac7c42ba70700b82c1d61
+      internalID: 306897808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_7
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b7277a7bca9d24c8bf30d4527991b3
+      internalID: -2132610033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_8
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a354acac0a4dd34580d97279d9d846d
+      internalID: -1012311995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_9
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 22
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e22d4b7931e2ef488a6c5c4815bfa55
+      internalID: -1242566853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DialoguePoint_10
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 6
+        width: 22
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,118 +357,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd99cfc223c45be4aa6d7fa566f249cd
-      internalID: -24129155
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_3
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 0
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 394389d58bd945542a18e164620949e0
-      internalID: -1912730613
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_4
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e9fdc0cb746f5744ad672c033f6488d
-      internalID: -1932557191
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_5
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 0
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e229d82bddcd844c8ff6869ec5d4ac7
-      internalID: -891213161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_6
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 0
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14a68e69fa40e924cbbd00e630731d19
-      internalID: -1035847283
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainWalk_7
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 0
-        width: 8
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5122fe347972ff34799463a53d51ca55
-      internalID: -2061637034
+      spriteID: c4b521989a45c7d43bc3383b1f140563
+      internalID: -4972501
       vertices: []
       indices: 
       edges: []
@@ -292,7 +367,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 536b651e1f1bc804294c58ae2291e0ae
+    spriteID: f33beb32b23b40c41ac6a5d041648e6c
     internalID: 0
     vertices: []
     indices: 
@@ -302,14 +377,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MainWalk_0: 5703253894748406695
-      MainWalk_1: -1340645390
-      MainWalk_2: -24129155
-      MainWalk_3: -1912730613
-      MainWalk_4: -1932557191
-      MainWalk_5: -891213161
-      MainWalk_6: -1035847283
-      MainWalk_7: -2061637034
+      DialoguePoint_0: 6458576117595545737
+      DialoguePoint_1: -8027476231721093580
+      DialoguePoint_10: -4972501
+      DialoguePoint_2: 2139045806221156589
+      DialoguePoint_3: 6937545036127410955
+      DialoguePoint_4: -1467496882
+      DialoguePoint_5: -457575897
+      DialoguePoint_6: 306897808
+      DialoguePoint_7: -2132610033
+      DialoguePoint_8: -1012311995
+      DialoguePoint_9: -1242566853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

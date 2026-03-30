@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcLogic : MonoBehaviour
+public class NpcLogic : MonoBehaviour, IInteractable
 {
-    public GameObject pressEWindow;
-    public string dialogueStartId;
-    private bool _playerInRange = false;
+    public string defaultDialogueId;
+    public List<ConditionalDialogue> conditionalDialogues;
+    public GameObject pressEIndicator;
     
     private DataManager _dataManager;
     private DialogueManager _dialogueManager;
@@ -14,31 +15,40 @@ public class NpcLogic : MonoBehaviour
         _dataManager = dataManager;
         _dialogueManager = dialogueManager;
     }
-    public void OnTriggerEnter2D(Collider2D other)
+
+    public void Interact()
     {
-        if (other.CompareTag("Player"))
-        {
-            pressEWindow.SetActive(true);
-            _playerInRange = true;
-        }
+        string dialogueToStart = GetCorrectDialogueId();
+        string startNode = _dataManager.GetDialogueState(dialogueToStart);
+        _dialogueManager.StartDialogue(dialogueToStart, startNode);
     }
 
-    public void Update()
+    public void ShowIndicator(bool show)
     {
-        if (_playerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            string startNode = _dataManager.GetDialogueState(dialogueStartId);
-            _dialogueManager.StartDialogue(dialogueStartId, startNode);
-        }
+        if(pressEIndicator != null) pressEIndicator.SetActive(show);
     }
-
-    public void OnTriggerExit2D(Collider2D other)
+    private string GetCorrectDialogueId()
     {
-        if (other.CompareTag("Player"))
+        foreach (var condition in conditionalDialogues)
         {
-            pressEWindow.SetActive(false);
-            _playerInRange = false;
-            _dialogueManager.HideDialogueLine();
+            if (!string.IsNullOrEmpty(condition.requiredWorldFlag))
+            {
+                if (_dataManager.GetWorldFlag(condition.requiredWorldFlag))
+                {
+                    return condition.dialogueId;
+                }
+            }   
         }
+        
+        foreach (var condition in conditionalDialogues)
+        {
+            var questStatus = _dataManager.GetQuestStatus(condition.questId);
+            if (questStatus != null && !questStatus.isCompleted &&
+                questStatus.currentStepIndex == condition.requiredStep)
+            {
+                return condition.dialogueId;
+            }
+        }
+        return defaultDialogueId;
     }
 }
